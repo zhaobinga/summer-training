@@ -58,17 +58,17 @@
 		            </div>
 		            
 		            <div class="modal-body">
-		               	<form action="${pageContext.request.contextPath}/log" method="post" id="loginForm" class="form-horizontal" style="padding: 0px 20px;">
+		               	<form action="${pageContext.request.contextPath}/ModifyInfo" method="post" id="loginForm" class="form-horizontal" style="padding: 0px 20px;">
 		               	<div class="form-group">
-		                          account:<%=id%>
+		                          account:<%=id%><input type="hidden" name="id" value=<%=id%>>
 		                      </div>
 		               	<div class="form-group">
 		                          name:<input name="name" type="text" class="form-control"  id="username"  value=<%=name%>>
 		                      </div>
 		                      <div class="form-group help">
-		                          sex：<h4><select id="type" name="sex" value=<%=name%>>  
+		                          sex：<h4><select id="type" name="sex" >  
     <option value="male">male</option>  
-    <option value="male">female</option> 
+    <option value="female">female</option> 
 </select>  </h4>
 		                      </div>
 		                      <div class="form-group">
