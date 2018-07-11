@@ -11,5 +11,14 @@
     <url-pattern>/ModifyInfo</url-pattern>
   </servlet-mapping>
 
+<servlet>
+    <servlet-name>ModifyPsw</servlet-name>
+    <servlet-class>controller.ModifyPsw</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>ModifyPsw</servlet-name>
+    <url-pattern>/ModifyPsw</url-pattern>
+  </servlet-mapping>
 
 </web-app>

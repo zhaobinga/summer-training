@@ -93,8 +93,12 @@ public class AllServlet extends HttpServlet {
 		SqlOperator con=new SqlOperator();
 		Statement state=null;
 		String name=request.getParameter("name");
+		System.out.println(name);
+		//name=new String(name.getBytes("iso-8859-1"),"utf-8");
 	    String password=request.getParameter("password");
+	    password=new String(password.getBytes("iso-8859-1"),"utf-8");
 	    String type=request.getParameter("type");
+	    type=new String(type.getBytes("iso-8859-1"),"utf-8");
 		
 		state=con.con.createStatement();
 		state.execute("insert into user(username,id,pwd,type) values('"+name+"',"+num+",'"+password+"','"+type+"')"); 

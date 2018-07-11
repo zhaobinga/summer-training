@@ -34,6 +34,38 @@
 		<script type="text/javascript">
 		CONETXT_PATH = '';
 		</script>
+	<script type="text/javascript">
+    function validate()
+    {
+    var psw=document.getElementById("psw").value;
+    var opsw=document.getElementById("opsw").value;
+    var mima1=document.getElementById("npsw").value;
+    var mima2=document.getElementById("npsw2").value;
+    if(mima1==""||opsw==""||mima2==""){
+    alert("密码不能为空");
+    document.getElementById("opsw").focus();
+    return false;
+    }
+    else if(opsw!=psw)
+    {
+    	alert("原始密码错误");
+        document.getElementById("opsw").focus();
+        return false;            
+    }
+    else if(mima1!=mima2)
+    {
+    alert("请确认密码一致");
+    document.getElementById("npsw").focus();
+    return false;
+    }
+    else
+    {
+    alert("修改密码成功");
+    return true;
+    }
+    }                        //check password infomation--YC
+    </script>
+ 
 	</head>
 
 	<body>
@@ -43,6 +75,7 @@
 	<%String tel = request.getAttribute("tel").toString();%>
 	<%String sex = request.getAttribute("sex").toString();%>
 	<%String des = request.getAttribute("des").toString();%>
+	<%String psw = request.getAttribute("psw").toString();%>
 		<!-- 头部-start -->
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog"  style="position:fixed; top:30%;">
 		    <div class="modal-dialog" role="document">
@@ -56,7 +89,7 @@
 		                <h4 class="modal-title"  id="registeTitle"  style="float: left;margin-left: 20px;cursor: pointer;" onclick="registe();">修改密码</h4>
 		                <div class="clearfix"></div>
 		            </div>
-		            
+		            <!-- modify information -->>
 		            <div class="modal-body">
 		               	<form action="${pageContext.request.contextPath}/ModifyInfo" method="post" id="loginForm" class="form-horizontal" style="padding: 0px 20px;">
 		               	<div class="form-group">
@@ -66,9 +99,9 @@
 		                          name:<input name="name" type="text" class="form-control"  id="username"  value=<%=name%>>
 		                      </div>
 		                      <div class="form-group help">
-		                          sex：<h4><select id="type" name="sex" >  
-    <option value="male">male</option>  
-    <option value="female">female</option> 
+		                          sex：<h4><select id="sex" name="sex" >  
+    <option id="male" value="male" >male</option>  
+    <option id="female" value="female">female</option> 
 </select>  </h4>
 		                      </div>
 		                      <div class="form-group">
@@ -78,7 +111,7 @@
 		                          email:<input name="email" type="text" class="form-control"  id="password"  placeholder="email" value=<%=email%>>
 		                      </div>
 		                      <div class="form-group help">
-		                          person description:<input name="des" type="text" class="form-control"  id="password"  placeholder="email" value=<%=des%>>
+		                          person description:<input name="des" type="text" class="form-control"  id="password"  placeholder="des" value=<%=des%>>
 		                      </div>
 		                      
 
@@ -87,12 +120,19 @@
 		                      	<input type="submit" value="保存" />
 		                      </a>
 		                  </form>
-		                   <form action="${pageContext.request.contextPath}/AllServlet" method="post" onSubmit="return validate()" id="registeForm" class="form-horizontal" style="padding: 0px 20px;display: none;">
-		     
- <input type="hidden" name="methodName" value="0"/>
-<h4>  原始密码:<input type="text" name="name" id="name"></input><br></h4>
-<h4>  新密码：<input type="password" name="password" id="mima1"></input><br></h4>
-<h4>  确认新密码：<input type="password" name="password2" id="mima2"></input><br></h4>
+		                  <!-- modify password -->
+<form action="${pageContext.request.contextPath}/ModifyPsw" method="post" onSubmit="return validate()" id="registeForm" class="form-horizontal" style="padding: 0px 20px;display: none;">
+<input type="hidden" name="methodName" value="0"/>
+ <input type="hidden" name="id" value=<%=id%>>
+  <input type="hidden" name="psw" id="psw" value=<%=psw%>>
+ <input type="hidden" name="name" value=<%=name%>>
+ <input type="hidden" name="sex" id="sex1" value=<%=sex%>>
+ <input type="hidden" name="tel" value=<%=tel%>>
+ <input type="hidden" name="email" value=<%=email%>>
+ <input type="hidden" name="des" value=<%=des%>>   
+<h4>  原始密码:<input type="password" name="opsw" id="opsw"></input><br></h4>
+<h4>  新密码：<input type="password" name="npsw" id="npsw"></input><br></h4>
+<h4>  确认新密码：<input type="password" name="npsw2" id="npsw2"></input><br></h4>
 
  <input type="submit" value="提交"/>
  
@@ -128,12 +168,20 @@
 				</nav>
 			</div>
 		</div>
+		
 		<script type="text/javascript">
+		
 			function login(){
 				$('#loginTitle').css('color','#337Ab7');
 				$('#loginForm').show();
 				$('#registeTitle').css('color','#000');
 				$('#registeForm').hide();
+				var sex=document.getElementById("sex1").value;
+				if(sex=="female")
+					{
+					document.getElementById("female").selected=true;
+					}
+				
 			}
 			function registe(){
 				$('#loginTitle').css('color','#000');

@@ -27,9 +27,9 @@
 		<script type="text/javascript">
     function validate()
     {
-    var name=document.forms[1].name.value;
-    var mima1=document.forms[1].password.value;
-    var mima2=document.forms[1].password2.value;
+    var name=document.getElementById("name").value;
+    var mima1=document.getElementById("mima1").value;
+    var mima2=document.getElementById("mima2").value;
     if(mima1==""||name==""){
     alert("用户名或密码不能为空");
     document.getElementById("mima1").focus();
@@ -41,14 +41,8 @@
     document.getElementById("mima2").focus();
     return false;
     }
- //   else if(list.indexOf(name)!=-1){
- //   	alert("用户名已存在");
- //   	document.getElementById("name").focus();
-//    	return false;
-//    }
     else
     {
-    //alert("注册成功");
     return true;
     }
     }

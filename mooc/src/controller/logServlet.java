@@ -48,9 +48,11 @@ public class logServlet extends HttpServlet {
 		doGet(request, response);
 		//获取表单的用户名
 				String username=request.getParameter("uName");
+				username=new String(username.getBytes("iso-8859-1"),"utf-8");
 				//获取表单的密码
 				String password=request.getParameter("uPwd");
 				String code = request.getParameter("code");
+				
 				// 验证验证码
 				String sessionCode = request.getSession().getAttribute("code").toString();
 				SqlOperator so=new SqlOperator();
@@ -65,12 +67,15 @@ public class logServlet extends HttpServlet {
 						}else {
 							while(rs.next()) {
 								if(username.equals(rs.getString("id"))&&password.equals(rs.getString("pwd"))) {
+									
 									request.setAttribute("name", rs.getString("username"));
 									request.setAttribute("Id", rs.getString("id"));
 									request.setAttribute("email", rs.getString("email"));
 									request.setAttribute("tel", rs.getString("telephone"));
 									request.setAttribute("sex", rs.getString("sex"));
 									request.setAttribute("des", rs.getString("description"));
+									request.setAttribute("psw", rs.getString("pwd"));
+									
 									outcome="/log/success.jsp";
 								}    				
 							}if(!outcome.equals("/log/success.jsp"))

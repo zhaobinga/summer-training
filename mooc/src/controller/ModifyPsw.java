@@ -22,14 +22,14 @@ import modle.Student;
 /**
  * Servlet implementation class AllServlet
  */
-@WebServlet("/Modify")
-public class ModifyInfo extends HttpServlet {
+@WebServlet("/Mpsw")
+public class ModifyPsw extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ModifyInfo() {
+    public ModifyPsw() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,10 +42,11 @@ public class ModifyInfo extends HttpServlet {
 		// TODO Auto-generated method stub
 		SqlOperator con=new SqlOperator();
 		Statement state=null;
+		String npsw=request.getParameter("npsw");
 		String psw=request.getParameter("psw");
+		String id=request.getParameter("id");
 		String name=request.getParameter("name");
 		name=new String(name.getBytes("iso-8859-1"),"utf-8");
-		String id=request.getParameter("id");
 		String sex=request.getParameter("sex");
 		sex=new String(sex.getBytes("iso-8859-1"),"utf-8");
 		String email=request.getParameter("email");
@@ -54,20 +55,21 @@ public class ModifyInfo extends HttpServlet {
 		des=new String(des.getBytes("iso-8859-1"),"utf-8");
 		try {
 			state=con.con.createStatement();
-			String sql="update user set username='"+name+"' where id='"+id+"'";
-			String sql2="update info set sex='"+sex+"',email='"+email+"',telephone='"+tel+"',description='"+des+"'where id='"+id+"'";
+			String sql="update user set pwd='"+npsw+"' where id='"+id+"'";
+			
 			System.out.println(sql);
-			System.out.println(sql2);
+
 			state.execute(sql);
-			state.execute(sql2);
+
+			request.setAttribute("psw",npsw);
+			request.setAttribute("Id",id);
 			request.setAttribute("name", name);
-			request.setAttribute("psw", name);
-			request.setAttribute("Id", id);
+			
 			request.setAttribute("email",email);
 			request.setAttribute("tel", tel);
 			request.setAttribute("sex", sex);
 			request.setAttribute("des", des);
-			this.getServletContext().getRequestDispatcher("/log/success.jsp").forward(request, response);
+			request.getRequestDispatcher("/log/success.jsp").forward(request, response);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

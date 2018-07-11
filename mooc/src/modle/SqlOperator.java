@@ -15,7 +15,7 @@ public class SqlOperator {
 	//杩炴帴鏁版嵁搴撶殑瀵嗙爜
 	private static String pwd="woshi3bwopashei";
 
-	private static String url="jdbc:mysql://localhost:3306/shixun?useSSL=false&serverTimezone=UTC";
+	private static String url="jdbc:mysql://localhost:3306/shixun?useSSL=false&serverTimezone=UTC&characterEncoding=utf-8";
 
 	//椹卞姩鍚嶅瓧
 	private static String driver = "com.mysql.cj.jdbc.Driver";
