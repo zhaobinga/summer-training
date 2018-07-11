@@ -25,28 +25,29 @@
 		CONETXT_PATH = '';
 		</script>
 		<script type="text/javascript">
-    function validate()
-    {
-    var name=document.getElementById("name").value;
-    var mima1=document.getElementById("mima1").value;
-    var mima2=document.getElementById("mima2").value;
-    if(mima1==""||name==""){
-    alert("用户名或密码不能为空");
-    document.getElementById("mima1").focus();
-    return false;
-    }
-    else if(mima1!=mima2)
-    {
-    alert("确认密码失败，请重新输入");
-    document.getElementById("mima2").focus();
-    return false;
-    }
-    else
-    {
-    return true;
-    }
-    }
-    </script>
+    		function validate(){
+    			var name=document.getElementById("name").value;
+    			var mima1=document.getElementById("mima1").value;
+    			var mima2=document.getElementById("mima2").value;
+    			if(mima1==""||name==""){
+    				alert("用户名或密码不能为空");
+    				document.getElementById("mima1").focus();
+    				return false;
+    			}else if(/.*[\u4e00-\u9fa5]+.*$/.test(mima1)){
+    				alert("密码不能含有中文");
+    				return false;
+    			}else if(mima1!=mima2){
+    				alert("确认密码失败，请重新输入");
+    				document.getElementById("mima2").focus();
+    				return false;
+    			}else if(mima1.length>16||mima1.length<8){
+    				alert("密码长度为8-16位，请重新输入");
+    				return false;
+    			}else{
+    				return true;
+    			}
+    		}
+   	 	</script>
     <script type="text/javascript" src="res/js/change.js"></script>
 	</head>
 
