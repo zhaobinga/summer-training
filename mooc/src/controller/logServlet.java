@@ -1,14 +1,17 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import modle.SqlOperator;
 
@@ -45,41 +48,84 @@ public class logServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+
 		//获取表单的用户名
 				String username=request.getParameter("uName");
 				username=new String(username.getBytes("iso-8859-1"),"utf-8");
 				//获取表单的密码
 				String password=request.getParameter("uPwd");
 				String code = request.getParameter("code");
+				String checked=request.getParameter("checked");
 				
 				// 验证验证码
 				String sessionCode = request.getSession().getAttribute("code").toString();
 				SqlOperator so=new SqlOperator();
 				ResultSet rs=so.getRS();
 
-				String outcome="/then.jsp";
+				String outcome="/index.jsp";
 
 				if(code.equalsIgnoreCase(sessionCode)) {
 					try {
 						if(username.equals("")||password.equals("")) {
-							request.setAttribute("outcome", "2");
+							so.close();
+							System.out.println("1");
+							PrintWriter out = response.getWriter();
+							System.out.println("<script>alert('用户名或者密码不能为空'); window.location='index.jsp' </script>");
+							out.print("<script>alert('用户名或者密码不能为空'); window.location='index.jsp' </script>");
+							out.flush();
+							out.close();
 						}else {
 							while(rs.next()) {
 								if(username.equals(rs.getString("id"))&&password.equals(rs.getString("pwd"))) {
-									
-									request.setAttribute("name", rs.getString("username"));
-									request.setAttribute("Id", rs.getString("id"));
-									request.setAttribute("email", rs.getString("email"));
-									request.setAttribute("tel", rs.getString("telephone"));
-									request.setAttribute("sex", rs.getString("sex"));
-									request.setAttribute("des", rs.getString("description"));
-									request.setAttribute("psw", rs.getString("pwd"));
-									
+									HttpSession session=request.getSession();
+									session.setAttribute("name", rs.getString("username"));
+									session.setAttribute("Id", rs.getString("id"));
+									session.setAttribute("email", rs.getString("email"));
+									session.setAttribute("tel", rs.getString("telephone"));
+									session.setAttribute("sex", rs.getString("sex"));
+									session.setAttribute("des", rs.getString("description"));
+									session.setAttribute("psw", rs.getString("pwd"));
+									session.setAttribute("Id", rs.getString("id"));
+									if(checked!=null)
+									{
+										Cookie c1=new Cookie("username",username);
+										Cookie c2=new Cookie("password",password);
+										Cookie c3=new Cookie("checked",checked);
+										System.out.println(checked);
+										c1.setMaxAge(1000);
+										c2.setMaxAge(1000);
+										c3.setMaxAge(1000);
+										response.addCookie(c1);
+										response.addCookie(c2);
+										response.addCookie(c3);
+									}
+									else
+									{
+										System.out.println(checked);
+										Cookie[] c=request.getCookies();
+										
+										if(c!=null)
+										{
+											for(int i=0;i<c.length;i++)
+											{
+												Cookie cookie = new Cookie(c[i].getName(), null);
+												cookie.setMaxAge(0);												
+												System.out.println("NMSL");
+												response.addCookie(cookie);
+											}
+										}
+									}
 									outcome="/log/success.jsp";
+									request.getRequestDispatcher("success.jsp").forward(request, response);
+									
 								}    				
 							}if(!outcome.equals("/log/success.jsp"))
-								request.setAttribute("outcome", "3");
+							so.close();
+							PrintWriter out = response.getWriter();
+							System.out.println("<script>alert('用户名或者密码错误'); window.location='index.jsp' </script>");
+							out.print("<script>alert('username or password error'); window.location='index.jsp' </script>");
+							out.flush();
+							out.close();
 						}
 					} catch (SQLException e) {
 						// TODO 自动生成的 catch 块
@@ -87,9 +133,13 @@ public class logServlet extends HttpServlet {
 					}
 
 				}else {
-					request.setAttribute("outcome", "1");
+					so.close();
+					PrintWriter out = response.getWriter();
+					System.out.println("<script>alert('验证码错误'); window.location='index.jsp' </script>");
+					out.print("<script>alert('checkcode error'); window.location='index.jsp' </script>");
+					out.flush();
+					out.close();
 				}
-				request.getRequestDispatcher(outcome).forward(request, response);
 				so.close();
 	}
 

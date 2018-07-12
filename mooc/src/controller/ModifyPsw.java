@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import modle.SqlOperator;
 import modle.Student;
@@ -60,16 +61,16 @@ public class ModifyPsw extends HttpServlet {
 			System.out.println(sql);
 
 			state.execute(sql);
-
-			request.setAttribute("psw",npsw);
-			request.setAttribute("Id",id);
-			request.setAttribute("name", name);
+			HttpSession session=request.getSession();
+			session.setAttribute("psw",npsw);
+			session.setAttribute("Id",id);
+			session.setAttribute("name", name);
 			
-			request.setAttribute("email",email);
-			request.setAttribute("tel", tel);
-			request.setAttribute("sex", sex);
-			request.setAttribute("des", des);
-			request.getRequestDispatcher("/log/success.jsp").forward(request, response);
+			session.setAttribute("email",email);
+			session.setAttribute("tel", tel);
+			session.setAttribute("sex", sex);
+			session.setAttribute("des", des);
+			request.getRequestDispatcher("/success.jsp").forward(request, response);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

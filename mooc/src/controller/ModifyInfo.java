@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import modle.SqlOperator;
 import modle.Student;
@@ -60,14 +61,15 @@ public class ModifyInfo extends HttpServlet {
 			System.out.println(sql2);
 			state.execute(sql);
 			state.execute(sql2);
-			request.setAttribute("name", name);
-			request.setAttribute("psw", name);
-			request.setAttribute("Id", id);
-			request.setAttribute("email",email);
-			request.setAttribute("tel", tel);
-			request.setAttribute("sex", sex);
-			request.setAttribute("des", des);
-			this.getServletContext().getRequestDispatcher("/log/success.jsp").forward(request, response);
+			HttpSession session=request.getSession();
+			session.setAttribute("name", name);
+			session.setAttribute("psw", name);
+			session.setAttribute("Id", id);
+			session.setAttribute("email",email);
+			session.setAttribute("tel", tel);
+			session.setAttribute("sex", sex);
+			session.setAttribute("des", des);
+			this.getServletContext().getRequestDispatcher("/success.jsp").forward(request, response);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
