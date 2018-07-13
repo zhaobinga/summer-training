@@ -36,6 +36,7 @@
 		CONETXT_PATH = '';
 		</script>
 	<script type="text/javascript">
+	//
     function validate()
     {
     var psw=document.getElementById("psw").value;
@@ -149,11 +150,8 @@
 				<a href=".."  class="logo" title="IT在线学习平台"></a>
 				<nav class="header-nav">
 					<a href="index.html" class="header-nav-item">首 页</a>
-					<a href="list.html" class="header-nav-item">课 程</a>
-					<form class="header-nav-item">					
-					<a href="userhome.html" class="header-nav-item">我的课堂</a>
-					<input type="hidden" name="id" value=<%=id%>>
-					</form>
+					<a href="list.html" class="header-nav-item">课 程</a>									
+					<a href="stCourse.jsp" class="header-nav-item">我的课堂</a>
 					<a href="optindex.html"  style="width:100px;" target="_blank" class="header-nav-item">运营CMS</a>
 					<form class="header-nav-item" action="${pageContext.request.contextPath}/joinServlet"  method="post">					
 					<input type="text" name="cid" name="cid" >

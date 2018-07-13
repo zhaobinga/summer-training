@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import modle.SqlOperator;
+import modle.itClass;
 
 /**
  * Servlet implementation class logServlet
@@ -50,19 +53,37 @@ public class logServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		//获取表单的用户名
+		        ArrayList<itClass> classarray=new ArrayList();
 				String username=request.getParameter("uName");
 				username=new String(username.getBytes("iso-8859-1"),"utf-8");
 				//获取表单的密码
 				String password=request.getParameter("uPwd");
 				String code = request.getParameter("code");
 				String checked=request.getParameter("checked");
-				
+				Statement state=null;
 				// 验证验证码
 				String sessionCode = request.getSession().getAttribute("code").toString();
 				SqlOperator so=new SqlOperator();
+				try {
+					state=so.con.createStatement();
+					String sql="select * from class_std natural join class where id='"+username+"'";
+					ResultSet rs2=state.executeQuery(sql);
+					while(rs2.next())
+					{
+						itClass itclass=new itClass(rs2.getString("cid"),rs2.getString("tname"),rs2.getString("cname"),rs2.getString("des"),rs2.getString("homework"));
+						classarray.add(itclass);
+					}
+					
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				ResultSet rs=so.getRS();
 
 				String outcome="/index.jsp";
+
+				
+
 
 				if(code.equalsIgnoreCase(sessionCode)) {
 					try {
@@ -86,6 +107,7 @@ public class logServlet extends HttpServlet {
 									session.setAttribute("des", rs.getString("description"));
 									session.setAttribute("psw", rs.getString("pwd"));
 									session.setAttribute("Id", rs.getString("id"));
+									session.setAttribute("class", classarray);
 									if(checked!=null)
 									{
 										Cookie c1=new Cookie("username",username);

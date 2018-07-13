@@ -16,9 +16,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import modle.SqlOperator;
 import modle.Student;
+import modle.itClass;
 /**
  * Servlet implementation class AllServlet
  */
@@ -43,15 +45,21 @@ public class joinServlet extends HttpServlet {
 		SqlOperator con=new SqlOperator();
 		Statement state=null;
 		Statement state2=null;
+		Statement state3=null;
 		String cid=request.getParameter("cid");
 		String id=request.getParameter("id");
+		ArrayList<itClass> array=new ArrayList();
+		
 		try {
 			state=con.con.createStatement();
 			state2=con.con.createStatement();
+			state3=con.con.createStatement();
 			String sql="select cid from class";
-			String sql2="select cid from class_std where id='"+id+"'";
+			String sql2="select * from class_std where id='"+id+"'and cid='"+cid+"'";
+			String sql3="select * from class_std natural join class where id='"+id+"'";
             ResultSet rs=state.executeQuery(sql);
             ResultSet rs2=state2.executeQuery(sql2);
+            
             int i=3;
 			while(rs.next())
 			{
@@ -72,6 +80,14 @@ public class joinServlet extends HttpServlet {
 						i=2;
 					sql="insert into class_std values('"+cid+"','"+id+"')";
 					state.execute(sql);
+					ResultSet rs3=state3.executeQuery(sql3);
+					while(rs3.next())
+					{
+						itClass itclass=new itClass(rs3.getString("cid"),rs3.getString("tname"),rs3.getString("cname"),rs3.getString("des"),rs3.getString("homework"));
+						array.add(itclass);
+					}
+					HttpSession session=request.getSession();
+					session.setAttribute("class", array);
 					PrintWriter out = response.getWriter();
 					System.out.println("<script>alert('加入课堂成功'); window.location='index.jsp' </script>");
 					out.print("<script>alert('successfully!');window.location='success.jsp'</script>");
