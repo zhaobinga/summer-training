@@ -99,6 +99,7 @@ public class logServlet extends HttpServlet {
 							while(rs.next()) {
 								if(username.equals(rs.getString("id"))&&password.equals(rs.getString("pwd"))) {
 									HttpSession session=request.getSession();
+									String type=rs.getString("type");
 									session.setAttribute("name", rs.getString("username"));
 									session.setAttribute("Id", rs.getString("id"));
 									session.setAttribute("email", rs.getString("email"));
@@ -137,8 +138,16 @@ public class logServlet extends HttpServlet {
 											}
 										}
 									}
+									if(type.equals("student"))
+									{
 									outcome="/log/success.jsp";
 									request.getRequestDispatcher("success.jsp").forward(request, response);
+									}
+									else
+									{
+										outcome="/log/success.jsp";
+										request.getRequestDispatcher("teacher.jsp").forward(request, response);
+									}
 									
 								}    				
 							}if(!outcome.equals("/log/success.jsp"))
