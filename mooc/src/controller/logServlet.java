@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import modle.Comment;
 import modle.SqlOperator;
 import modle.itClass;
 
@@ -54,6 +55,7 @@ public class logServlet extends HttpServlet {
 
 		//获取表单的用户名
 		        ArrayList<itClass> classarray=new ArrayList();
+		        ArrayList<Comment> commentarray=new ArrayList();
 				String username=request.getParameter("uName");
 				username=new String(username.getBytes("iso-8859-1"),"utf-8");
 				//获取表单的密码
@@ -61,18 +63,29 @@ public class logServlet extends HttpServlet {
 				String code = request.getParameter("code");
 				String checked=request.getParameter("checked");
 				Statement state=null;
+				Statement state2=null;
 				// 验证验证码
 				String sessionCode = request.getSession().getAttribute("code").toString();
 				SqlOperator so=new SqlOperator();
 				try {
 					state=so.con.createStatement();
+					state2=so.con.createStatement();
+					String sql2="select * from comment";
 					String sql="select * from class_std natural join class where id='"+username+"'";
 					ResultSet rs2=state.executeQuery(sql);
+					ResultSet rs3=state2.executeQuery(sql2);
 					while(rs2.next())
 					{
 						itClass itclass=new itClass(rs2.getString("cid"),rs2.getString("tname"),rs2.getString("cname"),rs2.getString("des"),rs2.getString("homework"));
 						classarray.add(itclass);
-					}
+					};
+				    while(rs3.next())
+		            {
+		            	Comment comment=new Comment(rs3.getString("username"),rs3.getString("time"),rs3.getString("content"),rs3.getString("videoid"));
+		            	commentarray.add(comment);
+		            	System.out.println("+1");
+		            }
+					
 					
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
@@ -109,6 +122,7 @@ public class logServlet extends HttpServlet {
 									session.setAttribute("psw", rs.getString("pwd"));
 									session.setAttribute("Id", rs.getString("id"));
 									session.setAttribute("class", classarray);
+									session.setAttribute("comment", commentarray);
 									if(checked!=null)
 									{
 										Cookie c1=new Cookie("username",username);

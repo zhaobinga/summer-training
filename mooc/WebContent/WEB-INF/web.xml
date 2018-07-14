@@ -41,5 +41,15 @@
     <servlet-name>logServlet</servlet-name>
     <url-pattern>/logServlet</url-pattern>
   </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>CreateComment</servlet-name>
+    <servlet-class>controller.CreateComment</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>CreateComment</servlet-name>
+    <url-pattern>/CreateComment</url-pattern>
+  </servlet-mapping>
 
 </web-app>

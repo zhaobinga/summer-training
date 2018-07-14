@@ -66,7 +66,60 @@
     return true;
     }
     }                        //check password infomation--YC
+    
+    
+    
+    $("#btn1").click(function(){
+		$("#btn1").toggle();
+	});
     </script>
+ 
+ <script>
+	function setImagePreview() {
+		var docObj = document.getElementById("doc");
+		var imgObjPreview = document.getElementById("preview");
+		if (docObj.files && docObj.files[0]) {
+		
+			imgObjPreview.style.display = 'block';
+			imgObjPreview.style.width = '68px';
+			imgObjPreview.style.height = '50px';
+			imgObjPreview.style.position = "absolute";
+			imgObjPreview.style.left="1200px";
+			imgObjPreview.style.top="20px";
+			//imgObjPreview.src = docObj.files[0].getAsDataURL();
+			imgObjPreview.src ="blob:http://localhost:8080/92e6d5df-fa26-4511-a759-16888bd77eb2";// window.URL.createObjectURL(docObj.files[0]);
+		} else {
+			//IE下，使用滤镜
+			docObj.select();
+			var imgSrc = document.selection.createRange().text;
+			var localImagId = document.getElementById("localImag");
+			//必须设置初始大小
+			localImagId.style.width = "68px";
+			localImagId.style.height = "50px";
+			localImagId.style.position = "absolute";
+			localImagId.style.left="1350px";
+			localImagId.style.top="20px";
+			//图片异常的捕捉，防止用户修改后缀来伪造图片
+			try {
+				localImagId.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+				localImagId.filters
+						.item("DXImageTransform.Microsoft.AlphaImageLoader").src = imgSrc;
+			} catch (e) {
+				alert("您上传的图片格式不正确，请重新选择!");
+				return false;
+			}
+			imgObjPreview.style.display = 'none';
+			document.selection.empty();
+		}
+		return true;
+	}
+</script>
+ 
+ 
+ 
+ 
+ 
+ 
  
 	</head>
 
@@ -174,6 +227,24 @@
        				   	</ul>
 					</div>
 				</nav>
+				
+				
+				<nav class="header-nav" style="float: right">
+			  <button onclick=$("[type=file]").click()  id="btn1"  style="position:absolute;border:none;left:1137px; top:40px;">我的头像</button>
+				<div id="nav" class="am-form-file">
+					<input style="display: none;" type=file name="doc" id="doc" onchange="javascript:setImagePreview();">
+					
+					
+						<img id="preview" width=40px height=40px src="blob:http://localhost:8080/92e6d5df-fa26-4511-a759-16888bd77eb2" />
+					
+					
+				</div>
+			</nav>
+				
+				
+				
+				
+				
 			</div>
 		</div>
 		
@@ -328,7 +399,7 @@
 				<h3 class="types-title">实战推荐</h3>
 				<div class="types-content">
 					
-					<a href="learn.html">
+					<a href="video.jsp">
 					<div class="course-card-container">
 						<div class="course-card-top green-bg">
 							<span>测试</span>
