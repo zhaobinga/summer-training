@@ -84,10 +84,10 @@
 			imgObjPreview.style.width = '68px';
 			imgObjPreview.style.height = '50px';
 			imgObjPreview.style.position = "absolute";
-			imgObjPreview.style.left="1200px";
+			imgObjPreview.style.left="997px";
 			imgObjPreview.style.top="20px";
 			//imgObjPreview.src = docObj.files[0].getAsDataURL();
-			imgObjPreview.src ="blob:http://localhost:8080/92e6d5df-fa26-4511-a759-16888bd77eb2";// window.URL.createObjectURL(docObj.files[0]);
+			imgObjPreview.src = window.URL.createObjectURL(docObj.files[0]);
 		} else {
 			//IE下，使用滤镜
 			docObj.select();
@@ -208,7 +208,7 @@
 					<a href="optindex.html"  style="width:100px;" target="_blank" class="header-nav-item">运营CMS</a>
 					<form class="header-nav-item" action="${pageContext.request.contextPath}/joinServlet"  method="post">					
 					<input type="text" name="cid" name="cid" >
-					<input type="submit" value="加入课堂" >
+					<input type="submit" value="加入课堂" style="position: absolute; left: 780px; top: 30px; border-radius: 3px;">
 					<input type="hidden" name="id" value=<%=id%>>
 					</form>
 					
@@ -230,12 +230,12 @@
 				
 				
 				<nav class="header-nav" style="float: right">
-			  <button onclick=$("[type=file]").click()  id="btn1"  style="position:absolute;border:none;left:1137px; top:40px;">我的头像</button>
+			  <button onclick=$("[type=file]").click()  id="btn1"  style="position:absolute;border:none;left:937px; top:40px;">我的头像</button>
 				<div id="nav" class="am-form-file">
 					<input style="display: none;" type=file name="doc" id="doc" onchange="javascript:setImagePreview();">
 					
 					
-						<img id="preview" width=40px height=40px src="blob:http://localhost:8080/92e6d5df-fa26-4511-a759-16888bd77eb2" />
+						<img id="preview" width=-1 height=-1 style="display:none;"/>
 					
 					
 				</div>

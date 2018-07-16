@@ -13,13 +13,13 @@ public class SqlOperator {
 	private static String user="root";
 	//private static String user="nozzn3xlwl";
 	//杩炴帴鏁版嵁搴撶殑瀵嗙爜
-	private static String pwd="woshi3bwopashei";
+	private static String pwd="Manager123";
 	//private static String pwd="0301kw1lm3ihxlwyyxm4kwh1h02k15klzw2myij2";
 	private static String url="jdbc:mysql://localhost:3306/shixun?useSSL=false&serverTimezone=UTC&characterEncoding=utf-8";
 	//private static String url="jdbc:mysql://w.rdc.sae.sina.com.cn:3307/app_iterykt";
 	//椹卞姩鍚嶅瓧
-	private static String driver = "com.mysql.cj.jdbc.Driver";
-	//private static String driver ="com.mysql.jdbc.Driver";
+	//private static String driver = "com.mysql.cj.jdbc.Driver";
+	private static String driver ="com.mysql.jdbc.Driver";
 	//杩炴帴缁撴灉闆唀tc
 	public Connection con;
 	public Statement stat;

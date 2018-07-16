@@ -189,10 +189,9 @@
 		<div class="f-header-box clearfix">
 			<a href=".." class="logo" title="IT在线学习平台"></a>
 			<nav class="header-nav">
-				<a href="success.jsp" class="header-nav-item">首 页</a> <a
-					href="userhome.html" class="header-nav-item">我的</a> <a
-					href="optindex.html" style="width: 100px;" target="_blank"
-					class="header-nav-item">运营CMS</a>
+				<a href="success.jsp" class="header-nav-item">首 页</a>
+				 <a href="userhome.html" class="header-nav-item">我的</a> 
+				 <a href="optindex.html" style="width: 100px;" target="_blank" class="header-nav-item">运营CMS</a>
 			</nav>
 
 			<nav class="header-nav" style="float: right">
@@ -313,7 +312,7 @@
 			
 		<%} %>
 		
-
+	<a href="learn.jsp">
 		<div class="course-card-container" id="div2">
 			<div class="course-card-top pink-bg">
 				<span>AngularJS仿拉勾网WebApp</span>
@@ -329,7 +328,9 @@
 				</div>
 			</div>
 		</div>
-
+	</a>
+	
+	<a href="learn.jsp">
 		<div class="course-card-container" id="div3">
 			<div class="course-card-top brown-bg">
 				<span>强力django杀手级xadmin</span>
@@ -345,7 +346,9 @@
 				</div>
 			</div>
 		</div>
-
+	</a>
+	
+	<a href="learn.jsp">
 		<div class="course-card-container" id="div4">
 			<div class="course-card-top purple-bg">
 				<span>Python高级编程技巧实战</span>
@@ -363,7 +366,10 @@
 				</div>
 			</div>
 		</div>
-
+	</a>
+	
+	
+	<a href="learn.jsp">
 		<div class="course-card-container" id="div5">
 			<div class="course-card-top green-bg">
 				<span>Python高级编程技巧实战</span>
@@ -381,8 +387,9 @@
 				</div>
 			</div>
 		</div>
+		</a>
 	</div>
-	</div>
+
 	<!-- 学习课程-end -->
 </body>
 

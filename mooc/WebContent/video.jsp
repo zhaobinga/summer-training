@@ -170,7 +170,7 @@
 						</div>
 						
 						<div class="course-menu">
-							<a  href="javascript:void(0)"><span class="menu-item  cur">评论</span></a>
+							<a  href="comment.jsp"><span class="menu-item  cur">评论</span></a>
 						</div>
 				</div>
 				
@@ -346,7 +346,7 @@
 					<a href="javascript:void(0);" target="_blank" title="友情链接">友情链接</a>
 				</div>
 				<div class="footer-copyright">
-					<span>©&nbsp;2017&nbsp; 备案 </span>
+					<span>©&nbsp;2018&nbsp; 实训 </span>
 				</div>
 			</div>
 		</div>
