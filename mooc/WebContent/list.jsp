@@ -1,466 +1,351 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-		 pageEncoding="utf-8"%>
-
+	pageEncoding="utf-8"
+	import="java.util.*"
+	import="modle.itClass"
+	%>
 <!DOCTYPE html>
 <html lang="utf-8">
-	<head>
-	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
-		<meta name="keywords" content="">
-		<meta name="description" content="">
-		<title>IT在线学习平台</title>
-		
-		<link href="res/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-		<link href="res/css/reset.css" rel="stylesheet" type="text/css"/>
-		<script type="text/javascript" src="res/js/jquery-1.11.3.min.js"></script>
-		<script type="text/javascript" src="res/js/bootstrap.min.js"></script>
-		
-		<!--[if lt IE 9]>
+<head>
+
+<style type="text/css">
+#top {
+	postion: absolute;
+	z-index: 999;
+}
+* {
+	margin: 0px;
+	padding: 0px;
+}
+#nav {
+	
+}
+#nav ul {
+	list-style: none;
+}
+#nav ul li {
+	float: left;
+	line-height: 40px;
+	text-align: center;
+	position: relative;
+}
+#nav ul li ul {
+	position: absolute;
+	display: none;
+}
+#nav ul li:hover ul {
+	display: block
+}
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, user-scalable=no, initial-scale=1">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<title>IT在线学习平台</title>
+
+<link href="res/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="res/css/reset.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="res/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="res/js/bootstrap.min.js"></script>
+
+<!--[if lt IE 9]>
 		  <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		  <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
 		<![endif]-->
-		
-		<link rel="icon" type="image/png" href="res/i/ico.png" sizes="16x16">
-		<script type="text/javascript">
-		CONETXT_PATH = '';
-		</script>
-	</head>
 
-	<body>
-		<!-- 头部-start -->
-		<div class="f-header">
-			<div class="f-header-box clearfix">
-				<a href=""  class="logo" title="IT在线学习平台"></a>
-				<nav class="header-nav">
-					<a href="index.jsp" class="header-nav-item">首 页</a>
-					<a href="list.jsp" class="header-nav-item">课 程</a>
-					<a href="userhome.html" class="header-nav-item">我的</a>
-					<a href="optindex.html"  style="width:100px;" target="_blank" class="header-nav-item">运营CMS</a>
-				</nav>	
-				<nav class="header-nav" style="float:right">
-					<a href="#myModal" class="header-nav-item"  data-toggle="modal" onclick="login();"  style="margin-right:0px;font-size:14px;">登录/注册</a>
-			        <a href="#" class="header-nav-item"  style="margin-left:0px;font-size:14px;" id="userdetail">头像</a>
-				</nav>
-			</div>
-		</div>
-		<script type="text/javascript">
-			function login(){
-				$('#loginTitle').css('color','#337Ab7');
-				$('#loginForm').show();
-				$('#registeTitle').css('color','#000');
-				$('#registeForm').hide();
-			}
-			function registe(){
-				$('#loginTitle').css('color','#000');
-				$('#loginForm').hide();
-				$('#registeTitle').css('color','#337Ab7');
-				$('#registeForm').show();
-			}
-			$(function(){
-				$("#userdetail").popover({
-		            trigger:'manual',
-		            placement : 'bottom',
-		            html: 'true',
-		            content : '<div style="width:300px;height:300px;"></div>',
-		            animation: false
-		        }).on("mouseenter", function () {
-		            var _this = this;
-		            $(this).popover("show");
-		            $(this).siblings(".popover").on("mouseleave", function () {
-		                $(_this).popover('hide');
-		            });
-		        }).on("mouseleave", function () {
-		            var _this = this;
-		            setTimeout(function () {
-		                if (!$(".popover:hover").length) {
-		                    $(_this).popover("hide")
-		                }
-		            }, 0);
-		        });
-				//课程分类展示 
-				$(".category").popover({
-		            trigger:'manual',
-		            placement : 'right',
-		            html: 'true',
-		            content : '',
-		            animation: false
-		        }).on("mouseenter", function () {
-		            var cid = $(this).attr('c-id');
-		            $('#' + cid).show();
-		            $('#' + cid).hover(function(){
-		            	$('#' + cid).show();
-		            },function(){
-		            	$('#' + cid).hide();
-					});
-		        }).on("mouseleave", function () {
-		            var cid = $(this).attr('c-id');
-		            $('#' + cid).hide();
-		        });
-			});
-		</script>
-		<!-- 头部-end -->
-		
-		<!-- 登录注册-start -->
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog"  style="position:fixed; top:30%;">
-		    <div class="modal-dialog" role="document">
-		        <div class="modal-content">   
-		            <div class="modal-header">
-		                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		                    <span aria-hidden="true" style="font-size:18px;">×</span>
-		                </button>
-		                <h4 class="modal-title"  id="loginTitle"  style="float: left; color: #337Ab7;cursor: pointer; " onclick="login();">登 录</h4>
-		                <h4 class="modal-title"  id="registeTitle"  style="float: left;margin-left: 20px;cursor: pointer;" onclick="registe();">注 册</h4>
-		                <div class="clearfix"></div>
-		            </div>         
-		            <div class="modal-body">
-		               	<form id="loginForm" class="form-horizontal" style="padding: 0px 20px;">
-		                      <div class="form-group">
-		                          <input type="email" class="form-control"  id="username"  placeholder="用户名">
-		                      </div>
-		                      <div class="form-group help">
-		                          <input type="password" class="form-control"  id="password"  placeholder="密　码">
-		                      </div>
-		                      <div class="form-group">
-		                          <label>
-		                           <input type="checkbox" value="None" id="checkbox1" name="check">
-		                           <span class="text" style="color: #787D82;font-size: 14px;">下次自动登录</span>
-		                          </label>
-		                      </div>
-		                      
-		                      <a href="javascript:void(0)">
-		                      	<div class="header-login-btn">登 录</div>
-		                      </a>
-		                  </form>
-		                  
-		                   <form id="registeForm" class="form-horizontal" style="padding: 0px 20px;display: none;">
-		                       <div class="form-group">
-		                           <input type="email" class="form-control"  id="username"  placeholder="用户名">
-		                       </div>
-		                       <div class="form-group help">
-		                           <input type="password" class="form-control"  id="password"  placeholder="密　码">
-		                       </div>
-		                       <a href="javascript:void(0)">
-		                      	<div class="header-login-btn">注 册</div>
-		                       </a>
-		                   </form>
-		                  
-		            </div>
-					
-		        </div>
-		    </div>
-		</div>
-		<!-- 登录注册-end -->
+<link rel="icon" type="image/png" href="res/i/ico.png" sizes="16x16">
+<script type="text/javascript">
+	CONETXT_PATH = '';
+</script>
+<script type="text/javascript">
+	function validate() {
+		var psw = document.getElementById("psw").value;
+		var opsw = document.getElementById("opsw").value;
+		var mima1 = document.getElementById("npsw").value;
+		var mima2 = document.getElementById("npsw2").value;
+		if (mima1 == "" || opsw == "" || mima2 == "") {
+			alert("密码不能为空");
+			document.getElementById("opsw").focus();
+			return false;
+		} else if (opsw != psw) {
+			alert("原始密码错误");
+			document.getElementById("opsw").focus();
+			return false;
+		} else if (mima1 != mima2) {
+			alert("请确认密码一致");
+			document.getElementById("npsw").focus();
+			return false;
+		} else {
+			alert("修改密码成功");
+			return true;
+		}
+	} //check password infomation--YC
+</script>
+ <script type="text/javascript">
+    function confirmdialog(){
+       if(window.confirm("您确定要删除此条信息？")){
+       return true;
+       }
+       else{
+       return false;
+       }      
+    }
+ </script>
+</head>
 
-
-		
-		<div class="f-main clearfix">
-			<!-- 一级分类-start -->
-			<div class="course-nav-row clearfix">
-				<span class="hd">方向：</span>
-				<ul class="course-nav">
-					<li class="course-nav-item cur-course-nav">
-						<a href="courselist">全部</a>
-					</li>
-					<li class="course-nav-item">
-						<a href="courselist?c=fe">前端开发</a>
-					</li>
-					<li class="course-nav-item">
-						<a href="courselist?c=be">后端开发</a>
-					</li>
-					<li class="course-nav-item">
-						<a href="courselist?c=mobile" >移动开发</a>
-					</li>
-					<li class="course-nav-item">
-						<a href="courselist?c=data" >数据库</a>
-					</li>
-					<li class="course-nav-item">
-						<a href="courselist？c=db" >云计算&amp;大数据</a>
-					</li>
-					<li class="course-nav-item">
-						<a href="courselist?c=op" >运维&amp;测试</a>
-					</li>
-					<li class="course-nav-item">
-						<a href="courselist?c=photo"  >UI设计</a>
-					</li>
-				</ul>
-			</div>
-			<!-- 一级分类-end -->
-			
-			<!-- 二级分类-start -->
-			<div class="course-nav-row clearfix">
-				<span class="hd">分类：</span>
-				<ul class="course-nav">
-					<li class="course-nav-item cur-course-nav">
-						<a href="../subcourselist">全部</a>
-					</li>
-					<li class="course-nav-item">
-						<a href="../subcourselist?c=fe">Java</a>
-					</li>
-					<li class="course-nav-item">
-						<a href="/course/list?c=be">HTML/CSS</a>
-					</li>
-					<li class="course-nav-item">
-						<a href="/course/list?c=mobile" >JavaScript</a>
-					</li>
-					<li class="course-nav-item">
-						<a href="/course/list?c=data" >Jquery</a>
-					</li>
-					<li class="course-nav-item">
-						<a href="/course/list?c=cb" >CSS</a>
-					</li>
-					<li class="course-nav-item">
-						<a href="/course/list?c=op" >Python</a>
-					</li>
-					<li class="course-nav-item">
-						<a href="/course/list?c=photo"  >Django</a>
-					</li>
-					<li class="course-nav-item">
-						<a href="/course/list?c=photo"  >Android</a>
-					</li>
-					<li class="course-nav-item">
-						<a href="/course/list?c=photo"  >IOS</a>
-					</li>
-					<li class="course-nav-item">
-						<a href="/course/list?c=photo"  >WebApp</a>
-					</li>
-					<li class="course-nav-item">
-						<a href="/course/list?c=photo"  >MySql</a>
-					</li>
-					<li class="course-nav-item">
-						<a href="/course/list?c=photo"  >MongoDB</a>
-					</li>
-					<li class="course-nav-item">
-						<a href="/course/list?c=photo"  >Oracle</a>
-					</li>
-					<li class="course-nav-item">
-						<a href="/course/list?c=photo"  >大数据</a>
-					</li>
-				</ul>
-			</div>
-			<!-- 二级分类-end -->
-			
-			<!-- 课程列表-start -->
-			<div class="types-block clearfix" style="padding:0px;">
-				<h3 style="margin-bottom: 20px;">	
-					<span class="types-title" style="margin-right:40px;">课程列表</span>
-					<a href="javascript:void(0)" style="display: inline-block;margin-right:20px;" onclick="_queryPage(1,undefined,'last')">
-					<span >最新</span>
-					</a>
-					<a href="javascript:void(0)" style="display: inline-block;" onclick="_queryPage(1,undefined,'pop')">
-					<span >最热</span>
-					</a>
-				</h3>
-				<div class="types-content clearfix" style="margin-bottom: 20px;">
-				
-					<a href="learn.jsp">
-					<div class="course-card-container">
-						<div class="course-card-top green-bg">
-							<span>测试</span>
-						</div>
-
-						<div class="course-card-content">
-							<h3 class="course-card-name">Android自动化测试实战 工具 框架 脚本</h3>
-							<p title="找Android自动化测试工作必学的主流工具、框架和自动化脚本">找Android自动化测试工作必学的主流工具、框架和自动化脚本</p>
-							<div class="course-card-bottom">
-								<div class="course-card-info">初级<span>·</span>178人在学</div>
-							</div>
-						</div>
-					</div>
-					</a>
-
-					<a href="learn.jsp">
-					<div class="course-card-container">
-						<div class="course-card-top pink-bg">
-							<span>WebApp</span>
-						</div>
-						<div class="course-card-content">
-							<h3 class="course-card-name">AngularJS仿拉勾网WebApp 开发移动端单页应用</h3>
-							<p title="基于AngularJS，仿拉勾网开发一个招聘类的移动端单页应用">基于AngularJS，仿拉勾网开发一个招聘类的移动端单页应用</p>
-							<div class="clearfix course-card-bottom">
-								<div class="course-card-info">初级<span>·</span>3444人在学</div>
-							</div>
-						</div>
-					</div>
-					</a>
-
-
-					<a href="learn.jsp">
-					<div class="course-card-container">
-						<div class="course-card-top brown-bg">
-							<span>Django</span>
-						</div>
-	
-						<div class="course-card-content">
-							<h3 class="course-card-name">强力django杀手级xadmin 打造上线标准的在线教育平台</h3>
-							<p title="全面掌握django框架,轻松应对python web开发工作">全面掌握django框架,轻松应对python web开发工作</p>
-							<div class="clearfix course-card-bottom">
-								<div class="course-card-info">初级<span>·</span>4888人在学</div>
-							</div>
-						</div>
-					</div>
-					</a>
-
-
-					<a href="learn.jsp">
-					<div class="course-card-container">
-						<div class="course-card-top purple-bg">
-							<span>Python</span>
-						</div>
-	
-						<div class="course-card-content">
-							<h3 class="course-card-name">Python高级编程技巧实战</h3>
-							<p title="精选50个python训练任务，提升实战技能与高效编程技巧">精选50个python训练任务，提升实战技能与高效编程技巧</p>
-							<div class="clearfix course-card-bottom">
-								<div class="course-card-info">高级<span>·</span>81333人在学</div>
-							</div>
-						</div>
-					</div>
-					</a>
-
-
-					<a href="learn.jsp">
-					<div class="course-card-container" style="margin-right: 0px;">
-						<div class="course-card-top green-bg">
-							<span>PHP</span>
-						</div>
-						
-						<div class="course-card-content">
-							<h3 class="course-card-name">前端后台ThinkPHP开发整站</h3>
-							<p title="用PHP+MySQL+Ajax开完新闻资讯整站，实现“小全栈”的梦想">用PHP+MySQL+Ajax开完新闻资讯整站，实现“小全栈”的梦想</p>
-							<div class="clearfix course-card-bottom">
-								<div class="course-card-info">中级<span>·</span>6133人在学</div>
-							</div>
-						</div>
-					</div>
-				</a>
-
-
-				<div class="types-content clearfix">
-				
-					<a href="learn.jsp">
-					<div class="course-card-container">
-						<div class="course-card-top green-bg">
-							<span>测试</span>
-						</div>
-
-						<div class="course-card-content">
-							<h3 class="course-card-name">Android自动化测试实战 工具 框架 脚本</h3>
-							<p title="找Android自动化测试工作必学的主流工具、框架和自动化脚本">找Android自动化测试工作必学的主流工具、框架和自动化脚本</p>
-							<div class="course-card-bottom">
-								<div class="course-card-info">初级<span>·</span>178人在学</div>
-							</div>
-						</div>
-					</div>
-					</a>
-
-					<a href="learn.jsp">
-					<div class="course-card-container">
-						<div class="course-card-top pink-bg">
-							<span>WebApp</span>
-						</div>
-						<div class="course-card-content">
-							<h3 class="course-card-name">AngularJS仿拉勾网WebApp 开发移动端单页应用</h3>
-							<p title="基于AngularJS，仿拉勾网开发一个招聘类的移动端单页应用">基于AngularJS，仿拉勾网开发一个招聘类的移动端单页应用</p>
-							<div class="clearfix course-card-bottom">
-								<div class="course-card-info">初级<span>·</span>3444人在学</div>
-							</div>
-						</div>
-					</div>
-					</a>
-
-
-					<a href="learn.jsp">
-					<div class="course-card-container">
-						<div class="course-card-top brown-bg">
-							<span>Django</span>
-						</div>
-	
-						<div class="course-card-content">
-							<h3 class="course-card-name">强力django杀手级xadmin 打造上线标准的在线教育平台</h3>
-							<p title="全面掌握django框架,轻松应对python web开发工作">全面掌握django框架,轻松应对python web开发工作</p>
-							<div class="clearfix course-card-bottom">
-								<div class="course-card-info">初级<span>·</span>4888人在学</div>
-							</div>
-						</div>
-					</div>
-					</a>
-
-
-					<a href="learn.jsp">
-					<div class="course-card-container">
-						<div class="course-card-top purple-bg">
-							<span>Python</span>
-						</div>
-	
-						<div class="course-card-content">
-							<h3 class="course-card-name">Python高级编程技巧实战</h3>
-							<p title="精选50个python训练任务，提升实战技能与高效编程技巧">精选50个python训练任务，提升实战技能与高效编程技巧</p>
-							<div class="clearfix course-card-bottom">
-								<div class="course-card-info">高级<span>·</span>81333人在学</div>
-							</div>
-						</div>
-					</div>
-					</a>
-
-
-					<a href="learn.jsp">
-					<div class="course-card-container" style="margin-right: 0px;">
-						<div class="course-card-top green-bg">
-							<span>PHP</span>
-						</div>
-						
-						<div class="course-card-content">
-							<h3 class="course-card-name">前端后台ThinkPHP开发整站</h3>
-							<p title="用PHP+MySQL+Ajax开完新闻资讯整站，实现“小全栈”的梦想">用PHP+MySQL+Ajax开完新闻资讯整站，实现“小全栈”的梦想</p>
-							<div class="clearfix course-card-bottom">
-								<div class="course-card-info">中级<span>·</span>6133人在学</div>
-							</div>
-						</div>
-					</div>
-					</a>
+<body>
+	<%String id = session.getAttribute("Id").toString();;//request.getAttribute("Id").toString();%>
+	<%String name = session.getAttribute("name").toString();%>
+	<%String email = session.getAttribute("email").toString();%>
+	<%String tel = session.getAttribute("tel").toString();%>
+	<%String sex = session.getAttribute("sex").toString();%>
+	<%String des = session.getAttribute("des").toString();%>
+	<%String psw = session.getAttribute("psw").toString();%>
+	<!-- 头部-start -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		style="position: fixed; top: 30%;">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true" style="font-size: 18px;">×</span>
+					</button>
+					<h4 class="modal-title" id="loginTitle"
+						style="float: left; color: #337Ab7; cursor: pointer;"
+						onclick="login();">个人信息</h4>
+					<h4 class="modal-title" id="registeTitle"
+						style="float: left; margin-left: 20px; cursor: pointer;"
+						onclick="registe();">修改密码</h4>
+					<div class="clearfix"></div>
 				</div>
-				
-			</div>
-			<!-- 课程列表-end -->
-			
-			<!-- 分页-start -->
-			<div class="page-box clearfix">
-				<div class="page clearfix">
-					<div style="float:left;">
-						<a class="page-next" href="javascript:void(0);" onclick="_queryPage('1')">首 页</a>
-						<a class="page-next" href="javascript:void(0);" onclick="_queryPage('${page.pageNum-1}')">上一页</a>
-						<a class="page-cur" href="javascript:void(0);" >1</a>
-						<a class="page-num" href="javascript:void(0);" onclick="_queryPage('${n}');">2</a>
-						<a class="page-num" href="javascript:void(0);" >3</a>
-						<a class="page-num" href="javascript:void(0);" >4</a>
-						<a class="page-num" href="javascript:void(0);" >5</a>
-						<a class="page-num" href="javascript:void(0);" >6</a>
-						<a class="page-num" href="javascript:void(0);" >7</a>
-						<span class="page-omit">...</span>
-						<a class="page-next" href="javascript:void(0);"  onclick="_queryPage('${page.pageNum+1}')">下一页</a> 
-						<a class="page-next" href="javascript:void(0);"  onclick="_queryPage('${page.pageTotalCount}')">尾 页</a>
-					</div>
+				<!-- modify information -->
+				<div class="modal-body">
+					<form action="${pageContext.request.contextPath}/ModifyInfo"
+						method="post" id="loginForm" class="form-horizontal"
+						style="padding: 0px 20px;">
+						<div class="form-group">
+							account:<%=id%><input type="hidden" name="id" value=<%=id%>>
+						</div>
+						<div class="form-group">
+							name:<input name="name" type="text" class="form-control"
+								id="username" value=<%=name%>>
+						</div>
+						<div class="form-group help">
+							sex：
+							<h4>
+								<select id="sex" name="sex">
+									<option id="male" value="male">male</option>
+									<option id="female" value="female">female</option>
+								</select>
+							</h4>
+						</div>
+						<div class="form-group">
+							tel:<input name="tel" type="text" class="form-control"
+								id="username" placeholder="tel" value=<%=tel%>>
+						</div>
+						<div class="form-group help">
+							email:<input name="email" type="text" class="form-control"
+								id="password" placeholder="email" value=<%=email%>>
+						</div>
+						<div class="form-group help">
+							person description:<input name="des" type="text"
+								class="form-control" id="password" placeholder="des"
+								value=<%=des%>>
+						</div>
+						<a href="javascript:void(0)"> <input type="submit" value="保存" />
+						</a>
+					</form>
+					<!-- modify password -->
+					<form action="${pageContext.request.contextPath}/ModifyPsw"
+						method="post" onSubmit="return validate()" id="registeForm"
+						class="form-horizontal" style="padding: 0px 20px; display: none;">
+						<input type="hidden" name="methodName" value="0" /> <input
+							type="hidden" name="id" value=<%=id%>> <input
+							type="hidden" name="psw" id="psw" value=<%=psw%>> <input
+							type="hidden" name="name" value=<%=name%>> <input
+							type="hidden" name="sex" id="sex1" value=<%=sex%>> <input
+							type="hidden" name="tel" value=<%=tel%>> <input
+							type="hidden" name="email" value=<%=email%>> <input
+							type="hidden" name="des" value=<%=des%>>
+						<h4>
+							原始密码:<input type="password" name="opsw" id="opsw"></input><br>
+						</h4>
+						<h4>
+							新密码：<input type="password" name="npsw" id="npsw"></input><br>
+						</h4>
+						<h4>
+							确认新密码：<input type="password" name="npsw2" id="npsw2"></input><br>
+						</h4>
+
+						<input type="submit" value="提交" />
+
+					</form>
+
 				</div>
+
 			</div>
-			<!-- 分页-end -->	
-		</div>
-		
-		<div class="f-footer">
-		<div class="f-footer-box clearfix">
-		<div class="footer-link">
-			<a href="javascript:void(0);"  target="_blank" title="企业合作">企业合作</a> 
-			<a href="javascript:void(0);" target="_blank" title="联系我们">联系我们</a> 
-			<a href="javascript:void(0);" target="_blank" title="常见问题">常见问题</a> 
-			<a href="javascript:void(0);" target="_blank" title="意见反馈">意见反馈</a>
-			<a href="javascript:void(0);" target="_blank" title="友情链接">友情链接</a>
-		</div>
-		<div class="footer-copyright">
-			<span>©&nbsp;2018&nbsp; 实训 </span>
 		</div>
 	</div>
-</div>
+	<div class="f-header" id="top">
+		<div class="f-header-box clearfix">
+			<a href=".." class="logo" title="IT在线学习平台"></a>
+			<nav class="header-nav">
+				<a href="teacher.jsp" class="header-nav-item">首 页</a>
+			</nav>
+
+			<nav class="header-nav" style="float: right">
+
+				<div id="nav">
+					<ul>
+						<li><a href="#">Welcome,<%=name%>
+						</a>
+							<ul>
+								<li><a href="#myModal" data-toggle="modal"
+									onclick="login();">我的信息</a></li>
+							</ul>
+						<li><a href="index.jsp">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;退出</a></li>
+					</ul>
+				</div>
+			</nav>
 		</div>
-	</body>
+	</div>
+
+	<script type="text/javascript">
+		function login() {
+			$('#loginTitle').css('color', '#337Ab7');
+			$('#loginForm').show();
+			$('#registeTitle').css('color', '#000');
+			$('#registeForm').hide();
+			var sex = document.getElementById("sex1").value;
+			if (sex == "female") {
+				document.getElementById("female").selected = true;
+			}
+		}
+		function registe() {
+			$('#loginTitle').css('color', '#000');
+			$('#loginForm').hide();
+			$('#registeTitle').css('color', '#337Ab7');
+			$('#registeForm').show();
+		}
+		$(function() {
+			$("#userdetail").popover({
+				trigger : 'manual',
+				placement : 'bottom',
+				html : 'true',
+				content : '<div style="width:300px;height:300px;"></div>',
+				animation : false
+			}).on("mouseenter", function() {
+				var _this = this;
+				$(this).popover("show");
+				$(this).siblings(".popover").on("mouseleave", function() {
+					$(_this).popover('hide');
+				});
+			}).on("mouseleave", function() {
+				var _this = this;
+				setTimeout(function() {
+					if (!$(".popover:hover").length) {
+						$(_this).popover("hide")
+					}
+				}, 0);
+			});
+			//课程分类展示 
+			$(".category").popover({
+				trigger : 'manual',
+				placement : 'right',
+				html : 'true',
+				content : '',
+				animation : false
+			}).on("mouseenter", function() {
+				var cid = $(this).attr('c-id');
+				$('#' + cid).show();
+				$('#' + cid).hover(function() {
+					$('#' + cid).show();
+				}, function() {
+					$('#' + cid).hide();
+				});
+			}).on("mouseleave", function() {
+				var cid = $(this).attr('c-id');
+				$('#' + cid).hide();
+			});
+		});
+	</script>
+	<!-- 头部-end -->
+
+	<style type="text/css">
+#div1,#div2,#div3,#div4,#div5 {
+	margin: 0;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0;
+	width: 700px;
+	border: 0 px solid #F00;
 	
+}
+</style>
+	<!-- 学习课程-start -->
+
+	<div class="types-block clearfix"
+		style="margin-left: auto; margin-right: auto;">
+		<h3 class="types-title">
+			创建的课程：<br>
+		</h3>
+		
+		<%
+		
+		ArrayList array=(ArrayList)session.getAttribute("list");
+		for(int i=0;i<array.size();i++)
+		{
+			itClass ci=(itClass)array.get(i);%>
+			<div class="course-card-container" id="div2">
+			<div class="course-card-top pink-bg">
+				<span><%=ci.id %>:<%=ci.cname %></span>
+			</div>
+			<div class="course-card-content">		
+			<p>授课老师：<%=ci.tname%></p>
+			<p>课程简介：<%=ci.des %></p>
+			<p>课堂作业：<%=ci.homework %></p>
+			<br>
+			<a href="DisplayServlet?courseId=<%=ci.id %>&methodName=<%=1 %>" onclick="return confirmdialog()">删除</a>			
+			<a href="DisplayServlet?courseId=<%=ci.id %>&methodName=<%=2 %>">修改</a>
+			</div>
+		</div>
+	
+			
+		<%} %>
+		
+
+		
+	</div>
+	<!-- 学习课程-end -->
+</body>
+
+<script>
+	$(function() {
+		var index = 0;
+		var timer = 4000;
+		$('.bg-nav a').click(function() {
+			index = $('.bg-nav a').index($(this));
+			rollBg(index);
+		});
+		$('.index-roll-item').click(function() {
+			index = $('.index-roll-item').index($(this));
+			rollBg(index);
+		});
+		var rollBg = function(i) {
+			$('.main-bg-item').fadeOut(1000);
+			$($('.main-bg-item')[i]).fadeIn(1000);
+			$('.bg-nav a').removeClass('cur');
+			$($('.bg-nav a')[i]).addClass('cur');
+			$('.index-roll-item').removeClass('cur');
+			$($('.index-roll-item')[i]).addClass('cur');
+		}
+		setInterval(function() {
+			index += 1;
+			index = index % 3;
+			rollBg(index);
+		}, timer);
+	});
+</script>
 </html>

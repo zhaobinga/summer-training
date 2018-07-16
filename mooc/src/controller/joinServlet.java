@@ -79,7 +79,8 @@ public class joinServlet extends HttpServlet {
 					{
 						i=2;
 					sql="insert into class_std values('"+cid+"','"+id+"')";
-					state.execute(sql);
+					Statement state4=con.con.createStatement();
+					state4.execute(sql);
 					ResultSet rs3=state3.executeQuery(sql3);
 					while(rs3.next())
 					{

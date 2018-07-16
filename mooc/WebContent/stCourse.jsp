@@ -190,8 +190,6 @@
 			<a href=".." class="logo" title="IT在线学习平台"></a>
 			<nav class="header-nav">
 				<a href="success.jsp" class="header-nav-item">首 页</a>
-				 <a href="userhome.html" class="header-nav-item">我的</a> 
-				 <a href="optindex.html" style="width: 100px;" target="_blank" class="header-nav-item">运营CMS</a>
 			</nav>
 
 			<nav class="header-nav" style="float: right">
@@ -312,83 +310,7 @@
 			
 		<%} %>
 		
-	<a href="learn.jsp">
-		<div class="course-card-container" id="div2">
-			<div class="course-card-top pink-bg">
-				<span>AngularJS仿拉勾网WebApp</span>
-			</div>
-			<div class="course-card-content">
-				<p>授课老师：</p>
-				<p>胡教授</p>
-				<p title="基于AngularJS，仿拉勾网开发一个招聘类的移动端单页应用">课程简介：</p>
-				<p>仿拉勾网开发一个招聘类的移动端单页应用</p>
-				<p>课堂作业：</p>
-			<div class="clearfix course-card-bottom">
-					
-				</div>
-			</div>
-		</div>
-	</a>
-	
-	<a href="learn.jsp">
-		<div class="course-card-container" id="div3">
-			<div class="course-card-top brown-bg">
-				<span>强力django杀手级xadmin</span>
-			</div>
-			<div class="course-card-content">
-				<p>授课老师：</p>
-				<p>贺教授</p>
-				<p title="全面掌握django框架,轻松应对python web开发工作">课程简介：</p>
-				<p>全面掌握django框架,轻松应对python web开发工作</p>
-				<p>课堂作业：</p>
-				<div class="clearfix course-card-bottom">
-					<div class="course-card-info">488人在学</div>
-				</div>
-			</div>
-		</div>
-	</a>
-	
-	<a href="learn.jsp">
-		<div class="course-card-container" id="div4">
-			<div class="course-card-top purple-bg">
-				<span>Python高级编程技巧实战</span>
-			</div>
 
-			<div class="course-card-content">
-				<p>授课老师：</p>
-				<p>李教授</p>
-				<p title="精选50个python训练任务，提升实战技能与高效编程技巧">课程简介：</p>
-				<p>精选50个python训练任务，提升实战技能与高效编程技巧</p>
-				<p>课堂作业：</p>
-				<div class="clearfix course-card-bottom">
-					<div class="course-card-info">813人在学</div>
-
-				</div>
-			</div>
-		</div>
-	</a>
-	
-	
-	<a href="learn.jsp">
-		<div class="course-card-container" id="div5">
-			<div class="course-card-top green-bg">
-				<span>Python高级编程技巧实战</span>
-			</div>
-
-			<div class="course-card-content">
-				<p>授课老师：</p>
-				<p>叶教授</p>
-				<p title="用PHP+MySQL+Ajax开完新闻资讯整站，实现“小全栈”的梦想">课程简介：</p>
-				<p>用PHP+MySQL+Ajax开完新闻资讯整站，实现“小全栈”的梦想</p>
-				<p>课堂作业：</p>
-				<div class="clearfix course-card-bottom">
-					<div class="course-card-info">2324人在学</div>
-
-				</div>
-			</div>
-		</div>
-		</a>
-	</div>
 
 	<!-- 学习课程-end -->
 </body>

@@ -205,10 +205,9 @@
 					<a href="index.html" class="header-nav-item">首 页</a>
 					<a href="list.html" class="header-nav-item">课 程</a>									
 					<a href="stCourse.jsp" class="header-nav-item">我的课堂</a>
-					<a href="optindex.html"  style="width:100px;" target="_blank" class="header-nav-item">运营CMS</a>
 					<form class="header-nav-item" action="${pageContext.request.contextPath}/joinServlet"  method="post">					
 					<input type="text" name="cid" name="cid" >
-					<input type="submit" value="加入课堂" style="position: absolute; left: 780px; top: 30px; border-radius: 3px;">
+					<input type="submit" value="加入课堂" style="position: absolute; left: 770px; top: 30px; border-radius: 3px;">
 					<input type="hidden" name="id" value=<%=id%>>
 					</form>
 					

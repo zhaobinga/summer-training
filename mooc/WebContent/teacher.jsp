@@ -89,27 +89,13 @@
 </head>
 
 <body>
-	<%
-		String id = "测试id";
-	%>
-	<%
-		String name = "测试name";
-	%>
-	<%
-		String email = "测试email";
-	%>
-	<%
-		String tel = "测试tel";
-	%>
-	<%
-		String sex = "测试sex";
-	%>
-	<%
-		String des = "测试des";
-	%>
-	<%
-		String psw = "测试pws";
-	%>
+	<%String id = session.getAttribute("Id").toString();;//request.getAttribute("Id").toString();%>
+	<%String name = session.getAttribute("name").toString();%>
+	<%String email = session.getAttribute("email").toString();%>
+	<%String tel = session.getAttribute("tel").toString();%>
+	<%String sex = session.getAttribute("sex").toString();%>
+	<%String des = session.getAttribute("des").toString();%>
+	<%String psw = session.getAttribute("psw").toString();%>
 	<!-- 头部-start -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 		style="position: fixed; top: 30%;">
@@ -211,16 +197,13 @@
 					<div class="clearfix"></div>
 					<div class="modal-body">
 						<!-- modify setCourse -->
-						<form id="setCourseForm" class="form-horizontal"
+						<form action="${pageContext.request.contextPath }/CreateServlet" method="post" id="setCourseForm" class="form-horizontal"
 							style="padding: 0px 20px; display: none;">
 							<h4>
 								开课老师:<input type="text" name="teacherName" id="tn"></input><br>
 							</h4>
 							<h4>
 								课程名:<input type="text" name="courseName" id="cn"></input><br>
-							</h4>
-							<h4>
-								课程类别：<input type="text" name="courseStyle id="cs"></input><br>
 							</h4>
 							<h4>
 								课程简介：<input type="text" name="courseDetail" id="cd"></input><br>
@@ -236,8 +219,8 @@
 		<div class="f-header-box clearfix">
 			<a href=".." class="logo" title="IT在线学习平台"></a>
 			<nav class="header-nav">
-				<a href="index.jsp" class="header-nav-item">首 页</a> <a
-					href="list.jsp" class="header-nav-item">课 程</a> <a
+				<a href="teacher.jsp" class="header-nav-item">首 页</a> 
+		<a href="DisplayServlet?methodName=<%=0 %>" class="header-nav-item">课 程</a> <a
 					href="#myModal1" data-toggle="modal" class="header-nav-item"
 					onclick="setCourse();">开设课程</a> <a href="optindex.html"
 					style="width: 100px;" target="_blank" class="header-nav-item">运营CMS</a>
@@ -408,7 +391,7 @@
 			<h3 class="types-title">实战推荐</h3>
 			<div class="types-content">
 
-				<a href="learn.jsp">
+				<a href="learn.html">
 					<div class="course-card-container">
 						<div class="course-card-top green-bg">
 							<span>测试</span>
@@ -423,10 +406,7 @@
 							</div>
 						</div>
 					</div>
-				</a> 
-				
-				
-				<a href="learn.jsp">
+				</a> <a href="learn.html">
 					<div class="course-card-container">
 						<div class="course-card-top pink-bg">
 							<span>WebApp</span>
@@ -441,10 +421,7 @@
 							</div>
 						</div>
 					</div>
-				</a>
-				
-				
-				 <a href="learn.jsp">
+				</a> <a href="learn.html">
 					<div class="course-card-container">
 						<div class="course-card-top brown-bg">
 							<span>Django</span>
@@ -460,10 +437,7 @@
 							</div>
 						</div>
 					</div>
-				</a> 
-				
-				
-				<a href="learn.jsp">
+				</a> <a href="learn.html">
 					<div class="course-card-container">
 						<div class="course-card-top purple-bg">
 							<span>Python</span>
@@ -478,10 +452,7 @@
 							</div>
 						</div>
 					</div>
-				</a>
-				
-				
-				 <a href="learn.jsp">
+				</a> <a href="learn.html">
 					<div class="course-card-container" style="margin-right: 0px;">
 						<div class="course-card-top green-bg">
 							<span>PHP</span>
@@ -531,7 +502,7 @@
 				</div>
 
 				<div class="clearfix">
-					<a href="learn.jsp">
+					<a href="learn.html">
 						<div class="course-card-container">
 							<div class="course-card-top green-bg">
 								<span>测试</span>
@@ -547,7 +518,7 @@
 								</div>
 							</div>
 						</div>
-					</a> <a href="learn.jsp">
+					</a> <a href="learn.html">
 						<div class="course-card-container">
 							<div class="course-card-top pink-bg">
 								<span>WebApp</span>
@@ -562,9 +533,7 @@
 								</div>
 							</div>
 						</div>
-					</a> 
-					
-					<a href="learn.jsp">
+					</a> <a href="learn.html">
 						<div class="course-card-container">
 							<div class="course-card-top brown-bg">
 								<span>Django</span>
@@ -583,9 +552,7 @@
 							</div>
 						</div>
 
-					</a>
-					
-					 <a href="learn.jsp">
+					</a> <a href="learn.html">
 						<div class="course-card-container" style="margin-right: 0px;">
 							<div class="course-card-top purple-bg">
 								<span>Python</span>
@@ -609,64 +576,52 @@
 		<!-- java课程-end -->
 
 		<!--名校讲师-start -->
-			<div class="types-block clearfix">
-				<h3 class="types-title">名校讲师</h3>
-				<a href="teacher.jsp">
-					<div class="lecturer-card-container">
-						<div class="lecturer-item">
-							<img class="lecturer-uimg" src="res/i/header.jpg">
-							<span class="lecturer-name">颜聪</span>
-							<span class="lecturer-title">武汉大学</span>
-							<span class="lecturer-p" >武汉大学高级讲师，擅长写代码</span>
-						</div>
-					</div>
-				</a>
-					
-				<a href="teacher.jsp">
-					<div class="lecturer-card-container">
-						<div class="lecturer-item">
-							<img class="lecturer-uimg" src="res/i/header.jpg">
-							<span class="lecturer-name">赵炳</span>
-							<span class="lecturer-title">武汉大学</span>
-							<span class="lecturer-p" >武汉大学高级讲师，擅长写代码</span>
-						</div>
-					</div>
-				</a>
-            <a href="teacher.jsp">
+		<div class="types-block clearfix">
+			<h3 class="types-title">名校讲师</h3>
+			<a href="teacher.html">
 				<div class="lecturer-card-container">
 					<div class="lecturer-item">
-						<img class="lecturer-uimg" src="res/i/header.jpg">
-						<span class="lecturer-name">周航</span>
-						<span class="lecturer-title">武汉大学</span>
-						<span class="lecturer-p" >武汉大学高级讲师，擅长写代码</span>
+						<img class="lecturer-uimg" src="res/i/header.jpg"> <span
+							class="lecturer-name">王阳明</span> <span class="lecturer-title">中华大学</span>
+						<span class="lecturer-p">中华大学高级讲师，擅长写代码</span>
 					</div>
 				</div>
-				</a>
-
-            <a href="teacher.jsp">
-				<div class="lecturer-card-container"  >
+			</a> <a href="teacher.html">
+				<div class="lecturer-card-container">
 					<div class="lecturer-item">
-						<img class="lecturer-uimg" src="res/i/header.jpg">
-						<span class="lecturer-name">许岩</span>
-						<span class="lecturer-title">武汉大学</span>
-						<span class="lecturer-p" >武汉大学高级讲师，擅长写代码</span>
+						<img class="lecturer-uimg" src="res/i/header.jpg"> <span
+							class="lecturer-name">王阳明</span> <span class="lecturer-title">中华大学</span>
+						<span class="lecturer-p">中华大学高级讲师，擅长写代码</span>
 					</div>
 				</div>
-				</a>
-				
-				<a href="teacher.jsp">
+			</a> <a href="teacher.html">
+				<div class="lecturer-card-container">
+					<div class="lecturer-item">
+						<img class="lecturer-uimg" src="res/i/header.jpg"> <span
+							class="lecturer-name">王阳明</span> <span class="lecturer-title">中华大学</span>
+						<span class="lecturer-p">中华大学高级讲师，擅长写代码</span>
+					</div>
+				</div>
+			</a> <a href="teacher.html">
+				<div class="lecturer-card-container">
+					<div class="lecturer-item">
+						<img class="lecturer-uimg" src="res/i/header.jpg"> <span
+							class="lecturer-name">王阳明</span> <span class="lecturer-title">中华大学</span>
+						<span class="lecturer-p">中华大学高级讲师，擅长写代码</span>
+					</div>
+				</div>
+			</a> <a href="teacher.html">
 				<div class="lecturer-card-container" style="margin-right: 0px;">
 					<div class="lecturer-item">
-						<img class="lecturer-uimg" src="res/i/header.jpg">
-						<span class="lecturer-name">周航</span>
-						<span class="lecturer-title">武汉大学</span>
-						<span class="lecturer-p" >武汉大学高级讲师，擅长写代码</span>
+						<img class="lecturer-uimg" src="res/i/header.jpg"> <span
+							class="lecturer-name">王阳明</span> <span class="lecturer-title">中华大学</span>
+						<span class="lecturer-p">中华大学高级讲师，擅长写代码</span>
 					</div>
 				</div>
-				</a>
-					
-			</div>
-			<!--名校讲师-end -->
+			</a>
+
+		</div>
+		<!--名校讲师-end -->
 	</div>
 
 
@@ -681,7 +636,7 @@
 				<a href="javascript:void(0);" target="_blank" title="友情链接">友情链接</a>
 			</div>
 			<div class="footer-copyright">
-				<span>©&nbsp;2018&nbsp;实训 </span>
+				<span>©&nbsp;2017&nbsp; 备案 </span>
 			</div>
 		</div>
 	</div>
