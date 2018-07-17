@@ -51,5 +51,55 @@
     <servlet-name>CreateComment</servlet-name>
     <url-pattern>/CreateComment</url-pattern>
   </servlet-mapping>
+  
 
+
+   <servlet>
+    <servlet-name>CreateQuestion</servlet-name>
+    <servlet-class>controller.CreateQuestion</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>CreateQuestion</servlet-name>
+    <url-pattern>/CreateQuestion</url-pattern>
+  </servlet-mapping>
+  
+  
+   <servlet>
+    <servlet-name>test</servlet-name>
+    <servlet-class>controller.test</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>test</servlet-name>
+    <url-pattern>/test</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  
+     <servlet>
+    <servlet-name>next</servlet-name>
+    <servlet-class>controller.next</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>next</servlet-name>
+    <url-pattern>/next</url-pattern>
+  </servlet-mapping>
+  
+  
+       <servlet>
+    <servlet-name>CheckServlet</servlet-name>
+    <servlet-class>controller.CheckServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>CheckServlet</servlet-name>
+    <url-pattern>/CheckServlet</url-pattern>
+  </servlet-mapping>
+  
+    
+
+  
 </web-app>

@@ -202,7 +202,7 @@
 			<div class="f-header-box clearfix">
 				<a href=".."  class="logo" title="IT在线学习平台"></a>
 				<nav class="header-nav">
-					<a href="index.html" class="header-nav-item">首 页</a>
+					<a href="success.html" class="header-nav-item">首 页</a>
 					<a href="list.html" class="header-nav-item">课 程</a>									
 					<a href="stCourse.jsp" class="header-nav-item">我的课堂</a>
 					<form class="header-nav-item" action="${pageContext.request.contextPath}/joinServlet"  method="post">					

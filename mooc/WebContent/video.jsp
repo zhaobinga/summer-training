@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 		 pageEncoding="utf-8"
 		 import="java.util.*"
-		 import="modle.Comment"
+		 import="modle.Comment"		 
+		 
+		 
 		 %>
 
 
@@ -35,18 +37,14 @@
 		<!-- 头部-start -->
 		<div class="f-header">
 			<div class="f-header-box clearfix">
-				<a href="a" class="logo" title="网校在线学习平台"></a>
+				<a href="index.jsp" class="logo" title="网校在线学习平台"></a>
 				<nav class="header-nav">
-					<a href="index.jsp" class="header-nav-item">首 页</a>
+					<a href="success.jsp" class="header-nav-item">首 页</a>
 					<a href="list.jsp" class="header-nav-item">课 程</a>
 					<a href="userhome.html" class="header-nav-item">我的</a>
-					<a href=""  style="width:100px;" target="_blank" class="header-nav-item">运营CMS</a>
+					
 				</nav>
-				
-				<nav class="header-nav" style="float:right">
-					<a href="#myModal" class="header-nav-item"  data-toggle="modal" onclick="login();"  style="margin-right:0px;font-size:14px;">登录</a>
-					<a href="" class="header-nav-item"   style="margin-left:0px;font-size:14px;">注册</a>
-			        <a href="#" class="header-nav-item"  style="margin-left:0px;font-size:14px;" id="userdetail">头像</a>
+
 				</nav>
 			</div>
 		</div>
@@ -106,59 +104,7 @@
 			});
 		</script>
 		<!-- 头部-end -->
-		
-		<!-- 登录注册-start -->
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog"  style="position:fixed; top:30%;">
-		    <div class="modal-dialog" role="document">
-		        <div class="modal-content">
-		        
-		            <div class="modal-header">
-		                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		                    <span aria-hidden="true" style="font-size:18px;">×</span>
-		                </button>
-		                <h4 class="modal-title"  id="loginTitle"  style="float: left; color: #337Ab7;cursor: pointer; " onclick="login();">登 录</h4>
-		                <h4 class="modal-title"  id="registeTitle"  style="float: left;margin-left: 20px;cursor: pointer;" onclick="registe();">注 册</h4>
-		                <div class="clearfix"></div>
-		            </div>
-		            
-		            <div class="modal-body">
-		               	<form id="loginForm" class="form-horizontal" style="padding: 0px 20px;">
-		                      <div class="form-group">
-		                          <input type="email" class="form-control"  id="username1"  placeholder="用户名">
-		                      </div>
-		                      <div class="form-group help">
-		                          <input type="password" class="form-control"  id="password1"  placeholder="密　码">
-		                      </div>
-		                      <div class="form-group">
-		                          <label>
-		                           <input type="checkbox" value="None" id="checkbox1" name="check">
-		                           <span class="text" style="color: #787D82;font-size: 14px;">下次自动登录</span>
-		                          </label>
-		                      </div>
-		                      
-		                      <a href="javascript:void(0)">
-		                      	<div class="header-login-btn">登 录</div>
-		                      </a>
-		                  </form>
-		                  
-		                   <form id="registeForm" class="form-horizontal" style="padding: 0px 20px;display: none;">
-		                       <div class="form-group">
-		                           <input type="email" class="form-control"  id="username"  placeholder="用户名">
-		                       </div>
-		                       <div class="form-group help">
-		                           <input type="password" class="form-control"  id="password"  placeholder="密　码">
-		                       </div>
-		                       <a href="javascript:void(0)">
-		                      	<div class="header-login-btn">注 册</div>
-		                       </a>
-		                   </form>
-		                  
-		            </div>
-					
-		        </div>
-		    </div>
-		</div>
-		<!-- 登录注册-end -->
+
 
 		<div class="f-main clearfix">
 			<div class="main-course-left">
@@ -170,11 +116,16 @@
 						</div>
 						
 						<div class="course-menu">
-							<a  href="comment.jsp"><span class="menu-item  cur">评论</span></a>
+							<a  href="javascript:void(0)"><span class="menu-item  cur">评论</span></a>
 						</div>
 				</div>
 				
 				<!-- 评论-start -->
+			
+				
+						
+				<div>
+			
 				<% ArrayList array=(ArrayList)session.getAttribute("comment");
 				for(int i=0;i<array.size();i++)
 				{
@@ -182,7 +133,7 @@
 					Comment comment=(Comment)array.get(i);
 					if(comment.videoID.equals("1"))
 					{%>
-					<div>
+					
 						<div class="comment clearfix">
 							<div class="comment-header"><img class="lecturer-uimg" src="res/i/header.jpg"></div>
 							<div class="comment-main">
@@ -193,25 +144,11 @@
 								</div>
 							</div>
 						</div>		
-					<%}%>
+					<%}%>					
 					
-					
-				<% }%>
-
-				<div>
-						<div class="comment clearfix">
-							<div class="comment-header"><img class="lecturer-uimg" src="res/i/header.jpg"></div>
-							<div class="comment-main">
-								<div class="user-name">我是张三</div>
-								<div class="comment-content">这门课真实用！一个列表嵌套好多种布局的时候，用recyclerview控件优雅实现，效率果然提高不少，老板肯定又会夸我，啊哈哈！！！</div>
-								<div class="comment-footer">
-									<span>时间：2016-12-05 </span>
-									<a href="">2-2 我是java第二节</a>
-								</div>
-							</div>
-						</div>		
-								
-
+				<% }%>      
+				
+								</div> 
 				<%String name = session.getAttribute("name").toString();%>
 				<!-- 发布评论-start -->
 				<div style="margin-top: 20px;">
@@ -239,7 +176,7 @@
 				<div class="video-course-fix-parent">
 					<div class="video-course-fix">
 						<div class="chapter" style="padding: 0px ;border: none;">
-							<a href="javascript:void(0);" class="js-open">
+							<a href="res/demo.mp4" class="js-open">
 								<h3>
 									<strong>第1章 课程介绍</strong>
 									<span class="drop-down">▼</span> 

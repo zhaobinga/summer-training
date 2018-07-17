@@ -305,8 +305,8 @@
 			<div class="course-card-content">		
 			<p>授课老师：<%=ci.tname%></p>
 			<p>课程简介：<%=ci.des %></p>
-			<p>课堂作业：<%=ci.homework %></p>
-			<br>
+			<p>课堂作业：<%=ci.homework %></p><a href="question.jsp?courseId=<%=ci.id%>">布置题目</a>
+			
 			<a href="DisplayServlet?courseId=<%=ci.id %>&methodName=<%=1 %>" onclick="return confirmdialog()">删除</a>			
 			<a href="DisplayServlet?courseId=<%=ci.id %>&methodName=<%=2 %>">修改</a>
 			</div>

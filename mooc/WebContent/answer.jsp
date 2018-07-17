@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"
 	import="java.util.*"
-	import="modle.itClass"
-	%>
+	import="modle.Question"%>
+
 <!DOCTYPE html>
 <html lang="utf-8">
 <head>
@@ -65,6 +65,7 @@
 	CONETXT_PATH = '';
 </script>
 <script type="text/javascript">
+	//
 	function validate() {
 		var psw = document.getElementById("psw").value;
 		var opsw = document.getElementById("opsw").value;
@@ -87,18 +88,93 @@
 			return true;
 		}
 	} //check password infomation--YC
+
+	$("#btn1").click(function() {
+		$("#btn1").toggle();
+	});
 </script>
 
-</head>
+<script>
+	function setImagePreview() {
+		var docObj = document.getElementById("doc");
+		var imgObjPreview = document.getElementById("preview");
+		if (docObj.files && docObj.files[0]) {
 
+			imgObjPreview.style.display = 'block';
+			imgObjPreview.style.width = '68px';
+			imgObjPreview.style.height = '50px';
+			imgObjPreview.style.position = "absolute";
+			imgObjPreview.style.left = "997px";
+			imgObjPreview.style.top = "20px";
+			//imgObjPreview.src = docObj.files[0].getAsDataURL();
+			imgObjPreview.src = window.URL.createObjectURL(docObj.files[0]);
+		} else {
+			//IE下，使用滤镜
+			docObj.select();
+			var imgSrc = document.selection.createRange().text;
+			var localImagId = document.getElementById("localImag");
+			//必须设置初始大小
+			localImagId.style.width = "68px";
+			localImagId.style.height = "50px";
+			localImagId.style.position = "absolute";
+			localImagId.style.left = "1350px";
+			localImagId.style.top = "20px";
+			//图片异常的捕捉，防止用户修改后缀来伪造图片
+			try {
+				localImagId.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+				localImagId.filters
+						.item("DXImageTransform.Microsoft.AlphaImageLoader").src = imgSrc;
+			} catch (e) {
+				alert("您上传的图片格式不正确，请重新选择!");
+				return false;
+			}
+			imgObjPreview.style.display = 'none';
+			document.selection.empty();
+		}
+		return true;
+	}
+</script>
+<!-- 答题区风格 -->
+<style type="text/css">
+#mainDiv {
+	border-radius: 7px;
+	margin-left: 450px;
+	margin-top: 30px;
+}
+
+#btnNext {
+	width: 70px;
+	border-radius: 3px;
+}
+
+#btnSubmit {
+	width: 70px;
+	border-radius: 3px;
+}
+</style>
+</head>
 <body>
-	<%String id = session.getAttribute("Id").toString();;//request.getAttribute("Id").toString();%>
-	<%String name = session.getAttribute("name").toString();%>
-	<%String email = session.getAttribute("email").toString();%>
-	<%String tel = session.getAttribute("tel").toString();%>
-	<%String sex = session.getAttribute("sex").toString();%>
-	<%String des = session.getAttribute("des").toString();%>
-	<%String psw = session.getAttribute("psw").toString();%>
+	<%
+		String id = session.getAttribute("Id").toString();;//request.getAttribute("Id").toString();
+	%>
+	<%
+		String name = session.getAttribute("name").toString();
+	%>
+	<%
+		String email = session.getAttribute("email").toString();
+	%>
+	<%
+		String tel = session.getAttribute("tel").toString();
+	%>
+	<%
+		String sex = session.getAttribute("sex").toString();
+	%>
+	<%
+		String des = session.getAttribute("des").toString();
+	%>
+	<%
+		String psw = session.getAttribute("psw").toString();
+	%>
 	<!-- 头部-start -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 		style="position: fixed; top: 30%;">
@@ -118,6 +194,7 @@
 					<div class="clearfix"></div>
 				</div>
 				<!-- modify information -->
+				>
 				<div class="modal-body">
 					<form action="${pageContext.request.contextPath}/ModifyInfo"
 						method="post" id="loginForm" class="form-horizontal"
@@ -151,6 +228,9 @@
 								class="form-control" id="password" placeholder="des"
 								value=<%=des%>>
 						</div>
+
+
+
 						<a href="javascript:void(0)"> <input type="submit" value="保存" />
 						</a>
 					</form>
@@ -189,7 +269,9 @@
 		<div class="f-header-box clearfix">
 			<a href=".." class="logo" title="IT在线学习平台"></a>
 			<nav class="header-nav">
-				<a href="success.jsp" class="header-nav-item">首 页</a>
+				<a href="index.html" class="header-nav-item">首 页</a> <a
+					href="list.html" class="header-nav-item">课 程</a> <a
+					href="stCourse.jsp" class="header-nav-item">我的课堂</a>
 			</nav>
 
 			<nav class="header-nav" style="float: right">
@@ -201,147 +283,119 @@
 							<ul>
 								<li><a href="#myModal" data-toggle="modal"
 									onclick="login();">我的信息</a></li>
+
 							</ul>
 						<li><a href="index.jsp">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;退出</a></li>
 					</ul>
 				</div>
 			</nav>
+
+
+			<nav class="header-nav" style="float: right">
+				<button onclick=$( "[type=file] ").click()  id="btn1"
+					style="position: absolute; border: none; left: 937px; top: 40px;">我的头像</button>
+				<div id="nav" class="am-form-file">
+					<input style="display: none;" type=file name="doc" id="doc"
+						onchange="javascript:setImagePreview();"> <img
+						id="preview" width=-1 height=-1 style="display: none;" />
+
+
+				</div>
+			</nav>
 		</div>
 	</div>
+	<form method="post" action="${pageContext.request.contextPath}/CheckServlet">
+	<div id="mainDiv" class="">
+	<%ArrayList ques=(ArrayList)session.getAttribute("ques");
+	for(int i=0;i<ques.size();i++)
+	{
+		Question question=(Question)ques.get(i);%>
+		<b><%=i+1 %>、<%=question.tm %></b><br>
+		<div class="duo">
+              <div>
+                 <input id="check22" type="radio" name=<%=i+1 %> value=<%=question.qa %>><label for="check22"><%=question.qa %></label>
+              </div>
+              <div>
+                 <input id="check23" type="radio" name=<%=i+1 %> value=<%=question.qb %>><label for="check23"><%=question.qb %></label>
+              </div>
+              <div>
+                 <input id="check24" type="radio" name=<%=i+1 %> value=<%=question.qc %>><label for="check24"><%=question.qc %></label>
+              </div>
+              <div>
+                 <input id="check24" type="radio" name=<%=i+1 %> value=<%=question.qd %>><label for="check24"><%=question.qd %></label>
+              </div>
+        </div><br>
+        
+        
+	<% }%>
+	
+
+	<input id="btnSubmit" type="submit" value="提交">		
+	</div>
+	</form>	
+
 
 	<script type="text/javascript">
-		function login() {
-			$('#loginTitle').css('color', '#337Ab7');
-			$('#loginForm').show();
-			$('#registeTitle').css('color', '#000');
-			$('#registeForm').hide();
-			var sex = document.getElementById("sex1").value;
-			if (sex == "female") {
-				document.getElementById("female").selected = true;
-			}
-
-		}
-		function registe() {
-			$('#loginTitle').css('color', '#000');
-			$('#loginForm').hide();
-			$('#registeTitle').css('color', '#337Ab7');
-			$('#registeForm').show();
-		}
-		$(function() {
-			$("#userdetail").popover({
-				trigger : 'manual',
-				placement : 'bottom',
-				html : 'true',
-				content : '<div style="width:300px;height:300px;"></div>',
-				animation : false
-			}).on("mouseenter", function() {
-				var _this = this;
-				$(this).popover("show");
-				$(this).siblings(".popover").on("mouseleave", function() {
-					$(_this).popover('hide');
-				});
-			}).on("mouseleave", function() {
-				var _this = this;
-				setTimeout(function() {
-					if (!$(".popover:hover").length) {
-						$(_this).popover("hide")
+		
+			function login(){
+				$('#loginTitle').css('color','#337Ab7');
+				$('#loginForm').show();
+				$('#registeTitle').css('color','#000');
+				$('#registeForm').hide();
+				var sex=document.getElementById("sex1").value;
+				if(sex=="female")
+					{
+					document.getElementById("female").selected=true;
 					}
-				}, 0);
+				
+			}
+			function registe(){
+				$('#loginTitle').css('color','#000');
+				$('#loginForm').hide();
+				$('#registeTitle').css('color','#337Ab7');
+				$('#registeForm').show();
+			}
+			$(function(){
+				$("#userdetail").popover({
+		            trigger:'manual',
+		            placement : 'bottom',
+		            html: 'true',
+		            content : '<div style="width:300px;height:300px;"></div>',
+		            animation: false
+		        }).on("mouseenter", function () {
+		            var _this = this;
+		            $(this).popover("show");
+		            $(this).siblings(".popover").on("mouseleave", function () {
+		                $(_this).popover('hide');
+		            });
+		        }).on("mouseleave", function () {
+		            var _this = this;
+		            setTimeout(function () {
+		                if (!$(".popover:hover").length) {
+		                    $(_this).popover("hide")
+		                }
+		            }, 0);
+		        });
+				//课程分类展示 
+				$(".category").popover({
+		            trigger:'manual',
+		            placement : 'right',
+		            html: 'true',
+		            content : '',
+		            animation: false
+		        }).on("mouseenter", function () {
+		            var cid = $(this).attr('c-id');
+		            $('#' + cid).show();
+		            $('#' + cid).hover(function(){
+		            	$('#' + cid).show();
+		            },function(){
+		            	$('#' + cid).hide();
+					});
+		        }).on("mouseleave", function () {
+		            var cid = $(this).attr('c-id');
+		            $('#' + cid).hide();
+		        });
 			});
-			//课程分类展示 
-			$(".category").popover({
-				trigger : 'manual',
-				placement : 'right',
-				html : 'true',
-				content : '',
-				animation : false
-			}).on("mouseenter", function() {
-				var cid = $(this).attr('c-id');
-				$('#' + cid).show();
-				$('#' + cid).hover(function() {
-					$('#' + cid).show();
-				}, function() {
-					$('#' + cid).hide();
-				});
-			}).on("mouseleave", function() {
-				var cid = $(this).attr('c-id');
-				$('#' + cid).hide();
-			});
-		});
-	</script>
-	<!-- 头部-end -->
-
-	<style type="text/css">
-#div1,#div2,#div3,#div4,#div5 {
-	margin: 0;
-	margin-left: auto;
-	margin-right: auto;
-	padding: 0;
-	width: 700px;
-	border: 0 px solid #F00;
-	
-}
-</style>
-	<!-- 学习课程-start -->
-
-	<div class="types-block clearfix"
-		style="margin-left: auto; margin-right: auto;">
-		<h3 class="types-title">
-			学习课程：<br>
-		</h3>
-		
-		<%
-		
-		ArrayList array=(ArrayList)session.getAttribute("class");
-		for(int i=0;i<array.size();i++)
-		{
-			itClass itclass=(itClass)array.get(i);%>
-			<div class="course-card-container" id="div2">
-			<div class="course-card-top pink-bg">
-				<span><%=itclass.cname %></span>
-			</div>
-			<div class="course-card-content">
-			<p>课程编号：<%=itclass.id%></p>			
-			<p>授课老师：<%=itclass.tname%></p>
-			<p>课程简介：<%=itclass.des %></p>
-			<p>课堂作业：<%=itclass.homework %></p>	
-			<a href="test?courseId=<%=itclass.id %>">查看试题</a>		
-			</div>
-		</div>
-			
-		<%} %>
-		
-
-
-	<!-- 学习课程-end -->
+		</script>
 </body>
-
-<script>
-	$(function() {
-		var index = 0;
-		var timer = 4000;
-		$('.bg-nav a').click(function() {
-			index = $('.bg-nav a').index($(this));
-			rollBg(index);
-		});
-		$('.index-roll-item').click(function() {
-			index = $('.index-roll-item').index($(this));
-			rollBg(index);
-		});
-		var rollBg = function(i) {
-			$('.main-bg-item').fadeOut(1000);
-			$($('.main-bg-item')[i]).fadeIn(1000);
-			$('.bg-nav a').removeClass('cur');
-			$($('.bg-nav a')[i]).addClass('cur');
-			$('.index-roll-item').removeClass('cur');
-			$($('.index-roll-item')[i]).addClass('cur');
-		}
-		setInterval(function() {
-			index += 1;
-			index = index % 3;
-			rollBg(index);
-		}, timer);
-
-	});
-</script>
 </html>

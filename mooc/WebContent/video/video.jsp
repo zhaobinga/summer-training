@@ -1,6 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=utf-8"
+		 pageEncoding="utf-8"
+		 import="java.util.*"
+		 import="modle.Comment"
+		 %>
+
+
+<!DOCTYPE html>
 <html lang="utf-8">
 	<head>
 	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -10,17 +15,17 @@
 		<meta name="description" content="">
 		<title>在线网校学习平台</title>
 		
-		<link href="../res/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-		<link href="../res/css/reset.css" rel="stylesheet" type="text/css"/>
-		<script type="text/javascript" src="../res/js/jquery-1.11.3.min.js"></script>
-		<script type="text/javascript" src="../res/js/bootstrap.min.js"></script>
+		<link href="res/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+		<link href="res/css/reset.css" rel="stylesheet" type="text/css"/>
+		<script type="text/javascript" src="res/js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="res/js/bootstrap.min.js"></script>
 		
 		<!--[if lt IE 9]>
 		  <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		  <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
 		<![endif]-->
 		
-		<link rel="icon" type="image/png" href="../res/i/ico.png" sizes="16x16">
+		<link rel="icon" type="image/png" href="res/i/ico.png" sizes="16x16">
 		<script type="text/javascript">
 		CONETXT_PATH = '';
 		</script>
@@ -30,17 +35,17 @@
 		<!-- 头部-start -->
 		<div class="f-header">
 			<div class="f-header-box clearfix">
-				<a href=".."  class="logo" title="网校在线学习平台"></a>
+				<a href="a" class="logo" title="网校在线学习平台"></a>
 				<nav class="header-nav">
-					<a href=".." class="header-nav-item">首 页</a>
-					<a href="../course/list.html" class="header-nav-item">课 程</a>
-					<a href="../user/home.html" class="header-nav-item">我的</a>
-					<a href="../opt/index.html"  style="width:100px;" target="_blank" class="header-nav-item">运营CMS</a>
+					<a href="index.jsp" class="header-nav-item">首 页</a>
+					<a href="list.jsp" class="header-nav-item">课 程</a>
+					<a href="userhome.html" class="header-nav-item">我的</a>
+					<a href=""  style="width:100px;" target="_blank" class="header-nav-item">运营CMS</a>
 				</nav>
 				
 				<nav class="header-nav" style="float:right">
 					<a href="#myModal" class="header-nav-item"  data-toggle="modal" onclick="login();"  style="margin-right:0px;font-size:14px;">登录</a>
-					<a href="../auth/register.html" class="header-nav-item"   style="margin-left:0px;font-size:14px;">注册</a>
+					<a href="" class="header-nav-item"   style="margin-left:0px;font-size:14px;">注册</a>
 			        <a href="#" class="header-nav-item"  style="margin-left:0px;font-size:14px;" id="userdetail">头像</a>
 				</nav>
 			</div>
@@ -119,10 +124,10 @@
 		            <div class="modal-body">
 		               	<form id="loginForm" class="form-horizontal" style="padding: 0px 20px;">
 		                      <div class="form-group">
-		                          <input type="email" class="form-control"  id="username"  placeholder="用户名">
+		                          <input type="email" class="form-control"  id="username1"  placeholder="用户名">
 		                      </div>
 		                      <div class="form-group help">
-		                          <input type="password" class="form-control"  id="password"  placeholder="密　码">
+		                          <input type="password" class="form-control"  id="password1"  placeholder="密　码">
 		                      </div>
 		                      <div class="form-group">
 		                          <label>
@@ -161,18 +166,56 @@
 						<div class="course-title" style="font-size: 24px;">1-1 感受神秘的涟漪效果</div>
 						
 						<div class="course-video">
-							<video src="../res/demo.mp4" width="100%" height="100%" controls preload></video>
+							<video src="res/demo.mp4" width="100%" height="100%" controls preload></video>
 						</div>
 						
 						<div class="course-menu">
-							<a  href="javascript:void(0)"><span class="menu-item  cur">评论</span></a>
+							<a  href="comment.jsp"><span class="menu-item  cur">评论</span></a>
 						</div>
 				</div>
 				
 				<!-- 评论-start -->
+				<% ArrayList array=(ArrayList)session.getAttribute("comment");
+				for(int i=0;i<array.size();i++)
+				{
+					
+					Comment comment=(Comment)array.get(i);
+					if(comment.videoID.equals("1"))
+					{%>
+					<div>
+						<div class="comment clearfix">
+							<div class="comment-header"><img class="lecturer-uimg" src="res/i/header.jpg"></div>
+							<div class="comment-main">
+								<div class="user-name"><%=comment.username %></div>
+								<div class="comment-content"><%=comment.content %></div>
+								<div class="comment-footer">
+									<span><%=comment.time %></span>									
+								</div>
+							</div>
+						</div>		
+					<%}%>
+					
+					
+				<% }%>
+				
+				
+				
 				<div>
 						<div class="comment clearfix">
-							<div class="comment-header"><img class="lecturer-uimg" src="../res/i/header.jpg"></div>
+							<div class="comment-header"><img class="lecturer-uimg" src="res/i/header.jpg"></div>
+							<div class="comment-main">
+								<div class="user-name">我是张三</div>
+								<div class="comment-content">这门课真实用！一个列表嵌套好多种布局的时候，用recyclerview控件优雅实现，效率果然提高不少，老板肯定又会夸我，啊哈哈！！！</div>
+								<div class="comment-footer">
+									<span>时间：2016-12-05 </span>
+									<a href="res/demo.mp4">2-2 我是java第二节</a>
+								</div>
+							</div>
+						</div>	
+
+				<div>
+						<div class="comment clearfix">
+							<div class="comment-header"><img class="lecturer-uimg" src="res/i/header.jpg"></div>
 							<div class="comment-main">
 								<div class="user-name">我是张三</div>
 								<div class="comment-content">这门课真实用！一个列表嵌套好多种布局的时候，用recyclerview控件优雅实现，效率果然提高不少，老板肯定又会夸我，啊哈哈！！！</div>
@@ -183,37 +226,23 @@
 							</div>
 						</div>		
 								
-						<div class="comment clearfix">
-							<div class="comment-header"><img class="lecturer-uimg" src="../res/i/header.jpg"></div>
-							<div class="comment-main">
-								<div class="user-name">我是张三</div>
-								<div class="comment-content">这门课真实用！一个列表嵌套好多种布局的时候，用recyclerview控件优雅实现，效率果然提高不少，老板肯定又会夸我，啊哈哈！！！</div>
-								<div class="comment-footer">
-									<span>时间：2016-12-05 </span>
-									<a href="">2-2 我是java第二节</a>
-								</div>
-							</div>
-						</div>		
-				</div>
-				
+
+				<%String name = session.getAttribute("name").toString();%>
 				<!-- 发布评论-start -->
 				<div style="margin-top: 20px;">
 					<div>
 						<span id="commentTitle">发布评论：</span>
 						<span id="commentTip" style="margin-left: 10px;color:#777;">长度小于200</span>
 					</div>
-					<form id="commentForm" action="${s.base}/courseComment/doComment.html" method="post"  style="margin: 5px 0px;">
-						<input type="hidden" id="commentType" name="type" value="0"/>
-						<input type="hidden" name="sectionId" value="${(courseSection.id)!}"/>
-						<input type="hidden" name="courseId" value="${(courseSection.courseId)!}"/>
+					<form id="commentForm" action="${pageContext.request.contextPath}/CreateComment"  method="post"  style="margin: 5px 0px;">
+						<input type="hidden" id="id" name="name" value=<%=name %>>
+
+						<input type="hidden" name="courseId" value="1">
 						
 						<textarea id="content" name="content" rows="" cols="100"></textarea>
-						<div>
-							<input id="indeityCode" name="indeityCode"  type="text" placeholder="请输入验证码">
-							<img  onclick="reloadIndityImg();" id="indeityImg"  src="${s.base}/tools/identiry/code.html" style="width:80px;height:26px;margin-left:10px;margin-top:-3px;"/>
-						</div>
+						<input type="submit" value="发布" class="btn" >
 					</form>
-					<input type="button" value="发布" class="btn" onclick="doComment();">
+					
 				</div>
 				
 				<!-- 评论-end -->
@@ -231,15 +260,17 @@
 									<span class="drop-down">▼</span> 
 								</h3>
 							</a>
+
 							<ul class="chapter-sub" style="padding-left:10px;">
-								<a href="../course/video.html" > 
+								<a href="res/demo.mp4" >
 									<li class="ellipsis video-li"><i class="icon-video">▶</i> 1-1 使用RecyclerView优雅实现复杂布局-课程介绍 (06:46)</li>
 								</a>
 								
-								<a href="/video/13038" > 
+								<a href="res/demo.mp4" >
 									<li class="ellipsis  video-li"><i class="icon-video">▶</i> 1-2 包括录制到文件、播放文件，可以实现类似于微信的语音消息发送与播放 (06:46)</li>
 								</a>
 							</ul>
+
 						</div>
 					
 						<div class="chapter" style="padding: 0px ;border: none;">
@@ -250,11 +281,11 @@
 								</h3>
 							</a>
 							<ul class="chapter-sub" style="padding-left:10px;">
-								<a href="../course/video.html" > 
+								<a href="res/demo.mp4" >
 									<li class="ellipsis video-li"><i class="icon-video">▶</i> 1-1 使用RecyclerView优雅实现复杂布局-课程介绍 (06:46)</li>
 								</a>
 								
-								<a> 
+								<a href="res/demo.mp4" >
 									<li class="ellipsis  video-li"><i class="icon-video">▶</i> 1-2 包括录制到文件、播放文件，可以实现类似于微信的语音消息发送与播放 (06:46)</li>
 								</a>
 							</ul>
@@ -268,11 +299,11 @@
 								</h3>
 							</a>
 							<ul class="chapter-sub" style="padding-left:10px;">
-								<a href="../course/video.html" > 
+								<a href="res/demo.mp4" >
 									<li class="ellipsis video-li"><i class="icon-video">▶</i> 1-1 使用RecyclerView优雅实现复杂布局-课程介绍 (06:46)</li>
 								</a>
 								
-								<a href="/video/13038" > 
+								<a href="res/demo.mp4" >
 									<li class="ellipsis  video-li"><i class="icon-video">▶</i> 1-2 包括录制到文件、播放文件，可以实现类似于微信的语音消息发送与播放 (06:46)</li>
 								</a>
 							</ul>
@@ -286,11 +317,11 @@
 								</h3>
 							</a>
 							<ul class="chapter-sub" style="padding-left:10px;">
-								<a href="../course/video.html" > 
+								<a href="res/demo.mp4" >
 									<li class="ellipsis video-li"><i class="icon-video">▶</i> 1-1 使用RecyclerView优雅实现复杂布局-课程介绍 (06:46)</li>
 								</a>
 								
-								<a href="/video/13038" > 
+								<a href="res/demo.mp4" >
 									<li class="ellipsis  video-li"><i class="icon-video">▶</i> 1-2 包括录制到文件、播放文件，可以实现类似于微信的语音消息发送与播放 (06:46)</li>
 								</a>
 							</ul>
@@ -304,11 +335,11 @@
 								</h3>
 							</a>
 							<ul class="chapter-sub" style="padding-left:10px;">
-								<a href="../course/video.html" > 
+								<a href="res/demo.mp4" >
 									<li class="ellipsis video-li"><i class="icon-video">▶</i> 1-1 使用RecyclerView优雅实现复杂布局-课程介绍 (06:46)</li>
 								</a>
 								
-								<a href="/video/13038" > 
+								<a href="res/demo.mp4" >
 									<li class="ellipsis  video-li"><i class="icon-video">▶</i> 1-2 包括录制到文件、播放文件，可以实现类似于微信的语音消息发送与播放 (06:46)</li>
 								</a>
 							</ul>
@@ -330,7 +361,7 @@
 					<a href="javascript:void(0);" target="_blank" title="友情链接">友情链接</a>
 				</div>
 				<div class="footer-copyright">
-					<span>©&nbsp;2017&nbsp; 备案 </span>
+					<span>©&nbsp;2018&nbsp; 实训 </span>
 				</div>
 			</div>
 		</div>
