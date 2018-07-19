@@ -83,7 +83,7 @@ public class logServlet extends HttpServlet {
 		            {
 		            	Comment comment=new Comment(rs3.getString("username"),rs3.getString("time"),rs3.getString("content"),rs3.getString("videoid"));
 		            	commentarray.add(comment);
-		            	System.out.println("+1");
+		            	
 		            }
 					
 					
@@ -102,9 +102,8 @@ public class logServlet extends HttpServlet {
 					try {
 						if(username.equals("")||password.equals("")) {
 							so.close();
-							System.out.println("1");
 							PrintWriter out = response.getWriter();
-							System.out.println("<script>alert('用户名或者密码不能为空'); window.location='index.jsp' </script>");
+							
 							out.print("<script>alert('用户名或者密码不能为空'); window.location='index.jsp' </script>");
 							out.flush();
 							out.close();
@@ -128,7 +127,6 @@ public class logServlet extends HttpServlet {
 										Cookie c1=new Cookie("username",username);
 										Cookie c2=new Cookie("password",password);
 										Cookie c3=new Cookie("checked",checked);
-										System.out.println(checked);
 										c1.setMaxAge(1000);
 										c2.setMaxAge(1000);
 										c3.setMaxAge(1000);
@@ -138,7 +136,6 @@ public class logServlet extends HttpServlet {
 									}
 									else
 									{
-										System.out.println(checked);
 										Cookie[] c=request.getCookies();
 										
 										if(c!=null)
@@ -147,7 +144,6 @@ public class logServlet extends HttpServlet {
 											{
 												Cookie cookie = new Cookie(c[i].getName(), null);
 												cookie.setMaxAge(0);												
-												System.out.println("NMSL");
 												response.addCookie(cookie);
 											}
 										}
@@ -167,7 +163,7 @@ public class logServlet extends HttpServlet {
 							}if(!outcome.equals("/log/success.jsp"))
 							so.close();
 							PrintWriter out = response.getWriter();
-							System.out.println("<script>alert('用户名或者密码错误'); window.location='index.jsp' </script>");
+							
 							out.print("<script>alert('username or password error'); window.location='index.jsp' </script>");
 							out.flush();
 							out.close();
@@ -180,7 +176,7 @@ public class logServlet extends HttpServlet {
 				}else {
 					so.close();
 					PrintWriter out = response.getWriter();
-					System.out.println("<script>alert('验证码错误'); window.location='index.jsp' </script>");
+					
 					out.print("<script>alert('checkcode error'); window.location='index.jsp' </script>");
 					out.flush();
 					out.close();

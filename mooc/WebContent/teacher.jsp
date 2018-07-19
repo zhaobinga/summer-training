@@ -220,7 +220,7 @@
 			<a href=".." class="logo" title="IT在线学习平台"></a>
 			<nav class="header-nav">
 				<a href="teacher.jsp" class="header-nav-item">首 页</a> 
-		<a href="DisplayServlet?methodName=<%=0 %>" class="header-nav-item">课 程</a> <a
+		<a href="DisplayServlet?methodName=<%=0 %>" class="header-nav-item">我的课堂</a> <a
 					href="#myModal1" data-toggle="modal" class="header-nav-item"
 					onclick="setCourse();">开设课程</a> <a href="optindex.html"
 					style="width: 100px;" target="_blank" class="header-nav-item">运营CMS</a>

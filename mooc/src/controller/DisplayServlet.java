@@ -144,13 +144,13 @@ public class DisplayServlet extends HttpServlet {
     	String courseId=(String)session.getAttribute("courseId");
     	System.out.println(courseId);
         String teacherName=request.getParameter("tName");
-        //teacherName=new String(teacherName.getBytes("iso-8859-1"),"utf-8");
+      
         String courseName=request.getParameter("cName");
-        //courseName=new String(courseName.getBytes("iso-8859-1"),"utf-8");
+       
         String homework=request.getParameter("hwork");
-       // homework=new String(homework.getBytes("iso-8859-1"),"utf-8");
+      
         String courseDetail=request.getParameter("cDetail");
-       // courseDetail=new String(courseDetail.getBytes("iso-8859-1"),"utf-8");
+      
 		String id=(String)session.getAttribute("Id");
  		stat=so.con.createStatement();
 		stat.execute("update class set tname='"+teacherName+"',cname='"+courseName+"',homework='"+homework+"',des='"+courseDetail+"' where cid='"+courseId+"'");    

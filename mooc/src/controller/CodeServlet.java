@@ -34,21 +34,21 @@ public class CodeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // 璋冪敤宸ュ叿绫荤敓鎴愮殑楠岃瘉鐮佸拰楠岃瘉鐮佸浘鐗�
+        
         Map<String, Object> codeMap = checkPicture.generateCodeAndPic();
 
-        // 灏嗗洓浣嶆暟瀛楃殑楠岃瘉鐮佷繚瀛樺埌Session涓��
+       
         HttpSession session = req.getSession();
         session.setAttribute("code", codeMap.get("code").toString());
 
-        // 绂佹鍥惧儚缂撳瓨銆�
+       
         resp.setHeader("Pragma", "no-cache");
         resp.setHeader("Cache-Control", "no-cache");
         resp.setDateHeader("Expires", -1);
 
         resp.setContentType("image/jpeg");
 
-        // 灏嗗浘鍍忚緭鍑哄埌Servlet杈撳嚭娴佷腑銆�
+      
         ServletOutputStream sos;
         try {
             sos = resp.getOutputStream();

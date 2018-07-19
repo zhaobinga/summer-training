@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import modle.SqlOperator;
 import modle.Student;
@@ -52,7 +53,7 @@ public class CreateComment extends HttpServlet {
 		String name=request.getParameter("name");
 		name=new String(name.getBytes("iso-8859-1"),"utf-8");
 		String courseId=request.getParameter("courseId");
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+		DateFormat df =DateFormat.getDateTimeInstance();//设置日期格式
         String time=df.format(new Date());// new Date()为获取当前系统时间
         ArrayList<Comment> array=new ArrayList();
 		

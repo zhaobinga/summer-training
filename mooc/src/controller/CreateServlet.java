@@ -83,15 +83,14 @@ public class CreateServlet extends HttpServlet {
 		courseDetail=new String(courseDetail.getBytes("iso-8859-1"),"utf-8");
 		SqlOperator con=new SqlOperator();
 		Statement state=null;
-		//ResultSet rs=con.getRS();
+
 		
 			state=con.con.createStatement();
 		    state.execute("insert into class values('"+courseId+"',"+id+",'"+teacherName+"','"+courseName+"','"+courseDetail+"',' ')");
-		    //SqlOperator so=new SqlOperator();
 			con.close();
 			response.setHeader("refresh","1;url=/mooc/teacher.jsp");
 		} catch (SQLException e) {
-			// TODO �Զ����ɵ� catch ��
+			// 
 			e.printStackTrace();
 		}
 	}

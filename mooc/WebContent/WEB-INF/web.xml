@@ -99,6 +99,17 @@
     <url-pattern>/CheckServlet</url-pattern>
   </servlet-mapping>
   
+  
+  
+       <servlet>
+    <servlet-name>View</servlet-name>
+    <servlet-class>controller.View</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>View</servlet-name>
+    <url-pattern>/View</url-pattern>
+  </servlet-mapping>
     
 
   

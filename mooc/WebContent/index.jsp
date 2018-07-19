@@ -67,7 +67,7 @@ if(c!=null)
     				return false;
     			}else if(mima1.length>16||mima1.length<8){
     				alert("密码长度为8-16位，请重新输入");
-    				return false;
+    				return false; 
     			}else{
     				return true;
     			}

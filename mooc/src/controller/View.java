@@ -21,18 +21,19 @@ import javax.servlet.http.HttpSession;
 import modle.SqlOperator;
 import modle.Student;
 import modle.itClass;
-import modle.Question;
+import modle.Score;
+import modle.Error;
 /**
  * Servlet implementation class AllServlet
  */
-@WebServlet("/exam")
-public class test extends HttpServlet {
+@WebServlet("/view")
+public class View extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public test() {
+    public View() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -44,36 +45,34 @@ public class test extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		SqlOperator con=new SqlOperator();
+		String cid=request.getParameter("courseId");
+		ArrayList<Score> scorearray=new ArrayList();
+		ArrayList<Error> errorarray=new ArrayList();
 		Statement state=null;
+		Statement state2=null;
 		try {
 			state=con.con.createStatement();
-			ArrayList<Question> question=new ArrayList();
+			state2=con.con.createStatement();
 			HttpSession session=request.getSession();
-			String courseId=request.getParameter("courseId");
-            String sql="select * from question where cid='"+courseId+"'";
-
-			ResultSet rs=state.executeQuery(sql);
-			if(rs.next())
-			{
-				Question q=new Question(rs.getString("timu"),rs.getString("qa"),rs.getString("qb"),
-						rs.getString("qc"),rs.getString("qd"),rs.getString("right"),rs.getString("explain"));
-				question.add(q);
-			while(rs.next())
-			{
-				Question qs=new Question(rs.getString("timu"),rs.getString("qa"),rs.getString("qb"),
-						rs.getString("qc"),rs.getString("qd"),rs.getString("right"),rs.getString("explain"));
-				question.add(qs);
-			}
-			session.setAttribute("cid", courseId);
-			session.setAttribute("ques", question);
-			this.getServletContext().getRequestDispatcher("/teacherview.jsp").forward(request, response);
-			}
-			else
-			{
-				String n="no";
-				request.setAttribute("n", n);
-				this.getServletContext().getRequestDispatcher("/stCourse.jsp").forward(request, response);
-			}
+			String sql="select * from result where cid='"+cid+"'";
+			String sql2="select error,COUNT(error) as num from error where cid='"+cid+"' group by error";
+            ResultSet set=state.executeQuery(sql);
+            ResultSet set2=state2.executeQuery(sql2);
+            while(set.next())
+            {
+            	Score score=new Score(set.getString("id"),set.getString("name"),set.getString("score"),set.getString("time"));
+            	scorearray.add(score);
+            }
+            while(set2.next())
+            {
+            	Error error=new Error(set2.getString("error"),set2.getString("num"));
+            	errorarray.add(error);
+            }
+            session.setAttribute("score", scorearray);
+            session.setAttribute("error", errorarray);
+            set.close();
+            set2.close();
+			this.getServletContext().getRequestDispatcher("/view.jsp").forward(request, response);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

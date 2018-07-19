@@ -86,12 +86,25 @@
 			alert("修改密码成功");
 			return true;
 		}
-	} //check password infomation--YC
+	} //颜聪————修改密码
+	
+	
+	function init()
+	{
+		
+			var n="<%=request.getAttribute("n")%>";
+			if(n=="no")
+			{
+				alert("no quiz now!")
+			}
+	}
+	
+	
 </script>
 
 </head>
 
-<body>
+<body onload="init()">
 	<%String id = session.getAttribute("Id").toString();;//request.getAttribute("Id").toString();%>
 	<%String name = session.getAttribute("name").toString();%>
 	<%String email = session.getAttribute("email").toString();%>
@@ -310,7 +323,6 @@
 		</div>
 			
 		<%} %>
-		
 
 
 	<!-- 学习课程-end -->

@@ -7,7 +7,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -43,20 +45,40 @@ public class CheckServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session=request.getSession();
+		String cid=session.getAttribute("cid").toString();
+		String id = session.getAttribute("Id").toString();
+		String name = session.getAttribute("name").toString();
+		DateFormat df =DateFormat.getDateTimeInstance();//设置日期格式
+        String time=df.format(new Date());
 		ArrayList q=(ArrayList)session.getAttribute("ques");
 		int count=0;
-		for(int i=0;i<q.size();i++)
-		{
-			String number=String.valueOf(i+1);
-	        Question tm=(Question)q.get(i);
-	        if(tm.right.equals(request.getParameter(number)))
-	        		{
-	        	count++;
-	        		}
-	        
+		SqlOperator con=new SqlOperator();
+		try {
+			Statement state=con.con.createStatement();
+			for(int i=0;i<q.size();i++)
+			{
+				String number=String.valueOf(i+1);
+		        Question tm=(Question)q.get(i);
+		        if(tm.right.equals(request.getParameter(number)))
+		        		{
+		        	count++;
+		        		}
+		        else
+		        {
+		        	String sql="insert into error values('"+cid+"','"+number+"')";
+		        	state.execute(sql);
+		        }
+		        
+			}
+			request.setAttribute("count",count);
+			String sql="insert into result values('"+cid+"','"+id+"','"+name+"','"+String.valueOf(count)+"','"+time+"')";
+			state.execute(sql);
+			this.getServletContext().getRequestDispatcher("/result.jsp").forward(request, response);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		request.setAttribute("count",count);
-		this.getServletContext().getRequestDispatcher("/result.jsp").forward(request, response);
+		
 	}
 
 }

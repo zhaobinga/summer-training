@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"
 	import="java.util.*"
-	import="modle.Question"%>
+	import="modle.Error"
+	import="modle.Score"%>
 
 <!DOCTYPE html>
 <html lang="utf-8">
@@ -62,50 +63,59 @@
 
 <link rel="icon" type="image/png" href="res/i/ico.png" sizes="16x16">
 <script type="text/javascript">
-	CONETXT_PATH = '';
-</script>
+		CONETXT_PATH = '';
+		</script>
 <script type="text/javascript">
 	//
-	function validate() {
-		var psw = document.getElementById("psw").value;
-		var opsw = document.getElementById("opsw").value;
-		var mima1 = document.getElementById("npsw").value;
-		var mima2 = document.getElementById("npsw2").value;
-		if (mima1 == "" || opsw == "" || mima2 == "") {
-			alert("密码不能为空");
-			document.getElementById("opsw").focus();
-			return false;
-		} else if (opsw != psw) {
-			alert("原始密码错误");
-			document.getElementById("opsw").focus();
-			return false;
-		} else if (mima1 != mima2) {
-			alert("请确认密码一致");
-			document.getElementById("npsw").focus();
-			return false;
-		} else {
-			alert("修改密码成功");
-			return true;
-		}
-	} //check password infomation--YC
-
-	$("#btn1").click(function() {
+    function validate()
+    {
+    var psw=document.getElementById("psw").value;
+    var opsw=document.getElementById("opsw").value;
+    var mima1=document.getElementById("npsw").value;
+    var mima2=document.getElementById("npsw2").value;
+    if(mima1==""||opsw==""||mima2==""){
+    alert("密码不能为空");
+    document.getElementById("opsw").focus();
+    return false;
+    }
+    else if(opsw!=psw)
+    {
+    	alert("原始密码错误");
+        document.getElementById("opsw").focus();
+        return false;            
+    }
+    else if(mima1!=mima2)
+    {
+    alert("请确认密码一致");
+    document.getElementById("npsw").focus();
+    return false;
+    }
+    else
+    {
+    alert("修改密码成功");
+    return true;
+    }
+    }                        //check password infomation--YC
+    
+    
+    
+    $("#btn1").click(function(){
 		$("#btn1").toggle();
 	});
-</script>
+    </script>
 
 <script>
 	function setImagePreview() {
 		var docObj = document.getElementById("doc");
 		var imgObjPreview = document.getElementById("preview");
 		if (docObj.files && docObj.files[0]) {
-
+		
 			imgObjPreview.style.display = 'block';
 			imgObjPreview.style.width = '68px';
 			imgObjPreview.style.height = '50px';
 			imgObjPreview.style.position = "absolute";
-			imgObjPreview.style.left = "997px";
-			imgObjPreview.style.top = "20px";
+			imgObjPreview.style.left="997px";
+			imgObjPreview.style.top="20px";
 			//imgObjPreview.src = docObj.files[0].getAsDataURL();
 			imgObjPreview.src = window.URL.createObjectURL(docObj.files[0]);
 		} else {
@@ -117,8 +127,8 @@
 			localImagId.style.width = "68px";
 			localImagId.style.height = "50px";
 			localImagId.style.position = "absolute";
-			localImagId.style.left = "1350px";
-			localImagId.style.top = "20px";
+			localImagId.style.left="1350px";
+			localImagId.style.top="20px";
 			//图片异常的捕捉，防止用户修改后缀来伪造图片
 			try {
 				localImagId.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
@@ -134,29 +144,17 @@
 		return true;
 	}
 </script>
-<!-- 答题区风格 -->
-<style type="text/css">
-#mainDiv {
-	border-radius: 7px;
-	margin-left: 450px;
-	margin-top: 30px;
-}
 
-#btnNext {
-	width: 70px;
-	border-radius: 3px;
-}
 
-#btnSubmit {
-	width: 70px;
-	border-radius: 3px;
-}
-</style>
+
+
+
+
+
 </head>
 <body>
 	<%
-		String id = session.getAttribute("Id").toString();
-		;//request.getAttribute("Id").toString();
+		String id = session.getAttribute("Id").toString();;//request.getAttribute("Id").toString();
 	%>
 	<%
 		String name = session.getAttribute("name").toString();
@@ -181,6 +179,7 @@
 		style="position: fixed; top: 30%;">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
+
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
@@ -270,7 +269,7 @@
 		<div class="f-header-box clearfix">
 			<a href=".." class="logo" title="IT在线学习平台"></a>
 			<nav class="header-nav">
-				<a href="success.jsp" class="header-nav-item">首 页</a> <a
+				<a href="success.html" class="header-nav-item">首 页</a> <a
 					href="list.html" class="header-nav-item">课 程</a> <a
 					href="stCourse.jsp" class="header-nav-item">我的课堂</a>
 			</nav>
@@ -305,48 +304,46 @@
 			</nav>
 		</div>
 	</div>
-<div class="types-block clearfix"
-		style="margin-left: auto; margin-right: auto;">
-	<%
-		ArrayList ques = (ArrayList) session.getAttribute("ques");
-		String count = request.getAttribute("count").toString();
-	%>
-		<h3>你本次共答对了<%=count%>道题！
-		</h3> <br> <br>
-		<%
-			for (int i = 0; i < ques.size(); i++) {
-				Question question = (Question) ques.get(i);
-		%>
-		<div class="course-card-container" id="div2" style="width:1000px;height:200px;">
-			<div class="course-card-top " style="background-color:#70DBDB;">
-				<span>
-					<b style="font-size:18px;"><%=i + 1%>、<%=question.tm%></b>
-				</span>
-			</div>
-			<div class="course-card-content">
-				<p>
-					<b>正确答案：<%=question.right%></b>
-				</p>
-				<p>
-					<b>试题解析：<%=question.explain%></b>
-				</p>
-			</div>
-		</div>
-		<%
-			}
-		%>
-</div>
-
-
-
-
-
-
-
-
-
-
-
+	<%ArrayList score=(ArrayList)session.getAttribute("score");
+	ArrayList error=(ArrayList)session.getAttribute("error");%>
+		<table id="tb1"  border="1" rules=none frame=void style="position:relative;left:300px;">
+			<tr>
+				<th ><b style="font-size:18px;">学生编号</b> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;     </th>
+				<th ><b style="font-size:18px;">昵称</b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;   </th>
+				<th ><b style="font-size:18px;">答对题数</b> &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; </th>
+				<th ><b style="font-size:18px;">完成时间</b>  &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;  </th>
+			</tr>
+			<!-- 循环 开始-->
+			<%for(int i=0;i<score.size();i++)
+			{
+			Score sc=(Score)score.get(i);
+			%>
+			<tr>
+				<td><%=sc.id %></td>
+				<td><%=sc.name %></td>
+				<td><%=sc.num %></td>
+				<td><%=sc.time %></td>
+			</tr>
+			<% }%>
+			<!-- 循环 结束-->
+		</table><br><br>
+	<table id="tb2" border="1" border="1" rules=none frame=void style="position:relative;left:300px;">
+		<tr>
+			<th><b style="font-size:18px;">题目编号&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; </b></th>
+			<th><b style="font-size:18px;">答错人数&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; </b></th>
+		</tr>
+		<!-- 循环 开始-->
+		<%for(int i=0;i<error.size();i++)
+			{
+			Error er=(Error)error.get(i);
+			%>
+		<tr>
+			<td><%=er.num %></td>
+			<td><%=er.n %></td>
+		</tr>
+	<%} %>
+		<!-- 循环 结束-->
+	</table>
 
 	<script type="text/javascript">
 		
@@ -409,6 +406,6 @@
 		            $('#' + cid).hide();
 		        });
 			});
-		</script>
+			</script>
 </body>
 </html>

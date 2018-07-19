@@ -70,7 +70,7 @@ public class joinServlet extends HttpServlet {
 					{
 						i=1;
 						PrintWriter out = response.getWriter();
-						System.out.println("<script>alert('你已经加入过课'); window.location='index.jsp' </script>");
+						
 						out.print("<script>alert('you have joined in! Do not join again!');window.location='success.jsp'</script>");
 						out.flush();
 						out.close();
@@ -90,7 +90,7 @@ public class joinServlet extends HttpServlet {
 					HttpSession session=request.getSession();
 					session.setAttribute("class", array);
 					PrintWriter out = response.getWriter();
-					System.out.println("<script>alert('加入课堂成功'); window.location='index.jsp' </script>");
+					
 					out.print("<script>alert('successfully!');window.location='success.jsp'</script>");
 					out.flush();
 					out.close();
@@ -100,7 +100,7 @@ public class joinServlet extends HttpServlet {
 			if(i==3)
 			{
 			PrintWriter out = response.getWriter();
-			System.out.println("<script>alert('无该课程号'); window.location='success.jsp' </script>");
+			
 			out.print("<script>alert('error class number!');window.location='success.jsp'</script>");
 			out.flush();
 			out.close();
