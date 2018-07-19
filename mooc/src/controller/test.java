@@ -66,7 +66,15 @@ public class test extends HttpServlet {
 			}
 			session.setAttribute("cid", courseId);
 			session.setAttribute("ques", question);
+			String type=session.getAttribute("type").toString();
+			if(type.equals("teacher"))
+			{
 			this.getServletContext().getRequestDispatcher("/teacherview.jsp").forward(request, response);
+			}
+			else
+			{
+			this.getServletContext().getRequestDispatcher("/answer.jsp").forward(request, response);
+			}
 			}
 			else
 			{

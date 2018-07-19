@@ -110,6 +110,16 @@
     <servlet-name>View</servlet-name>
     <url-pattern>/View</url-pattern>
   </servlet-mapping>
+  
+         <servlet>
+    <servlet-name>searchServlet</servlet-name>
+    <servlet-class>controller.searchServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>searchServlet</servlet-name>
+    <url-pattern>/searchServlet</url-pattern>
+  </servlet-mapping>
     
 
   

@@ -12,26 +12,32 @@
 	postion: absolute;
 	z-index: 999;
 }
+
 * {
 	margin: 0px;
 	padding: 0px;
 }
+
 #nav {
 	
 }
+
 #nav ul {
 	list-style: none;
 }
+
 #nav ul li {
 	float: left;
 	line-height: 40px;
 	text-align: center;
 	position: relative;
 }
+
 #nav ul li ul {
 	position: absolute;
 	display: none;
 }
+
 #nav ul li:hover ul {
 	display: block
 }
@@ -80,21 +86,29 @@
 			alert("修改密码成功");
 			return true;
 		}
-	} //check password infomation--YC
+	} //颜聪————修改密码
+	
+	
+	function init()
+	{
+		
+			var n="<%=request.getAttribute("join")%>";
+			if(n=="fail")
+			{
+				alert("you have joined in! Do not join again!")
+			}
+			if(n=="success")
+				{
+				alert("success!")
+				}
+	}
+	
+	
 </script>
- <script type="text/javascript">
-    function confirmdialog(){
-       if(window.confirm("您确定要删除此条信息？")){
-       return true;
-       }
-       else{
-       return false;
-       }      
-    }
- </script>
+
 </head>
 
-<body>
+<body onload="init()">
 	<%String id = session.getAttribute("Id").toString();;//request.getAttribute("Id").toString();%>
 	<%String name = session.getAttribute("name").toString();%>
 	<%String email = session.getAttribute("email").toString();%>
@@ -192,7 +206,7 @@
 		<div class="f-header-box clearfix">
 			<a href=".." class="logo" title="IT在线学习平台"></a>
 			<nav class="header-nav">
-				<a href="teacher.jsp" class="header-nav-item">首 页</a>
+				<a href="success.jsp" class="header-nav-item">首 页</a>
 			</nav>
 
 			<nav class="header-nav" style="float: right">
@@ -222,6 +236,7 @@
 			if (sex == "female") {
 				document.getElementById("female").selected = true;
 			}
+
 		}
 		function registe() {
 			$('#loginTitle').css('color', '#000');
@@ -280,7 +295,6 @@
 	margin-right: auto;
 	padding: 0;
 	width: 700px;
-	height: 290px;
 	border: 0 px solid #F00;
 	
 }
@@ -290,41 +304,31 @@
 	<div class="types-block clearfix"
 		style="margin-left: auto; margin-right: auto;">
 		<h3 class="types-title">
-			创建的课程：<br>
+			学习课程：<br>
 		</h3>
 		
 		<%
 		
-		ArrayList array=(ArrayList)session.getAttribute("list");
+		ArrayList array=(ArrayList)session.getAttribute("search");
 		for(int i=0;i<array.size();i++)
 		{
-			itClass ci=(itClass)array.get(i);%>
+			itClass itclass=(itClass)array.get(i);%>
 			<div class="course-card-container" id="div2">
 			<div class="course-card-top pink-bg">
-				<span><%=ci.id %>:<%=ci.cname %></span>
+				<span><%=itclass.cname %></span>
 			</div>
-			<div class="course-card-content">		
-			<p>授课老师：<%=ci.tname%></p>
-			<p>课程简介：<%=ci.des %></p>
-			<p>课堂作业：<%=ci.homework %></p>
-			
-			<div style="display:inline">
-			<a href="question.jsp?courseId=<%=ci.id%>">布置题目</a>
-			<a href="test?courseId=<%=ci.id%>">查看试题</a>
-			<a href="View?courseId=<%=ci.id%>">查看成绩</a>
-			<a href="View?courseId=<%=ci.id%>">上传课件</a>
-			</div>
-			<a href="DisplayServlet?courseId=<%=ci.id %>&methodName=<%=1 %>" onclick="return confirmdialog()">删除</a>			
-			<a href="DisplayServlet?courseId=<%=ci.id %>&methodName=<%=2 %>">修改</a>
+			<div class="course-card-content">
+			<p>课程编号：<%=itclass.id%></p>			
+			<p>授课老师：<%=itclass.tname%></p>
+			<p>课程简介：<%=itclass.des %></p>
+			<p>课堂作业：<%=itclass.homework %></p>	
+			<a href="joinServlet?courseId=<%=itclass.id %>">加入课堂</a>		
 			</div>
 		</div>
-	
 			
 		<%} %>
-		
 
-		
-	</div>
+
 	<!-- 学习课程-end -->
 </body>
 
@@ -353,6 +357,7 @@
 			index = index % 3;
 			rollBg(index);
 		}, timer);
+
 	});
 </script>
 </html>

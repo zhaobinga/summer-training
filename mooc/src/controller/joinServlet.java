@@ -40,71 +40,37 @@ public class joinServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		SqlOperator con=new SqlOperator();
+		HttpSession session=request.getSession();
 		Statement state=null;
 		Statement state2=null;
-		Statement state3=null;
-		String cid=request.getParameter("cid");
-		String id=request.getParameter("id");
+		String cid=request.getParameter("courseId");
+		String id=session.getAttribute("Id").toString();
 		ArrayList<itClass> array=new ArrayList();
 		
 		try {
 			state=con.con.createStatement();
 			state2=con.con.createStatement();
-			state3=con.con.createStatement();
-			String sql="select cid from class";
-			String sql2="select * from class_std where id='"+id+"'and cid='"+cid+"'";
-			String sql3="select * from class_std natural join class where id='"+id+"'";
+			String sql="select * from class_std where id='"+id+"'and cid='"+cid+"'";
             ResultSet rs=state.executeQuery(sql);
-            ResultSet rs2=state2.executeQuery(sql2);
-            
-            int i=3;
-			while(rs.next())
-			{
-				if(cid.equals(rs.getString("cid")))
-				{
-					
-					if(rs2.next())
-					{
-						i=1;
-						PrintWriter out = response.getWriter();
-						
-						out.print("<script>alert('you have joined in! Do not join again!');window.location='success.jsp'</script>");
-						out.flush();
-						out.close();
-					}
-					else
-					{
-						i=2;
-					sql="insert into class_std values('"+cid+"','"+id+"')";
-					Statement state4=con.con.createStatement();
-					state4.execute(sql);
-					ResultSet rs3=state3.executeQuery(sql3);
-					while(rs3.next())
-					{
-						itClass itclass=new itClass(rs3.getString("cid"),rs3.getString("tname"),rs3.getString("cname"),rs3.getString("des"),rs3.getString("homework"));
-						array.add(itclass);
-					}
-					HttpSession session=request.getSession();
-					session.setAttribute("class", array);
-					PrintWriter out = response.getWriter();
-					
-					out.print("<script>alert('successfully!');window.location='success.jsp'</script>");
-					out.flush();
-					out.close();
-					}
-				}
-			}
-			if(i==3)
-			{
-			PrintWriter out = response.getWriter();
-			
-			out.print("<script>alert('error class number!');window.location='success.jsp'</script>");
-			out.flush();
-			out.close();
-			}
+            while(rs.next())
+            {
+            	if(rs.getString("cid").equals(cid)&&rs.getString("id").equals(id))
+            	{
+            		String join="fail";
+            		request.setAttribute("join", join);            		
+            		this.getServletContext().getRequestDispatcher("/search.jsp").forward(request, response);
+            	System.out.println(join);
+            	}
+            }
+            sql="insert into class_std values('"+cid+"','"+id+"')";
+            state2.execute(sql);
+            String join="success";
+            System.out.println(join);
+            request.setAttribute("join", join);
+            this.getServletContext().getRequestDispatcher("/search.jsp").forward(request, response);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

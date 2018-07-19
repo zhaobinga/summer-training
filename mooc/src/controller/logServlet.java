@@ -112,6 +112,7 @@ public class logServlet extends HttpServlet {
 								if(username.equals(rs.getString("id"))&&password.equals(rs.getString("pwd"))) {
 									HttpSession session=request.getSession();
 									String type=rs.getString("type");
+									session.setAttribute("type", type);
 									session.setAttribute("name", rs.getString("username"));
 									session.setAttribute("Id", rs.getString("id"));
 									session.setAttribute("email", rs.getString("email"));
@@ -119,7 +120,6 @@ public class logServlet extends HttpServlet {
 									session.setAttribute("sex", rs.getString("sex"));
 									session.setAttribute("des", rs.getString("description"));
 									session.setAttribute("psw", rs.getString("pwd"));
-									session.setAttribute("Id", rs.getString("id"));
 									session.setAttribute("class", classarray);
 									session.setAttribute("comment", commentarray);
 									if(checked!=null)

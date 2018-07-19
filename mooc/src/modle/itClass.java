@@ -19,5 +19,14 @@ public class itClass {
 		this.des=des;
 		
 	}
-	
+	public itClass(String id,String tid,String tname,String cname,String des,String homework)
+	{
+		this.id=id;
+		this.tid=tid;
+		this.tname=tname;
+		this.cname=cname;
+		this.homework=homework;
+		this.des=des;
+		
+	}
 }
