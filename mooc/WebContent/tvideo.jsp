@@ -39,7 +39,7 @@
 			<div class="f-header-box clearfix">
 				<a href="index.jsp" class="logo" title="网校在线学习平台"></a>
 				<nav class="header-nav">
-					<a href="success.jsp" class="header-nav-item">首 页</a>
+					<a href="teacher.jsp" class="header-nav-item">首 页</a>
 					
 				</nav>
 
@@ -164,6 +164,9 @@
 					</form>
 					
 				</div>
+				
+				<!-- 评论-end -->
+			</div>
 			<script type="text/javascript">
 			function check()
 			{
@@ -181,10 +184,8 @@
 					}
 				return true;
 			}
-			</script>
-				<!-- 评论-end -->
-			</div>
 			
+			</script>
 			<!-- 章节-start -->
 			<div class="main-course-right"  >
 				<h4 class="mt-50">所有章节</h4>

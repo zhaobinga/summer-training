@@ -74,47 +74,7 @@
 	});
     </script>
  
- <script>
-	function setImagePreview() {
-		var docObj = document.getElementById("doc");
-		var imgObjPreview = document.getElementById("preview");
-		if (docObj.files && docObj.files[0]) {
-		
-			imgObjPreview.style.display = 'block';
-			imgObjPreview.style.width = '68px';
-			imgObjPreview.style.height = '50px';
-			imgObjPreview.style.position = "absolute";
-			imgObjPreview.style.left="997px";
-			imgObjPreview.style.top="20px";
-			//imgObjPreview.src = docObj.files[0].getAsDataURL();
-			imgObjPreview.src = window.URL.createObjectURL(docObj.files[0]);
-		} else {
-			//IE下，使用滤镜
-			docObj.select();
-			var imgSrc = document.selection.createRange().text;
-			var localImagId = document.getElementById("localImag");
-			//必须设置初始大小
-			localImagId.style.width = "68px";
-			localImagId.style.height = "50px";
-			localImagId.style.position = "absolute";
-			localImagId.style.left="1350px";
-			localImagId.style.top="20px";
-			//图片异常的捕捉，防止用户修改后缀来伪造图片
-			try {
-				localImagId.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
-				localImagId.filters
-						.item("DXImageTransform.Microsoft.AlphaImageLoader").src = imgSrc;
-			} catch (e) {
-				alert("您上传的图片格式不正确，请重新选择!");
-				return false;
-			}
-			imgObjPreview.style.display = 'none';
-			document.selection.empty();
-		}
-		return true;
-	}
-</script>
- 
+
  
  
  
@@ -192,7 +152,18 @@
  <input type="submit" value="提交"/>
  
   </form>
-		                  
+		  <script type="text/javascript">
+		  function search()
+		  {
+		  var clas=document.getElementById("class").value;
+		  if(clas=="")
+			  {
+			  alert("搜索条件不能为空!");
+			  return false;
+			  }
+		  return true;
+		  }
+		  </script>
 		            </div>
 					
 		        </div>
@@ -202,12 +173,12 @@
 			<div class="f-header-box clearfix">
 				<a href=".."  class="logo" title="IT在线学习平台"></a>
 				<nav class="header-nav">
-					<a href="success.html" class="header-nav-item">首 页</a>
-					<a href="list.html" class="header-nav-item">课 程</a>									
+					<a href="success.jsp" class="header-nav-item">首 页</a>
+
 					<a href="stCourse.jsp" class="header-nav-item">我的课堂</a>
-					<form class="header-nav-item" action="${pageContext.request.contextPath}/searchServlet"  method="post">					
-					<input type="text" name="class">
-					<input type="submit" value="搜索课堂" style="position: absolute; left: 770px; top: 30px; border-radius: 3px;">					
+					<form class="header-nav-item" action="${pageContext.request.contextPath}/searchServlet"  method="post" onSubmit="return search()">					
+					<input type="text" name="class" id="class">
+					<input type="submit" value="搜索课堂" style="position: absolute; left: 680px; top: 30px; border-radius: 3px;">					
 					</form>
 					
 				</nav>
@@ -225,19 +196,7 @@
        				   	</ul>
 					</div>
 				</nav>
-				
-				
-				<nav class="header-nav" style="float: right">
-			  <button onclick=$("[type=file]").click()  id="btn1"  style="position:absolute;border:none;left:937px; top:40px;">我的头像</button>
-				<div id="nav" class="am-form-file">
-					<input style="display: none;" type=file name="doc" id="doc" onchange="javascript:setImagePreview();">
-					
-					
-						<img id="preview" width=-1 height=-1 style="display:none;"/>
-					
-					
-				</div>
-			</nav>
+	
 				
 				
 				
@@ -340,7 +299,7 @@
 					
 					<div class="main-category-menu">
 						<div class="category" c-id="a">
-							<a><div class="group">数据开发 </div></a>
+							<a><div class="group">前端开发 </div></a>
 						</div>
 						
 						<div class="category" c-id="b">
@@ -363,31 +322,96 @@
 							<a><div class="group">UI设计</div></a>
 						</div>
 					</div>
-										
+
 					<div class="main-category-submenu-content"  id="a" >
-						AAAAAAAAAA
+						-----------------------------------------------------------------------------------------------------------
+						阶段一：前端小白入门系列课程->html基础，css基础，javascript基础，实战案例
+						-----------------------------------------------------------------------------------------------------------
+						-----------------------------------------------------------------------------------------------------------
+						阶段二：响应式开发与常用框架->走近html5，css3进阶，移动基础与响应式开发
+						-----------------------------------------------------------------------------------------------------------
+						-----------------------------------------------------------------------------------------------------------
+						阶段三：H5&JS进阶与组件化网页开发->html5进阶,jQuery进阶，组件化网页
+						-----------------------------------------------------------------------------------------------------------
+						阶段四：Vue移动页面开发与常用工具包->es6基础，vue初始，移动常用工具包
+						-----------------------------------------------------------------------------------------------------------
 					</div>
-					
+
 					<div class="main-category-submenu-content"  id="b" >
-						BBBBBBBBBBBB
+						-----------------------------------------------------------------------------------------------------------
+						阶段一：零基础入门Android语法与界面->java基础语法，Java面向对象，ui基础
+						-----------------------------------------------------------------------------------------------------------
+						-----------------------------------------------------------------------------------------------------------
+						阶段二：Android进阶：网络与数据存储->Android网络通信，常用框架，本地数据操作，项目实战案例
+						-----------------------------------------------------------------------------------------------------------
+						-----------------------------------------------------------------------------------------------------------
+						阶段三：Android强化：服务与通信之广播、服务、蓝牙->Anderson服务与应用，app通信，常用框架，项目案例
+						-----------------------------------------------------------------------------------------------------------
+						阶段四：Android深化：多媒体之动画、游戏、音视频->动画，音视屏，常用框架，项目实战
+						-----------------------------------------------------------------------------------------------------------
 					</div>
-					
+
 					<div class="main-category-submenu-content"  id="c" >
-						CCCCCCCCCCCC
+						-----------------------------------------------------------------------------------------------------------
+						阶段一：Java零基础入门->java基础语法，java面向对象，Java常用工具类
+						-----------------------------------------------------------------------------------------------------------
+						-----------------------------------------------------------------------------------------------------------
+						阶段二：从网页搭建入门Java Web->网页搭建入门，javaweb基础入门，基础进阶，常用功能，项目实战
+						-----------------------------------------------------------------------------------------------------------
+						-----------------------------------------------------------------------------------------------------------
+						阶段三：Java Web进阶：数据库与MyBatis入门->初始数据库操作，项目管理必备及Mybatis入门
+						-----------------------------------------------------------------------------------------------------------
+						阶段四：Java Web强化：SSM框架整合->SPring从入门到进阶，Mybatis进阶，SprinMVC初体验
+						-----------------------------------------------------------------------------------------------------------
 					</div>
-					
+
+
+
 					<div class="main-category-submenu-content"  id="d" >
-						DDDDDDDDDDDDDD
+						-----------------------------------------------------------------------------------------------------------
+						阶段一：前端小白入门系列课程->html基础，css基础，javascript基础，实战案例
+						-----------------------------------------------------------------------------------------------------------
+						-----------------------------------------------------------------------------------------------------------
+						阶段二：响应式开发与常用框架->走近html5，css3进阶，移动基础与响应式开发
+						-----------------------------------------------------------------------------------------------------------
+						-----------------------------------------------------------------------------------------------------------
+						阶段三：H5&JS进阶与组件化网页开发->html5进阶,jQuery进阶，组件化网页
+						-----------------------------------------------------------------------------------------------------------
+						阶段四：Vue移动页面开发与常用工具包->es6基础，vue初始，移动常用工具包
+						-----------------------------------------------------------------------------------------------------------
+
 					</div>
-					
+
 					<div class="main-category-submenu-content"  id="e" >
-						EEEEEEEEE
+						-----------------------------------------------------------------------------------------------------------
+						阶段一：零基础入门Android语法与界面->java基础语法，Java面向对象，ui基础
+						-----------------------------------------------------------------------------------------------------------
+						-----------------------------------------------------------------------------------------------------------
+						阶段二：Android进阶：网络与数据存储->Android网络通信，常用框架，本地数据操作，项目实战案例
+						-----------------------------------------------------------------------------------------------------------
+						-----------------------------------------------------------------------------------------------------------
+						阶段三：Android强化：服务与通信之广播、服务、蓝牙->Anderson服务与应用，app通信，常用框架，项目案例
+						-----------------------------------------------------------------------------------------------------------
+						阶段四：Android深化：多媒体之动画、游戏、音视频->动画，音视屏，常用框架，项目实战
+						-----------------------------------------------------------------------------------------------------------
+
 					</div>
-					
+
 					<div class="main-category-submenu-content"  id="f" >
-						FFFFFFFFFF
+						-----------------------------------------------------------------------------------------------------------
+						阶段一：Java零基础入门->java基础语法，java面向对象，Java常用工具类
+						-----------------------------------------------------------------------------------------------------------
+						-----------------------------------------------------------------------------------------------------------
+						阶段二：从网页搭建入门Java Web->网页搭建入门，javaweb基础入门，基础进阶，常用功能，项目实战
+						-----------------------------------------------------------------------------------------------------------
+						-----------------------------------------------------------------------------------------------------------
+						阶段三：Java Web进阶：数据库与MyBatis入门->初始数据库操作，项目管理必备及Mybatis入门
+						-----------------------------------------------------------------------------------------------------------
+						阶段四：Java Web强化：SSM框架整合->SPring从入门到进阶，Mybatis进阶，SprinMVC初体验
+						-----------------------------------------------------------------------------------------------------------
+
 					</div>
-					
+
 				</div>
 			</div>
 			<!-- 轮播 分类-end -->
@@ -414,7 +438,7 @@
 					</div>
 					</a>
 
-					<a href="learn.html">
+					<a href="video.jsp">
 					<div class="course-card-container">
 						<div class="course-card-top pink-bg">
 							<span>WebApp</span>
@@ -431,7 +455,7 @@
 					</div>
 					</a>
 					
-					<a href="learn.html">
+					<a href="video.jsp">
 					<div class="course-card-container">
 						<div class="course-card-top brown-bg">
 							<span>Django</span>
@@ -448,7 +472,7 @@
 					</div>
 					</a>
 	
-					<a href="learn.html">
+					<a href="video.jsp">
 					<div class="course-card-container">
 						<div class="course-card-top purple-bg">
 							<span>Python</span>
@@ -465,7 +489,7 @@
 					</div>
 					</a>
 					
-					<a href="learn.html">
+					<a href="video.jsp">
 					<div class="course-card-container" style="margin-right: 0px;">
 						<div class="course-card-top green-bg">
 							<span>PHP</span>
@@ -518,7 +542,7 @@
 					</div>
 					
 					<div class="clearfix">
-						<a href="learn.html">
+						<a href="video.jsp">
 							<div class="course-card-container">
 								<div class="course-card-top green-bg">
 									<span>测试</span>
@@ -536,7 +560,7 @@
 							</div>
 						</a> 
 						
-						<a href="learn.html">
+						<a href="video.jsp">
 							<div class="course-card-container">
 								<div class="course-card-top pink-bg">
 									<span>WebApp</span>
@@ -552,7 +576,7 @@
 								</div>
 							</div>
 						</a>
-		<a href="learn.html">
+		<a href="video.jsp">
 						<div class="course-card-container">
 							<div class="course-card-top brown-bg">
 								<span>Django</span>
@@ -571,7 +595,7 @@
 						</div>
 	
 	      </a>
-	      <a href="learn.html">
+	      <a href="video.jsp">
 						<div class="course-card-container" style="margin-right: 0px;">
 							<div class="course-card-top purple-bg">
 								<span>Python</span>
@@ -593,64 +617,64 @@
 				</div>
 			</div>
 			<!-- java课程-end -->
-			
+
 			<!--名校讲师-start -->
 			<div class="types-block clearfix">
 				<h3 class="types-title">名校讲师</h3>
-				<a href="teacher.html">
+				<a href="teacher.jsp">
 					<div class="lecturer-card-container">
 						<div class="lecturer-item">
 							<img class="lecturer-uimg" src="res/i/header.jpg">
-							<span class="lecturer-name">王阳明</span>
-							<span class="lecturer-title">中华大学</span>
-							<span class="lecturer-p" >中华大学高级讲师，擅长写代码</span>
+							<span class="lecturer-name">颜聪</span>
+							<span class="lecturer-title">武汉大学</span>
+							<span class="lecturer-p" >武汉大学高级讲师，擅长写代码</span>
 						</div>
 					</div>
-				</a>
-					
-				<a href="teacher.html">
-					<div class="lecturer-card-container">
-						<div class="lecturer-item">
-							<img class="lecturer-uimg" src="res/i/header.jpg">
-							<span class="lecturer-name">王阳明</span>
-							<span class="lecturer-title">中华大学</span>
-							<span class="lecturer-p" >中华大学高级讲师，擅长写代码</span>
-						</div>
-					</div>
-				</a>
-            <a href="teacher.html">
-				<div class="lecturer-card-container">
-					<div class="lecturer-item">
-						<img class="lecturer-uimg" src="res/i/header.jpg">
-						<span class="lecturer-name">王阳明</span>
-						<span class="lecturer-title">中华大学</span>
-						<span class="lecturer-p" >中华大学高级讲师，擅长写代码</span>
-					</div>
-				</div>
 				</a>
 
-            <a href="teacher.html">
-				<div class="lecturer-card-container"  >
-					<div class="lecturer-item">
-						<img class="lecturer-uimg" src="res/i/header.jpg">
-						<span class="lecturer-name">王阳明</span>
-						<span class="lecturer-title">中华大学</span>
-						<span class="lecturer-p" >中华大学高级讲师，擅长写代码</span>
+				<a href="teacher.jsp">
+					<div class="lecturer-card-container">
+						<div class="lecturer-item">
+							<img class="lecturer-uimg" src="res/i/header.jpg">
+							<span class="lecturer-name">赵炳</span>
+							<span class="lecturer-title">武汉大学</span>
+							<span class="lecturer-p" >武汉大学高级讲师，擅长写代码</span>
+						</div>
 					</div>
-				</div>
 				</a>
-				
-				<a href="teacher.html">
-				<div class="lecturer-card-container" style="margin-right: 0px;">
-					<div class="lecturer-item">
-						<img class="lecturer-uimg" src="res/i/header.jpg">
-						<span class="lecturer-name">王阳明</span>
-						<span class="lecturer-title">中华大学</span>
-						<span class="lecturer-p" >中华大学高级讲师，擅长写代码</span>
+				<a href="teacher.jsp">
+					<div class="lecturer-card-container">
+						<div class="lecturer-item">
+							<img class="lecturer-uimg" src="res/i/header.jpg">
+							<span class="lecturer-name">周航</span>
+							<span class="lecturer-title">武汉大学</span>
+							<span class="lecturer-p" >武汉大学高级讲师，擅长写代码</span>
+						</div>
 					</div>
-				</div>
 				</a>
-					
+
+				<a href="teacher.jsp">
+					<div class="lecturer-card-container"  >
+						<div class="lecturer-item">
+							<img class="lecturer-uimg" src="res/i/header.jpg">
+							<span class="lecturer-name">许岩</span>
+							<span class="lecturer-title">武汉大学</span>
+							<span class="lecturer-p" >武汉大学高级讲师，擅长写代码</span>
+						</div>
+					</div>
+				</a>
+
+				<a href="teacher.jsp">
+					<div class="lecturer-card-container" style="margin-right: 0px;">
+						<div class="lecturer-item">
+							<img class="lecturer-uimg" src="res/i/header.jpg">
+							<span class="lecturer-name">周航</span>
+							<span class="lecturer-title">武汉大学</span>
+							<span class="lecturer-p" >武汉大学高级讲师，擅长写代码</span>
+						</div>
+					</div>
+				</a>
+
 			</div>
 			<!--名校讲师-end -->
 		</div>
@@ -667,7 +691,7 @@
 					<a href="javascript:void(0);" target="_blank" title="友情链接">友情链接</a>
 				</div>
 				<div class="footer-copyright">
-					<span>©&nbsp;2017&nbsp; 备案 </span>
+					<span>©&nbsp;2018&nbsp; 实训 </span>
 				</div>
 			</div>
 		</div>

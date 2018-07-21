@@ -44,11 +44,13 @@ public class test extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		SqlOperator con=new SqlOperator();
+		HttpSession session=request.getSession();
 		Statement state=null;
+		String type=session.getAttribute("type").toString();
 		try {
 			state=con.con.createStatement();
 			ArrayList<Question> question=new ArrayList();
-			HttpSession session=request.getSession();
+			
 			String courseId=request.getParameter("courseId");
             String sql="select * from question where cid='"+courseId+"'";
 
@@ -66,7 +68,7 @@ public class test extends HttpServlet {
 			}
 			session.setAttribute("cid", courseId);
 			session.setAttribute("ques", question);
-			String type=session.getAttribute("type").toString();
+			
 			if(type.equals("teacher"))
 			{
 			this.getServletContext().getRequestDispatcher("/teacherview.jsp").forward(request, response);
@@ -80,6 +82,10 @@ public class test extends HttpServlet {
 			{
 				String n="no";
 				request.setAttribute("n", n);
+				if(type.equals("teacher"))
+				{
+				this.getServletContext().getRequestDispatcher("/list.jsp").forward(request, response);
+				}
 				this.getServletContext().getRequestDispatcher("/stCourse.jsp").forward(request, response);
 			}
 		} catch (SQLException e) {

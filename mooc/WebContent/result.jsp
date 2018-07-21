@@ -94,46 +94,7 @@
 	});
 </script>
 
-<script>
-	function setImagePreview() {
-		var docObj = document.getElementById("doc");
-		var imgObjPreview = document.getElementById("preview");
-		if (docObj.files && docObj.files[0]) {
 
-			imgObjPreview.style.display = 'block';
-			imgObjPreview.style.width = '68px';
-			imgObjPreview.style.height = '50px';
-			imgObjPreview.style.position = "absolute";
-			imgObjPreview.style.left = "997px";
-			imgObjPreview.style.top = "20px";
-			//imgObjPreview.src = docObj.files[0].getAsDataURL();
-			imgObjPreview.src = window.URL.createObjectURL(docObj.files[0]);
-		} else {
-			//IE下，使用滤镜
-			docObj.select();
-			var imgSrc = document.selection.createRange().text;
-			var localImagId = document.getElementById("localImag");
-			//必须设置初始大小
-			localImagId.style.width = "68px";
-			localImagId.style.height = "50px";
-			localImagId.style.position = "absolute";
-			localImagId.style.left = "1350px";
-			localImagId.style.top = "20px";
-			//图片异常的捕捉，防止用户修改后缀来伪造图片
-			try {
-				localImagId.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
-				localImagId.filters
-						.item("DXImageTransform.Microsoft.AlphaImageLoader").src = imgSrc;
-			} catch (e) {
-				alert("您上传的图片格式不正确，请重新选择!");
-				return false;
-			}
-			imgObjPreview.style.display = 'none';
-			document.selection.empty();
-		}
-		return true;
-	}
-</script>
 <!-- 答题区风格 -->
 <style type="text/css">
 #mainDiv {
@@ -270,8 +231,7 @@
 		<div class="f-header-box clearfix">
 			<a href=".." class="logo" title="IT在线学习平台"></a>
 			<nav class="header-nav">
-				<a href="success.jsp" class="header-nav-item">首 页</a> <a
-					href="list.html" class="header-nav-item">课 程</a> <a
+				<a href="success.jsp" class="header-nav-item">首 页</a><a
 					href="stCourse.jsp" class="header-nav-item">我的课堂</a>
 			</nav>
 
@@ -291,24 +251,13 @@
 				</div>
 			</nav>
 
-
-			<nav class="header-nav" style="float: right">
-				<button onclick=$( "[type=file] ").click()  id="btn1"
-					style="position: absolute; border: none; left: 937px; top: 40px;">我的头像</button>
-				<div id="nav" class="am-form-file">
-					<input style="display: none;" type=file name="doc" id="doc"
-						onchange="javascript:setImagePreview();"> <img
-						id="preview" width=-1 height=-1 style="display: none;" />
-
-
-				</div>
-			</nav>
 		</div>
 	</div>
 <div class="types-block clearfix"
 		style="margin-left: auto; margin-right: auto;">
 	<%
 		ArrayList ques = (ArrayList) session.getAttribute("ques");
+	ArrayList us = (ArrayList)request.getAttribute("user");
 		String count = request.getAttribute("count").toString();
 	%>
 		<h3>你本次共答对了<%=count%>道题！
@@ -316,6 +265,7 @@
 		<%
 			for (int i = 0; i < ques.size(); i++) {
 				Question question = (Question) ques.get(i);
+				String u=us.get(i).toString();
 		%>
 		<div class="course-card-container" id="div2" style="width:1000px;height:200px;">
 			<div class="course-card-top " style="background-color:#70DBDB;">
@@ -326,6 +276,9 @@
 			<div class="course-card-content">
 				<p>
 					<b>正确答案：<%=question.right%></b>
+				</p>
+				<p>
+					<b>你的答案：<%=u%></b>
 				</p>
 				<p>
 					<b>试题解析：<%=question.explain%></b>

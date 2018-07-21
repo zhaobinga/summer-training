@@ -46,6 +46,7 @@ public class joinServlet extends HttpServlet {
 		HttpSession session=request.getSession();
 		Statement state=null;
 		Statement state2=null;
+		Statement state3=null;
 		String cid=request.getParameter("courseId");
 		String id=session.getAttribute("Id").toString();
 		ArrayList<itClass> array=new ArrayList();
@@ -53,6 +54,7 @@ public class joinServlet extends HttpServlet {
 		try {
 			state=con.con.createStatement();
 			state2=con.con.createStatement();
+			state3=con.con.createStatement();
 			String sql="select * from class_std where id='"+id+"'and cid='"+cid+"'";
             ResultSet rs=state.executeQuery(sql);
             while(rs.next())
@@ -65,10 +67,19 @@ public class joinServlet extends HttpServlet {
             	System.out.println(join);
             	}
             }
-            sql="insert into class_std values('"+cid+"','"+id+"')";
+            sql="insert into class_std values('"+cid+"','"+id+"')";    
+            String sql3="select * from class where cid='"+cid+"'";
             state2.execute(sql);
+            ResultSet rs3=state3.executeQuery(sql3);
+            ArrayList classarray=(ArrayList)session.getAttribute("class");
+            while(rs3.next())
+            {
+            	itClass itclass=new itClass(rs3.getString("cid"),rs3.getString("tname"),rs3.getString("cname"),rs3.getString("des"),rs3.getString("homework"));
+				classarray.add(itclass);
+            }
             String join="success";
             System.out.println(join);
+            session.setAttribute("class", classarray);
             request.setAttribute("join", join);
             this.getServletContext().getRequestDispatcher("/search.jsp").forward(request, response);
 		} catch (SQLException e) {

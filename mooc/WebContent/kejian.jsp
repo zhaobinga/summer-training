@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+	pageEncoding="utf-8"
+	import="java.util.*"
+	import="modle.Question"
+	import="modle.Kejian" %>
 
 <!DOCTYPE html>
 <html lang="utf-8">
@@ -53,142 +56,90 @@
 <script type="text/javascript" src="res/js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="res/js/bootstrap.min.js"></script>
 
-<!--[if lt IE 9]>
-		  <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-		  <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-		<![endif]-->
+
 
 <link rel="icon" type="image/png" href="res/i/ico.png" sizes="16x16">
 <script type="text/javascript">
-		CONETXT_PATH = '';
-		</script>
+	CONETXT_PATH = '';
+</script>
 <script type="text/javascript">
 	//
-	function ques()
-	{
-		var form=document.forms['question'];
-		form.action="${pageContext.request.contextPath}/next";
-		form.submit();
-	}
-    function validate()
-    {
-    var psw=document.getElementById("psw").value;
-    var opsw=document.getElementById("opsw").value;
-    var mima1=document.getElementById("npsw").value;
-    var mima2=document.getElementById("npsw2").value;
-    if(mima1==""||opsw==""||mima2==""){
-    alert("密码不能为空");
-    document.getElementById("opsw").focus();
-    return false;
-    }
-    else if(opsw!=psw)
-    {
-    	alert("原始密码错误");
-        document.getElementById("opsw").focus();
-        return false;            
-    }
-    else if(mima1!=mima2)
-    {
-    alert("请确认密码一致");
-    document.getElementById("npsw").focus();
-    return false;
-    }
-    else
-    {
-    alert("修改密码成功");
-    return true;
-    }
-    }                        //check password infomation--YC
-    
-    
-    
-    $("#btn1").click(function(){
+	function validate() {
+		var psw = document.getElementById("psw").value;
+		var opsw = document.getElementById("opsw").value;
+		var mima1 = document.getElementById("npsw").value;
+		var mima2 = document.getElementById("npsw2").value;
+		if (mima1 == "" || opsw == "" || mima2 == "") {
+			alert("密码不能为空");
+			document.getElementById("opsw").focus();
+			return false;
+		} else if (opsw != psw) {
+			alert("原始密码错误");
+			document.getElementById("opsw").focus();
+			return false;
+		} else if (mima1 != mima2) {
+			alert("请确认密码一致");
+			document.getElementById("npsw").focus();
+			return false;
+		} else {
+			alert("修改密码成功");
+			return true;
+		}
+	} //check password infomation--YC
+
+	$("#btn1").click(function() {
 		$("#btn1").toggle();
 	});
-    </script>
-
-<script>
-	function setImagePreview() {
-		var docObj = document.getElementById("doc");
-		var imgObjPreview = document.getElementById("preview");
-		if (docObj.files && docObj.files[0]) {
-		
-			imgObjPreview.style.display = 'block';
-			imgObjPreview.style.width = '68px';
-			imgObjPreview.style.height = '50px';
-			imgObjPreview.style.position = "absolute";
-			imgObjPreview.style.left="997px";
-			imgObjPreview.style.top="20px";
-			//imgObjPreview.src = docObj.files[0].getAsDataURL();
-			imgObjPreview.src = window.URL.createObjectURL(docObj.files[0]);
-		} else {
-			//IE下，使用滤镜
-			docObj.select();
-			var imgSrc = document.selection.createRange().text;
-			var localImagId = document.getElementById("localImag");
-			//必须设置初始大小
-			localImagId.style.width = "68px";
-			localImagId.style.height = "50px";
-			localImagId.style.position = "absolute";
-			localImagId.style.left="1350px";
-			localImagId.style.top="20px";
-			//图片异常的捕捉，防止用户修改后缀来伪造图片
-			try {
-				localImagId.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
-				localImagId.filters
-						.item("DXImageTransform.Microsoft.AlphaImageLoader").src = imgSrc;
-			} catch (e) {
-				alert("您上传的图片格式不正确，请重新选择!");
-				return false;
-			}
-			imgObjPreview.style.display = 'none';
-			document.selection.empty();
-		}
-		return true;
-	}
 </script>
 
-<!-- 提问格式 -->
+
+<!-- 答题区风格 -->
 <style type="text/css">
-#qus,qus1{
-width:60%;
-height:60%;
-margin:0;
-margin-left:auto;
-margin-top:auto;
-font-size: 18px;
-word-break:break-all;
+#mainDiv {
+	border-radius: 7px;
+	margin-left: 450px;
+	margin-top: 30px;
+}
+
+#btnNext {
+	width: 70px;
+	border-radius: 3px;
+}
+
+#btnSubmit {
+	width: 70px;
+	border-radius: 3px;
 }
 </style>
 </head>
 <body>
 	<%
 		String id = session.getAttribute("Id").toString();
+		;//request.getAttribute("Id").toString();
 	%>
 	<%
-		String name =session.getAttribute("name").toString();
+		String name = session.getAttribute("name").toString();
 	%>
 	<%
-		String email =session.getAttribute("email").toString();
+		String email = session.getAttribute("email").toString();
 	%>
 	<%
-		String tel =session.getAttribute("tel").toString();
+		String tel = session.getAttribute("tel").toString();
 	%>
 	<%
-		String sex =session.getAttribute("sex").toString();
+		String sex = session.getAttribute("sex").toString();
 	%>
 	<%
-		String des =session.getAttribute("des").toString();
+		String des = session.getAttribute("des").toString();
 	%>
 	<%
-		String psw =session.getAttribute("psw").toString();
+		String psw = session.getAttribute("psw").toString();
 	%>
 	<!-- 头部-start -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 		style="position: fixed; top: 30%;">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
-
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
@@ -278,10 +229,10 @@ word-break:break-all;
 		<div class="f-header-box clearfix">
 			<a href=".." class="logo" title="IT在线学习平台"></a>
 			<nav class="header-nav">
-				<a href="index.html" class="header-nav-item">首 页</a> <a
-					href="list.html" class="header-nav-item">课 程</a> <a
+				<a href="success.jsp" class="header-nav-item">首 页</a><a
 					href="stCourse.jsp" class="header-nav-item">我的课堂</a>
 			</nav>
+
 			<nav class="header-nav" style="float: right">
 
 				<div id="nav">
@@ -298,38 +249,53 @@ word-break:break-all;
 				</div>
 			</nav>
 
-
-			<nav class="header-nav" style="float: right">
-				<button onclick=$( "[type=file] ").click()  id="btn1"
-					style="position: absolute; border: none; left: 937px; top: 40px;">我的头像</button>
-				<div id="nav" class="am-form-file">
-					<input style="display: none;" type=file name="doc" id="doc"
-						onchange="javascript:setImagePreview();"> <img
-						id="preview" width=-1 height=-1 style="display: none;" />
-				</div>
-			</nav>
 		</div>
 	</div>
-	<%String courseId=request.getParameter("courseId");
-	
-			session.setAttribute("cid", courseId);%>
-	<form method="post" name="question" action="${pageContext.request.contextPath}/CreateQuestion">
-	<div class="qustion" id="qus">
-		<b>请输入题目:</b><br> <input name="qus1" type="text" style="border-radius:3px;"/>
-		<p><b>选项：</b><br></p>
-		<input type="hidden" name="courseId" value=<%=courseId %>>
-		<input type="text" name="an1" style="width:60px;border-radius:3px;"/>
-		<input type="text" name="an2" style="width:60px;border-radius:3px;"/>
-		<input type="text" name="an3" style="width:60px;border-radius:3px;"/>
-		<input type="text" name="an4" style="width:60px;border-radius:3px;"/>	
-		<p><b>正确答案:</b></p>
-		<input name="right" type="text" style="border-radius:3px;"/><br><br>
-		<p><b>试题解析:</b></p>
-		<textarea name="explain" style="width:336px ;height:159px;border-radius:3px"></textarea><br>
-		<button type="button" style="border-radius:3px; width:70px;" onclick="ques()">下一题 </button>
-		<input type="submit" value="提交" style="border-radius:3px;width:70px;"/>
-	</div>
-	</form>
+<div class="types-block clearfix"
+		style="margin-left: auto; margin-right: auto;">
+	<%
+		ArrayList kejian = (ArrayList) request.getAttribute("kejian");
+		
+	%>
+
+		<%
+			for (int i = 0; i < kejian.size(); i++) {
+				Kejian kj= (Kejian)kejian.get(i);
+		%>
+		<div class="course-card-container" id="div2" style="width:1000px;height:200px;">
+			<div class="course-card-top " style="background-color:#70DBDB;">
+				<span>
+					<b style="font-size:18px;"><%=kj.title%></b>
+				</span>
+			</div>
+			<div class="course-card-content">
+				<p>
+					<b>上传时间：<%=kj.time%></b>
+				</p>
+				<p>
+					<b>内容简介：<%=kj.explain%></b>
+				</p>
+				<p>
+					<b>课件：<a href="downloadFile?fileName=<%=kj.filename %>"><%=kj.filename %></a></b>
+				</p>
+			</div>
+		</div>
+		<%
+			}
+		%>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
 	<script type="text/javascript">
 		
 			function login(){
@@ -341,7 +307,7 @@ word-break:break-all;
 				if(sex=="female")
 					{
 					document.getElementById("female").selected=true;
-		}
+					}
 				
 			}
 			function registe(){
@@ -392,6 +358,5 @@ word-break:break-all;
 		        });
 			});
 		</script>
-
 </body>
 </html>

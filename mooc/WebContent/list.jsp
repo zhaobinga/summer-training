@@ -91,10 +91,19 @@
        return false;
        }      
     }
+	function init()
+	{
+		
+			var n="<%=request.getAttribute("n")%>";
+			if(n=="no")
+			{
+				alert("暂无试题!")
+			}
+	}
  </script>
 </head>
 
-<body>
+<body onload="init()">
 	<%String id = session.getAttribute("Id").toString();;//request.getAttribute("Id").toString();%>
 	<%String name = session.getAttribute("name").toString();%>
 	<%String email = session.getAttribute("email").toString();%>
@@ -309,10 +318,10 @@
 			<p>课堂作业：<%=ci.homework %></p>
 			
 			<div style="display:inline">
-			<a href="question.jsp?courseId=<%=ci.id%>">布置题目</a>
+			<a href="shijuan?courseId=<%=ci.id%>">布置题目</a>
 			<a href="test?courseId=<%=ci.id%>">查看试题</a>
 			<a href="View?courseId=<%=ci.id%>">查看成绩</a>
-			<a href="View?courseId=<%=ci.id%>">上传课件</a>
+			<a href="upload.jsp?courseId=<%=ci.id%>">上传课件</a>
 			</div>
 			<a href="DisplayServlet?courseId=<%=ci.id %>&methodName=<%=1 %>" onclick="return confirmdialog()">删除</a>			
 			<a href="DisplayServlet?courseId=<%=ci.id %>&methodName=<%=2 %>">修改</a>

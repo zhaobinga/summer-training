@@ -106,6 +106,9 @@ public class DisplayServlet extends HttpServlet {
         SqlOperator so=new SqlOperator();
 		String courseId=request.getParameter("courseId");
 		Statement state=so.con.createStatement();
+		state.execute("delete from result where cid='"+courseId+"'");
+		state.execute("delete from question where cid='"+courseId+"'");
+		state.execute("delete from error where cid='"+courseId+"'");
 		state.execute("delete from class_std where cid='"+courseId+"'");
 		state.execute("delete from class where cid='"+courseId+"'");
 		HttpSession session = request.getSession();

@@ -51,6 +51,7 @@ public class CheckServlet extends HttpServlet {
 		DateFormat df =DateFormat.getDateTimeInstance();//设置日期格式
         String time=df.format(new Date());
 		ArrayList q=(ArrayList)session.getAttribute("ques");
+		ArrayList<String> user=new ArrayList();
 		int count=0;
 		SqlOperator con=new SqlOperator();
 		try {
@@ -59,6 +60,14 @@ public class CheckServlet extends HttpServlet {
 			{
 				String number=String.valueOf(i+1);
 		        Question tm=(Question)q.get(i);
+		        if(request.getParameter(number)!=null)
+		        {
+		        	user.add(request.getParameter(number));
+		        }
+		        else
+		        {
+		        	user.add("未完成");
+		        }
 		        if(tm.right.equals(request.getParameter(number)))
 		        		{
 		        	count++;
@@ -71,6 +80,7 @@ public class CheckServlet extends HttpServlet {
 		        
 			}
 			request.setAttribute("count",count);
+			request.setAttribute("user", user);
 			String sql="insert into result values('"+cid+"','"+id+"','"+name+"','"+String.valueOf(count)+"','"+time+"')";
 			state.execute(sql);
 			this.getServletContext().getRequestDispatcher("/result.jsp").forward(request, response);

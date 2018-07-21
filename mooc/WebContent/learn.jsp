@@ -170,9 +170,7 @@
 			<nav class="header-nav">
 				<a href="index.jsp" class="header-nav-item">首 页</a> <a
 					href="list.jsp" class="header-nav-item">课 程</a> <a
-					href="stCourse.jsp" class="header-nav-item">我的课堂</a> <a
-					href="optindex.html" style="width: 100px;" target="_blank"
-					class="header-nav-item">运营CMS</a>
+					href="stCourse.jsp" class="header-nav-item">我的课堂</a>
 				<form class="header-nav-item"
 					action="${pageContext.request.contextPath}/joinServlet"
 					method="post">

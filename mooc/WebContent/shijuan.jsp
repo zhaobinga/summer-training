@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"
-	import="java.util.*"
-	import="modle.itClass"
-	%>
+	pageEncoding="utf-8"%>
+
 <!DOCTYPE html>
 <html lang="utf-8">
 <head>
@@ -62,61 +60,95 @@
 
 <link rel="icon" type="image/png" href="res/i/ico.png" sizes="16x16">
 <script type="text/javascript">
-	CONETXT_PATH = '';
-</script>
+		CONETXT_PATH = '';
+		</script>
 <script type="text/javascript">
-	function validate() {
-		var psw = document.getElementById("psw").value;
-		var opsw = document.getElementById("opsw").value;
-		var mima1 = document.getElementById("npsw").value;
-		var mima2 = document.getElementById("npsw2").value;
-		if (mima1 == "" || opsw == "" || mima2 == "") {
-			alert("密码不能为空");
-			document.getElementById("opsw").focus();
-			return false;
-		} else if (opsw != psw) {
-			alert("原始密码错误");
-			document.getElementById("opsw").focus();
-			return false;
-		} else if (mima1 != mima2) {
-			alert("请确认密码一致");
-			document.getElementById("npsw").focus();
-			return false;
-		} else {
-			alert("修改密码成功");
-			return true;
-		}
-	} //颜聪————修改密码
-	
-	
-	function init()
+	//
+	function ques()
 	{
-		
-			var n="<%=request.getAttribute("n")%>";
-			if(n=="no")
-			{
-				alert("no quiz now!")
-			}
+		var form=document.forms['question'];
+		form.action="${pageContext.request.contextPath}/next";
+		form.submit();
 	}
-	
-	
-</script>
+    function validate()
+    {
+    var psw=document.getElementById("psw").value;
+    var opsw=document.getElementById("opsw").value;
+    var mima1=document.getElementById("npsw").value;
+    var mima2=document.getElementById("npsw2").value;
+    if(mima1==""||opsw==""||mima2==""){
+    alert("密码不能为空");
+    document.getElementById("opsw").focus();
+    return false;
+    }
+    else if(opsw!=psw)
+    {
+    	alert("原始密码错误");
+        document.getElementById("opsw").focus();
+        return false;            
+    }
+    else if(mima1!=mima2)
+    {
+    alert("请确认密码一致");
+    document.getElementById("npsw").focus();
+    return false;
+    }
+    else
+    {
+    alert("修改密码成功");
+    return true;
+    }
+    }                        //check password infomation--YC
+    
+    
+    
+    $("#btn1").click(function(){
+		$("#btn1").toggle();
+	});
+    </script>
 
+
+<!-- 提问格式 -->
+<style type="text/css">
+#qus,qus1{
+width:60%;
+height:60%;
+margin:0;
+margin-left:auto;
+margin-top:auto;
+font-size: 18px;
+word-break:break-all;
+}
+</style>
 </head>
-
-<body onload="init()">
-	<%String id = session.getAttribute("Id").toString();;//request.getAttribute("Id").toString();%>
-	<%String name = session.getAttribute("name").toString();%>
-	<%String email = session.getAttribute("email").toString();%>
-	<%String tel = session.getAttribute("tel").toString();%>
-	<%String sex = session.getAttribute("sex").toString();%>
-	<%String des = session.getAttribute("des").toString();%>
-	<%String psw = session.getAttribute("psw").toString();%>
+<body>
+	<%
+		String id = session.getAttribute("Id").toString();
+	%>
+	<%
+		String name =session.getAttribute("name").toString();
+	%>
+	<%
+		String email =session.getAttribute("email").toString();
+	%>
+	<%
+		String tel =session.getAttribute("tel").toString();
+	%>
+	<%
+		String sex =session.getAttribute("sex").toString();
+	%>
+	<%
+		String des =session.getAttribute("des").toString();
+	%>
+	<%
+		String psw =session.getAttribute("psw").toString();
+	%>
 	<!-- 头部-start -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 		style="position: fixed; top: 30%;">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
+
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
@@ -131,6 +163,7 @@
 					<div class="clearfix"></div>
 				</div>
 				<!-- modify information -->
+				>
 				<div class="modal-body">
 					<form action="${pageContext.request.contextPath}/ModifyInfo"
 						method="post" id="loginForm" class="form-horizontal"
@@ -164,6 +197,9 @@
 								class="form-control" id="password" placeholder="des"
 								value=<%=des%>>
 						</div>
+
+
+
 						<a href="javascript:void(0)"> <input type="submit" value="保存" />
 						</a>
 					</form>
@@ -202,9 +238,9 @@
 		<div class="f-header-box clearfix">
 			<a href=".." class="logo" title="IT在线学习平台"></a>
 			<nav class="header-nav">
-				<a href="success.jsp" class="header-nav-item">首 页</a>
+				<a href="teacher.jsp" class="header-nav-item">首 页</a> <a
+					href="list.jsp" class="header-nav-item">我的课堂</a>
 			</nav>
-
 			<nav class="header-nav" style="float: right">
 
 				<div id="nav">
@@ -214,147 +250,98 @@
 							<ul>
 								<li><a href="#myModal" data-toggle="modal"
 									onclick="login();">我的信息</a></li>
+
 							</ul>
 						<li><a href="index.jsp">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;退出</a></li>
 					</ul>
 				</div>
 			</nav>
+
+
 		</div>
 	</div>
-
-	<script type="text/javascript">
-		function login() {
-			$('#loginTitle').css('color', '#337Ab7');
-			$('#loginForm').show();
-			$('#registeTitle').css('color', '#000');
-			$('#registeForm').hide();
-			var sex = document.getElementById("sex1").value;
-			if (sex == "female") {
-				document.getElementById("female").selected = true;
-			}
-
-		}
-		function registe() {
-			$('#loginTitle').css('color', '#000');
-			$('#loginForm').hide();
-			$('#registeTitle').css('color', '#337Ab7');
-			$('#registeForm').show();
-		}
-		$(function() {
-			$("#userdetail").popover({
-				trigger : 'manual',
-				placement : 'bottom',
-				html : 'true',
-				content : '<div style="width:300px;height:300px;"></div>',
-				animation : false
-			}).on("mouseenter", function() {
-				var _this = this;
-				$(this).popover("show");
-				$(this).siblings(".popover").on("mouseleave", function() {
-					$(_this).popover('hide');
-				});
-			}).on("mouseleave", function() {
-				var _this = this;
-				setTimeout(function() {
-					if (!$(".popover:hover").length) {
-						$(_this).popover("hide")
-					}
-				}, 0);
-			});
-			//课程分类展示 
-			$(".category").popover({
-				trigger : 'manual',
-				placement : 'right',
-				html : 'true',
-				content : '',
-				animation : false
-			}).on("mouseenter", function() {
-				var cid = $(this).attr('c-id');
-				$('#' + cid).show();
-				$('#' + cid).hover(function() {
-					$('#' + cid).show();
-				}, function() {
-					$('#' + cid).hide();
-				});
-			}).on("mouseleave", function() {
-				var cid = $(this).attr('c-id');
-				$('#' + cid).hide();
-			});
-		});
-	</script>
-	<!-- 头部-end -->
-
-	<style type="text/css">
-#div1,#div2,#div3,#div4,#div5 {
-	margin: 0;
-	margin-left: auto;
-	margin-right: auto;
-	padding: 0;
-	width: 700px;
-	border: 0 px solid #F00;
+	<%String courseId=request.getParameter("courseId");
 	
-}
-</style>
-	<!-- 学习课程-start -->
-
-	<div class="types-block clearfix"
-		style="margin-left: auto; margin-right: auto;">
-		<h3 class="types-title">
-			学习课程：<br>
-		</h3>
+			session.setAttribute("cid", courseId);%>
+	<form method="post" name="question" action="${pageContext.request.contextPath}/CreateQuestion">
+	<div class="qustion" id="qus">
+		<b>请输入题目:</b><br> <input name="qus1" type="text" style="border-radius:3px;"/>
+		<p><b>选项：</b><br></p>
+		<input type="hidden" name="courseId" value=<%=courseId %>>
+		<input type="text" name="an1" style="width:60px;border-radius:3px;"/>
+		<input type="text" name="an2" style="width:60px;border-radius:3px;"/>
+		<input type="text" name="an3" style="width:60px;border-radius:3px;"/>
+		<input type="text" name="an4" style="width:60px;border-radius:3px;"/>	
+		<p><b>正确答案:</b></p>
+		<input name="right" type="text" style="border-radius:3px;"/><br><br>
+		<p><b>试题解析:</b></p>
+		<textarea name="explain" style="width:336px ;height:159px;border-radius:3px"></textarea><br>
+		<button type="button" style="border-radius:3px; width:70px;" onclick="ques()">下一题 </button>
+		<input type="submit" value="提交" style="border-radius:3px;width:70px;"/>
+	</div>
+	</form>
+	<script type="text/javascript">
 		
-		<%
-		
-		ArrayList array=(ArrayList)session.getAttribute("class");
-		for(int i=0;i<array.size();i++)
-		{
-			itClass itclass=(itClass)array.get(i);%>
-			<div class="course-card-container" id="div2">
-			<div class="course-card-top pink-bg">
-				<span><%=itclass.cname %></span>
-			</div>
-			<div class="course-card-content">
-			<p>课程编号：<%=itclass.id%></p>			
-			<p>授课老师：<%=itclass.tname%></p>
-			<p>课程简介：<%=itclass.des %></p>
-			<p>课堂作业：<%=itclass.homework %></p>	
-			<a href="test?courseId=<%=itclass.id %>">查看试题</a>
-			<a href="Down?courseId=<%=itclass.id %>">下载课件</a>		
-			</div>
-		</div>
-			
-		<%} %>
-
-
-	<!-- 学习课程-end -->
-</body>
-
-<script>
-	$(function() {
-		var index = 0;
-		var timer = 4000;
-		$('.bg-nav a').click(function() {
-			index = $('.bg-nav a').index($(this));
-			rollBg(index);
-		});
-		$('.index-roll-item').click(function() {
-			index = $('.index-roll-item').index($(this));
-			rollBg(index);
-		});
-		var rollBg = function(i) {
-			$('.main-bg-item').fadeOut(1000);
-			$($('.main-bg-item')[i]).fadeIn(1000);
-			$('.bg-nav a').removeClass('cur');
-			$($('.bg-nav a')[i]).addClass('cur');
-			$('.index-roll-item').removeClass('cur');
-			$($('.index-roll-item')[i]).addClass('cur');
+			function login(){
+				$('#loginTitle').css('color','#337Ab7');
+				$('#loginForm').show();
+				$('#registeTitle').css('color','#000');
+				$('#registeForm').hide();
+				var sex=document.getElementById("sex1").value;
+				if(sex=="female")
+					{
+					document.getElementById("female").selected=true;
 		}
-		setInterval(function() {
-			index += 1;
-			index = index % 3;
-			rollBg(index);
-		}, timer);
+				
+			}
+			function registe(){
+				$('#loginTitle').css('color','#000');
+				$('#loginForm').hide();
+				$('#registeTitle').css('color','#337Ab7');
+				$('#registeForm').show();
+			}
+			$(function(){
+				$("#userdetail").popover({
+		            trigger:'manual',
+		            placement : 'bottom',
+		            html: 'true',
+		            content : '<div style="width:300px;height:300px;"></div>',
+		            animation: false
+		        }).on("mouseenter", function () {
+		            var _this = this;
+		            $(this).popover("show");
+		            $(this).siblings(".popover").on("mouseleave", function () {
+		                $(_this).popover('hide');
+		            });
+		        }).on("mouseleave", function () {
+		            var _this = this;
+		            setTimeout(function () {
+		                if (!$(".popover:hover").length) {
+		                    $(_this).popover("hide")
+		                }
+		            }, 0);
+		        });
+				//课程分类展示 
+				$(".category").popover({
+		            trigger:'manual',
+		            placement : 'right',
+		            html: 'true',
+		            content : '',
+		            animation: false
+		        }).on("mouseenter", function () {
+		            var cid = $(this).attr('c-id');
+		            $('#' + cid).show();
+		            $('#' + cid).hover(function(){
+		            	$('#' + cid).show();
+		            },function(){
+		            	$('#' + cid).hide();
+					});
+		        }).on("mouseleave", function () {
+		            var cid = $(this).attr('c-id');
+		            $('#' + cid).hide();
+		        });
+			});
+		</script>
 
-	});
-</script>
+</body>
 </html>

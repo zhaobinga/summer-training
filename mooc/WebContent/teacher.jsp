@@ -222,8 +222,7 @@
 				<a href="teacher.jsp" class="header-nav-item">首 页</a> 
 		<a href="DisplayServlet?methodName=<%=0 %>" class="header-nav-item">我的课堂</a> <a
 					href="#myModal1" data-toggle="modal" class="header-nav-item"
-					onclick="setCourse();">开设课程</a> <a href="optindex.html"
-					style="width: 100px;" target="_blank" class="header-nav-item">运营CMS</a>
+					onclick="setCourse();">开设课程</a> 
 			</nav>
 
 			<nav class="header-nav" style="float: right">
@@ -316,306 +315,405 @@
 
 	<div class="f-main">
 		<!-- 轮播 分类-start -->
-		<div class="clearfix">
-			<div class=main-category>
-				<div class="main-bg">
-					<div class="main-bg-item "
-						style="background-image: url('res/i/c1.jpg');">
-						<div class="main-title-1"></div>
-					</div>
-
-					<div class="main-bg-item "
-						style="background-image: url('res/i/c2.jpg');">
-						<div class="main-title-2"></div>
-					</div>
-
-					<div class="main-bg-item "
-						style="background-image: url('res/i/c3.jpg');">
-						<div class="main-title-3"></div>
-					</div>
-				</div>
-
-				<div class="f-nav-box">
-					<div class="bg-nav">
-						<a class="cur"></a> <a></a> <a></a>
-					</div>
-				</div>
-
-				<div class="main-category-menu">
-					<div class="category" c-id="a">
-						<a><div class="group">数据开发</div></a>
-					</div>
-
-					<div class="category" c-id="b">
-						<a><div class="group">移动开发</div></a>
-					</div>
-
-					<div class="category" c-id="c">
-						<a><div class="group">后端开发</div></a>
-					</div>
-
-					<div class="category" c-id="d">
-						<a><div class="group">数据库</div></a>
-					</div>
-
-					<div class="category" c-id="e">
-						<a><div class="group">运维&测试</div></a>
-					</div>
-
-					<div class="category" c-id="f">
-						<a><div class="group">UI设计</div></a>
-					</div>
-				</div>
-
-				<div class="main-category-submenu-content" id="a">AAAAAAAAAA</div>
-
-				<div class="main-category-submenu-content" id="b">
-					BBBBBBBBBBBB</div>
-
-				<div class="main-category-submenu-content" id="c">
-					CCCCCCCCCCCC</div>
-
-				<div class="main-category-submenu-content" id="d">
-					DDDDDDDDDDDDDD</div>
-
-				<div class="main-category-submenu-content" id="e">EEEEEEEEE</div>
-
-				<div class="main-category-submenu-content" id="f">FFFFFFFFFF</div>
-
-			</div>
-		</div>
-		<!-- 轮播 分类-end -->
-
-		<!-- 实战推荐-start -->
-		<div class="types-block clearfix">
-			<h3 class="types-title">实战推荐</h3>
-			<div class="types-content">
-
-				<a href="learn.html">
-					<div class="course-card-container">
-						<div class="course-card-top green-bg">
-							<span>测试</span>
+			<div class="clearfix">
+				<div class=main-category>
+					<div class="main-bg">
+						<div class="main-bg-item " style="background-image: url('res/i/c1.jpg'); ">
+							<div class="main-title-1"></div>
 						</div>
-
-						<div class="course-card-content">
-							<h3 class="course-card-name">Android自动化测试实战 工具 框架 脚本</h3>
-							<p title="找Android自动化测试工作必学的主流工具、框架和自动化脚本">找Android自动化测试工作必学的主流工具、框架和自动化脚本</p>
-							<div class="course-card-bottom">
-								<div class="course-card-info">178人在学</div>
-
-							</div>
+		
+						<div class="main-bg-item " style="background-image: url('res/i/c2.jpg'); ">
+							<div class="main-title-2"></div>
+						</div>
+		
+						<div class="main-bg-item " style="background-image: url('res/i/c3.jpg'); ">
+							<div class="main-title-3"></div>
 						</div>
 					</div>
-				</a> <a href="learn.html">
-					<div class="course-card-container">
-						<div class="course-card-top pink-bg">
-							<span>WebApp</span>
-						</div>
-						<div class="course-card-content">
-							<h3 class="course-card-name">AngularJS仿拉勾网WebApp 开发移动端单页应用</h3>
-							<p title="基于AngularJS，仿拉勾网开发一个招聘类的移动端单页应用">基于AngularJS，仿拉勾网开发一个招聘类的移动端单页应用</p>
-							<div class="clearfix course-card-bottom">
-								<div class="course-card-info">344人在学</div>
-
-
-							</div>
+		
+					<div class="f-nav-box">
+						<div class="bg-nav">
+							<a class="cur"></a> <a></a> <a></a>
 						</div>
 					</div>
-				</a> <a href="learn.html">
-					<div class="course-card-container">
-						<div class="course-card-top brown-bg">
-							<span>Django</span>
+					
+					<div class="main-category-menu">
+						<div class="category" c-id="a">
+							<a><div class="group">前端开发 </div></a>
 						</div>
-
-						<div class="course-card-content">
-							<h3 class="course-card-name">强力django杀手级xadmin 打造上线标准的在线教育平台</h3>
-							<p title="全面掌握django框架,轻松应对python web开发工作">全面掌握django框架,轻松应对python
-								web开发工作</p>
-							<div class="clearfix course-card-bottom">
-								<div class="course-card-info">488人在学</div>
-
-							</div>
+						
+						<div class="category" c-id="b">
+							<a><div class="group">移动开发</div></a>
 						</div>
-					</div>
-				</a> <a href="learn.html">
-					<div class="course-card-container">
-						<div class="course-card-top purple-bg">
-							<span>Python</span>
+						
+						<div class="category" c-id="c">
+							<a><div class="group">后端开发</div></a>
 						</div>
-
-						<div class="course-card-content">
-							<h3 class="course-card-name">Python高级编程技巧实战</h3>
-							<p title="精选50个python训练任务，提升实战技能与高效编程技巧">精选50个python训练任务，提升实战技能与高效编程技巧</p>
-							<div class="clearfix course-card-bottom">
-								<div class="course-card-info">813人在学</div>
-
-							</div>
+						
+						<div class="category" c-id="d">
+							<a><div class="group">数据库</div></a>
+						</div>
+						
+						<div class="category" c-id="e">
+							<a><div class="group">运维&测试</div></a>
+						</div>
+						
+						<div class="category" c-id="f">
+							<a><div class="group">UI设计</div></a>
 						</div>
 					</div>
-				</a> <a href="learn.html">
-					<div class="course-card-container" style="margin-right: 0px;">
-						<div class="course-card-top green-bg">
-							<span>PHP</span>
-						</div>
 
-						<div class="course-card-content">
-							<h3 class="course-card-name">前端后台ThinkPHP开发整站</h3>
-							<p title="用PHP+MySQL+Ajax开完新闻资讯整站，实现“小全栈”的梦想">用PHP+MySQL+Ajax开完新闻资讯整站，实现“小全栈”的梦想</p>
-							<div class="clearfix course-card-bottom">
-								<div class="course-card-info">2324人在学</div>
-
-							</div>
-						</div>
+					<div class="main-category-submenu-content"  id="a" >
+						-----------------------------------------------------------------------------------------------------------
+						阶段一：前端小白入门系列课程->html基础，css基础，javascript基础，实战案例
+						-----------------------------------------------------------------------------------------------------------
+						-----------------------------------------------------------------------------------------------------------
+						阶段二：响应式开发与常用框架->走近html5，css3进阶，移动基础与响应式开发
+						-----------------------------------------------------------------------------------------------------------
+						-----------------------------------------------------------------------------------------------------------
+						阶段三：H5&JS进阶与组件化网页开发->html5进阶,jQuery进阶，组件化网页
+						-----------------------------------------------------------------------------------------------------------
+						阶段四：Vue移动页面开发与常用工具包->es6基础，vue初始，移动常用工具包
+						-----------------------------------------------------------------------------------------------------------
 					</div>
-				</a>
 
-			</div>
-		</div>
-		<!-- 实战推荐-end -->
-
-
-		<!-- java课程-start -->
-		<div class="types-block clearfix">
-			<h3 class="types-title">Java开发工程师</h3>
-			<div class="types-content-left "
-				style="background-image: url(http://img.mukewang.com/58ac18fd00012a4202240348.jpg);">
-				<div class="course-card-container-fix">
-					<div class="course-card-content">
-						<h3 class="course-card-name">Java职业路径</h3>
-						<p class="color-fff" title="带你研究Java技术框架">带你研究Java技术框架，系统地学习java技术</p>
-						<div class="course-card-bottom" style="margin-top: 50px;">
-							<div class="course-card-info color-fff">了解详情 →</div>
-						</div>
+					<div class="main-category-submenu-content"  id="b" >
+						-----------------------------------------------------------------------------------------------------------
+						阶段一：零基础入门Android语法与界面->java基础语法，Java面向对象，ui基础
+						-----------------------------------------------------------------------------------------------------------
+						-----------------------------------------------------------------------------------------------------------
+						阶段二：Android进阶：网络与数据存储->Android网络通信，常用框架，本地数据操作，项目实战案例
+						-----------------------------------------------------------------------------------------------------------
+						-----------------------------------------------------------------------------------------------------------
+						阶段三：Android强化：服务与通信之广播、服务、蓝牙->Anderson服务与应用，app通信，常用框架，项目案例
+						-----------------------------------------------------------------------------------------------------------
+						阶段四：Android深化：多媒体之动画、游戏、音视频->动画，音视屏，常用框架，项目实战
+						-----------------------------------------------------------------------------------------------------------
 					</div>
+
+					<div class="main-category-submenu-content"  id="c" >
+						-----------------------------------------------------------------------------------------------------------
+						阶段一：Java零基础入门->java基础语法，java面向对象，Java常用工具类
+						-----------------------------------------------------------------------------------------------------------
+						-----------------------------------------------------------------------------------------------------------
+						阶段二：从网页搭建入门Java Web->网页搭建入门，javaweb基础入门，基础进阶，常用功能，项目实战
+						-----------------------------------------------------------------------------------------------------------
+						-----------------------------------------------------------------------------------------------------------
+						阶段三：Java Web进阶：数据库与MyBatis入门->初始数据库操作，项目管理必备及Mybatis入门
+						-----------------------------------------------------------------------------------------------------------
+						阶段四：Java Web强化：SSM框架整合->SPring从入门到进阶，Mybatis进阶，SprinMVC初体验
+						-----------------------------------------------------------------------------------------------------------
+					</div>
+
+
+
+					<div class="main-category-submenu-content"  id="d" >
+						-----------------------------------------------------------------------------------------------------------
+						阶段一：前端小白入门系列课程->html基础，css基础，javascript基础，实战案例
+						-----------------------------------------------------------------------------------------------------------
+						-----------------------------------------------------------------------------------------------------------
+						阶段二：响应式开发与常用框架->走近html5，css3进阶，移动基础与响应式开发
+						-----------------------------------------------------------------------------------------------------------
+						-----------------------------------------------------------------------------------------------------------
+						阶段三：H5&JS进阶与组件化网页开发->html5进阶,jQuery进阶，组件化网页
+						-----------------------------------------------------------------------------------------------------------
+						阶段四：Vue移动页面开发与常用工具包->es6基础，vue初始，移动常用工具包
+						-----------------------------------------------------------------------------------------------------------
+
+					</div>
+
+					<div class="main-category-submenu-content"  id="e" >
+						-----------------------------------------------------------------------------------------------------------
+						阶段一：零基础入门Android语法与界面->java基础语法，Java面向对象，ui基础
+						-----------------------------------------------------------------------------------------------------------
+						-----------------------------------------------------------------------------------------------------------
+						阶段二：Android进阶：网络与数据存储->Android网络通信，常用框架，本地数据操作，项目实战案例
+						-----------------------------------------------------------------------------------------------------------
+						-----------------------------------------------------------------------------------------------------------
+						阶段三：Android强化：服务与通信之广播、服务、蓝牙->Anderson服务与应用，app通信，常用框架，项目案例
+						-----------------------------------------------------------------------------------------------------------
+						阶段四：Android深化：多媒体之动画、游戏、音视频->动画，音视屏，常用框架，项目实战
+						-----------------------------------------------------------------------------------------------------------
+
+					</div>
+
+					<div class="main-category-submenu-content"  id="f" >
+						-----------------------------------------------------------------------------------------------------------
+						阶段一：Java零基础入门->java基础语法，java面向对象，Java常用工具类
+						-----------------------------------------------------------------------------------------------------------
+						-----------------------------------------------------------------------------------------------------------
+						阶段二：从网页搭建入门Java Web->网页搭建入门，javaweb基础入门，基础进阶，常用功能，项目实战
+						-----------------------------------------------------------------------------------------------------------
+						-----------------------------------------------------------------------------------------------------------
+						阶段三：Java Web进阶：数据库与MyBatis入门->初始数据库操作，项目管理必备及Mybatis入门
+						-----------------------------------------------------------------------------------------------------------
+						阶段四：Java Web强化：SSM框架整合->SPring从入门到进阶，Mybatis进阶，SprinMVC初体验
+						-----------------------------------------------------------------------------------------------------------
+
+					</div>
+
 				</div>
 			</div>
 
-			<div class="types-content-right ">
-				<div class="types-content-banner ">
-					<a target="_blank" href="http://coding.imooc.com/class/81.html">
-						<div class="types-content-banner-block green-bg"
-							style="margin-right: 20px;">Spring框架实战讲解！</div>
-					</a> <a target="_blank" href="http://coding.imooc.com/class/76.html">
-						<div class="types-content-banner-block gray-bg">
-							MyBatis框架实战讲解！</div>
-					</a>
-				</div>
 
-				<div class="clearfix">
-					<a href="learn.html">
-						<div class="course-card-container">
-							<div class="course-card-top green-bg">
-								<span>测试</span>
-							</div>
 
-							<div class="course-card-content">
-								<h3 class="course-card-name">Android自动化测试实战 工具 框架 脚本</h3>
-								<p title="找Android自动化测试工作必学的主流工具、框架和自动化脚本">找Android自动化测试工作必学的主流工具、框架和自动化脚本</p>
-								<div class="course-card-bottom">
-									<div class="course-card-info">
-										初级<span>·</span>178人在学
+			<!-- 轮播 分类-end -->
+
+					<!-- 实战推荐-start -->
+					<div class="types-block clearfix">
+						<h3 class="types-title">实战推荐</h3>
+						<div class="types-content">
+
+							<a href="tvideo.jsp">
+								<div class="course-card-container">
+									<div class="course-card-top green-bg">
+										<span>测试</span>
+									</div>
+
+									<div class="course-card-content">
+										<h3 class="course-card-name">Android自动化测试实战 工具 框架 脚本</h3>
+										<p title="找Android自动化测试工作必学的主流工具、框架和自动化脚本">找Android自动化测试工作必学的主流工具、框架和自动化脚本</p>
+										<div class="course-card-bottom">
+											<div class="course-card-info">178人在学</div>
+
+										</div>
+									</div>
+								</div>
+							</a>
+
+							<a href="video.jsp">
+								<div class="course-card-container">
+									<div class="course-card-top pink-bg">
+										<span>WebApp</span>
+									</div>
+									<div class="course-card-content">
+										<h3 class="course-card-name">AngularJS仿拉勾网WebApp 开发移动端单页应用</h3>
+										<p title="基于AngularJS，仿拉勾网开发一个招聘类的移动端单页应用">基于AngularJS，仿拉勾网开发一个招聘类的移动端单页应用</p>
+										<div class="clearfix course-card-bottom">
+											<div class="course-card-info">344人在学</div>
+
+
+										</div>
+									</div>
+								</div>
+							</a>
+
+							<a href="video.jsp">
+								<div class="course-card-container">
+									<div class="course-card-top brown-bg">
+										<span>Django</span>
+									</div>
+
+									<div class="course-card-content">
+										<h3 class="course-card-name">强力django杀手级xadmin 打造上线标准的在线教育平台</h3>
+										<p title="全面掌握django框架,轻松应对python web开发工作">全面掌握django框架,轻松应对python web开发工作</p>
+										<div class="clearfix course-card-bottom">
+											<div class="course-card-info">488人在学</div>
+
+										</div>
+									</div>
+								</div>
+							</a>
+
+							<a href="video.jsp">
+								<div class="course-card-container">
+									<div class="course-card-top purple-bg">
+										<span>Python</span>
+									</div>
+
+									<div class="course-card-content">
+										<h3 class="course-card-name">Python高级编程技巧实战</h3>
+										<p title="精选50个python训练任务，提升实战技能与高效编程技巧">精选50个python训练任务，提升实战技能与高效编程技巧</p>
+										<div class="clearfix course-card-bottom">
+											<div class="course-card-info">813人在学</div>
+
+										</div>
+									</div>
+								</div>
+							</a>
+
+							<a href="video.jsp">
+								<div class="course-card-container" style="margin-right: 0px;">
+									<div class="course-card-top green-bg">
+										<span>PHP</span>
+									</div>
+
+									<div class="course-card-content">
+										<h3 class="course-card-name">前端后台ThinkPHP开发整站</h3>
+										<p title="用PHP+MySQL+Ajax开完新闻资讯整站，实现“小全栈”的梦想">用PHP+MySQL+Ajax开完新闻资讯整站，实现“小全栈”的梦想</p>
+										<div class="clearfix course-card-bottom">
+											<div class="course-card-info">2324人在学</div>
+
+										</div>
+									</div>
+								</div>
+							</a>
+
+						</div>
+					</div>
+					<!-- 实战推荐-end -->
+
+
+					<!-- java课程-start -->
+					<div class="types-block clearfix">
+						<h3 class="types-title">Java开发工程师</h3>
+						<div class="types-content-left "
+							 style="background-image: url(http://img.mukewang.com/58ac18fd00012a4202240348.jpg);">
+							<div class="course-card-container-fix">
+								<div class="course-card-content">
+									<h3 class="course-card-name">Java职业路径</h3>
+									<p class="color-fff" title="带你研究Java技术框架">带你研究Java技术框架，系统地学习java技术</p>
+									<div class="course-card-bottom" style="margin-top: 50px;">
+										<div class="course-card-info color-fff">了解详情 →</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</a> <a href="learn.html">
-						<div class="course-card-container">
-							<div class="course-card-top pink-bg">
-								<span>WebApp</span>
-							</div>
-							<div class="course-card-content">
-								<h3 class="course-card-name">AngularJS仿拉勾网WebApp 开发移动端单页应用</h3>
-								<p title="基于AngularJS，仿拉勾网开发一个招聘类的移动端单页应用">基于AngularJS，仿拉勾网开发一个招聘类的移动端单页应用</p>
-								<div class="clearfix course-card-bottom">
-									<div class="course-card-info">
-										初级<span>·</span>3444人在学
+
+						<div class="types-content-right ">
+							<div class="types-content-banner ">
+								<a target="_blank" href="http://coding.imooc.com/class/81.html">
+									<div class="types-content-banner-block green-bg"  style="margin-right:20px;" >
+										Spring框架实战讲解！
 									</div>
-								</div>
+								</a>
+								<a target="_blank" href="http://coding.imooc.com/class/76.html">
+									<div class="types-content-banner-block gray-bg"  >
+										MyBatis框架实战讲解！
+									</div>
+								</a>
+							</div>
+
+							<div class="clearfix">
+								<a href="video.jsp">
+									<div class="course-card-container">
+										<div class="course-card-top green-bg">
+											<span>测试</span>
+										</div>
+
+										<div class="course-card-content">
+											<h3 class="course-card-name">Android自动化测试实战 工具 框架 脚本</h3>
+											<p title="找Android自动化测试工作必学的主流工具、框架和自动化脚本">找Android自动化测试工作必学的主流工具、框架和自动化脚本</p>
+											<div class="course-card-bottom">
+												<div class="course-card-info">
+													初级<span>·</span>178人在学
+												</div>
+											</div>
+										</div>
+									</div>
+								</a>
+
+								<a href="video.jsp">
+									<div class="course-card-container">
+										<div class="course-card-top pink-bg">
+											<span>WebApp</span>
+										</div>
+										<div class="course-card-content">
+											<h3 class="course-card-name">AngularJS仿拉勾网WebApp 开发移动端单页应用</h3>
+											<p title="基于AngularJS，仿拉勾网开发一个招聘类的移动端单页应用">基于AngularJS，仿拉勾网开发一个招聘类的移动端单页应用</p>
+											<div class="clearfix course-card-bottom">
+												<div class="course-card-info">
+													初级<span>·</span>3444人在学
+												</div>
+											</div>
+										</div>
+									</div>
+								</a>
+								<a href="video.jsp">
+									<div class="course-card-container">
+										<div class="course-card-top brown-bg">
+											<span>Django</span>
+										</div>
+
+										<div class="course-card-content">
+											<h3 class="course-card-name">强力django杀手级xadmin 打造上线标准的在线教育平台</h3>
+											<p title="全面掌握django框架,轻松应对python web开发工作">全面掌握django框架,轻松应对python
+												web开发工作</p>
+											<div class="clearfix course-card-bottom">
+												<div class="course-card-info">
+													初级<span>·</span>4888人在学
+												</div>
+											</div>
+										</div>
+									</div>
+
+								</a>
+								<a href="video.jsp">
+									<div class="course-card-container" style="margin-right: 0px;">
+										<div class="course-card-top purple-bg">
+											<span>Python</span>
+										</div>
+
+										<div class="course-card-content">
+											<h3 class="course-card-name">Python高级编程技巧实战</h3>
+											<p title="精选50个python训练任务，提升实战技能与高效编程技巧">精选50个python训练任务，提升实战技能与高效编程技巧</p>
+											<div class="clearfix course-card-bottom">
+												<div class="course-card-info">
+													高级<span>·</span>81333人在学
+												</div>
+											</div>
+										</div>
+									</div>
+								</a>
+
 							</div>
 						</div>
-					</a> <a href="learn.html">
-						<div class="course-card-container">
-							<div class="course-card-top brown-bg">
-								<span>Django</span>
-							</div>
-
-							<div class="course-card-content">
-								<h3 class="course-card-name">强力django杀手级xadmin
-									打造上线标准的在线教育平台</h3>
-								<p title="全面掌握django框架,轻松应对python web开发工作">全面掌握django框架,轻松应对python
-									web开发工作</p>
-								<div class="clearfix course-card-bottom">
-									<div class="course-card-info">
-										初级<span>·</span>4888人在学
-									</div>
-								</div>
-							</div>
-						</div>
-
-					</a> <a href="learn.html">
-						<div class="course-card-container" style="margin-right: 0px;">
-							<div class="course-card-top purple-bg">
-								<span>Python</span>
-							</div>
-
-							<div class="course-card-content">
-								<h3 class="course-card-name">Python高级编程技巧实战</h3>
-								<p title="精选50个python训练任务，提升实战技能与高效编程技巧">精选50个python训练任务，提升实战技能与高效编程技巧</p>
-								<div class="clearfix course-card-bottom">
-									<div class="course-card-info">
-										高级<span>·</span>81333人在学
-									</div>
-								</div>
-							</div>
-						</div>
-					</a>
-
-				</div>
-			</div>
-		</div>
-		<!-- java课程-end -->
+					</div>
+					<!-- java课程-end -->
 
 		<!--名校讲师-start -->
 		<div class="types-block clearfix">
 			<h3 class="types-title">名校讲师</h3>
-			<a href="teacher.html">
+			<a href="teacher.jsp">
 				<div class="lecturer-card-container">
 					<div class="lecturer-item">
-						<img class="lecturer-uimg" src="res/i/header.jpg"> <span
-							class="lecturer-name">王阳明</span> <span class="lecturer-title">中华大学</span>
-						<span class="lecturer-p">中华大学高级讲师，擅长写代码</span>
+						<img class="lecturer-uimg" src="res/i/header.jpg">
+						<span class="lecturer-name">颜聪</span>
+						<span class="lecturer-title">武汉大学</span>
+						<span class="lecturer-p" >武汉大学高级讲师，擅长写代码</span>
 					</div>
 				</div>
-			</a> <a href="teacher.html">
+			</a>
+
+			<a href="teacher.jsp">
 				<div class="lecturer-card-container">
 					<div class="lecturer-item">
-						<img class="lecturer-uimg" src="res/i/header.jpg"> <span
-							class="lecturer-name">王阳明</span> <span class="lecturer-title">中华大学</span>
-						<span class="lecturer-p">中华大学高级讲师，擅长写代码</span>
+						<img class="lecturer-uimg" src="res/i/header.jpg">
+						<span class="lecturer-name">赵炳</span>
+						<span class="lecturer-title">武汉大学</span>
+						<span class="lecturer-p" >武汉大学高级讲师，擅长写代码</span>
 					</div>
 				</div>
-			</a> <a href="teacher.html">
+			</a>
+			<a href="teacher.jsp">
 				<div class="lecturer-card-container">
 					<div class="lecturer-item">
-						<img class="lecturer-uimg" src="res/i/header.jpg"> <span
-							class="lecturer-name">王阳明</span> <span class="lecturer-title">中华大学</span>
-						<span class="lecturer-p">中华大学高级讲师，擅长写代码</span>
+						<img class="lecturer-uimg" src="res/i/header.jpg">
+						<span class="lecturer-name">周航</span>
+						<span class="lecturer-title">武汉大学</span>
+						<span class="lecturer-p" >武汉大学高级讲师，擅长写代码</span>
 					</div>
 				</div>
-			</a> <a href="teacher.html">
-				<div class="lecturer-card-container">
+			</a>
+
+			<a href="teacher.jsp">
+				<div class="lecturer-card-container"  >
 					<div class="lecturer-item">
-						<img class="lecturer-uimg" src="res/i/header.jpg"> <span
-							class="lecturer-name">王阳明</span> <span class="lecturer-title">中华大学</span>
-						<span class="lecturer-p">中华大学高级讲师，擅长写代码</span>
+						<img class="lecturer-uimg" src="res/i/header.jpg">
+						<span class="lecturer-name">许岩</span>
+						<span class="lecturer-title">武汉大学</span>
+						<span class="lecturer-p" >武汉大学高级讲师，擅长写代码</span>
 					</div>
 				</div>
-			</a> <a href="teacher.html">
+			</a>
+
+			<a href="teacher.jsp">
 				<div class="lecturer-card-container" style="margin-right: 0px;">
 					<div class="lecturer-item">
-						<img class="lecturer-uimg" src="res/i/header.jpg"> <span
-							class="lecturer-name">王阳明</span> <span class="lecturer-title">中华大学</span>
-						<span class="lecturer-p">中华大学高级讲师，擅长写代码</span>
+						<img class="lecturer-uimg" src="res/i/header.jpg">
+						<span class="lecturer-name">周航</span>
+						<span class="lecturer-title">武汉大学</span>
+						<span class="lecturer-p" >武汉大学高级讲师，擅长写代码</span>
 					</div>
 				</div>
 			</a>
@@ -636,7 +734,7 @@
 				<a href="javascript:void(0);" target="_blank" title="友情链接">友情链接</a>
 			</div>
 			<div class="footer-copyright">
-				<span>©&nbsp;2017&nbsp; 备案 </span>
+				<span>©&nbsp;2018&nbsp; 实训</span>
 			</div>
 		</div>
 	</div>
