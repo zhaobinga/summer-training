@@ -22,8 +22,8 @@ import modle.SqlOperator;
 import modle.Student;
 import modle.itClass;
 import modle.Question;
-/**
- * Servlet implementation class AllServlet
+/*
+ *颜聪------------学生端查看试题
  */
 @WebServlet("/exam")
 public class test extends HttpServlet {

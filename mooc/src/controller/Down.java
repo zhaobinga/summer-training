@@ -23,8 +23,8 @@ import modle.Student;
 import modle.itClass;
 import modle.Question;
 import modle.Kejian;
-/**
- * Servlet implementation class AllServlet
+/*
+ * 颜聪--------------将老师上传的课件显示到学生端
  */
 @WebServlet("/kejian")
 public class Down extends HttpServlet {

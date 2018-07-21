@@ -37,7 +37,7 @@
 		<!-- 头部-start -->
 		<div class="f-header">
 			<div class="f-header-box clearfix">
-				<a href="index.jsp" class="logo" title="网校在线学习平台"></a>
+				<a  class="logo" title="网校在线学习平台"></a>
 				<nav class="header-nav">
 					<a href="success.jsp" class="header-nav-item">首 页</a>
 					

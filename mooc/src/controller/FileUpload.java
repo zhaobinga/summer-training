@@ -16,8 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import modle.FtpTool;
 import modle.SqlOperator;
 
-/**
- * Servlet implementation class FileUpload
+/*
+ * 张钰焯、杨海洋--------------------老师上传课件
  */
 @WebServlet("/FileUpload")
 public class FileUpload extends HttpServlet {

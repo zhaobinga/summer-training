@@ -21,8 +21,8 @@ import javax.servlet.http.HttpSession;
 import modle.SqlOperator;
 import modle.Student;
 import modle.itClass;
-/**
- * Servlet implementation class AllServlet
+/*
+ *颜聪---------------- 搜索课堂
  */
 @WebServlet("/search")
 public class searchServlet extends HttpServlet {

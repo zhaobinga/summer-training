@@ -19,8 +19,8 @@ import modle.Comment;
 import modle.SqlOperator;
 import modle.itClass;
 
-/**
- * Servlet implementation class logServlet
+/*
+ * 张钰焯------------登陆
  */
 @WebServlet("/log")
 public class logServlet extends HttpServlet {

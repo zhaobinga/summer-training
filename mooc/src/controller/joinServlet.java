@@ -21,8 +21,8 @@ import javax.servlet.http.HttpSession;
 import modle.SqlOperator;
 import modle.Student;
 import modle.itClass;
-/**
- * Servlet implementation class AllServlet
+/*
+ * 颜聪-----------------学生端加入课堂
  */
 @WebServlet("/join")
 public class joinServlet extends HttpServlet {

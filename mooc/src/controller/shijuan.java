@@ -22,8 +22,8 @@ import modle.SqlOperator;
 import modle.Student;
 import modle.itClass;
 import modle.Question;
-/**
- * Servlet implementation class AllServlet
+/*
+ * 颜聪-------------------创建新试卷
  */
 @WebServlet("/shijuan")
 public class shijuan extends HttpServlet {
@@ -50,6 +50,10 @@ public class shijuan extends HttpServlet {
 			String courseId=request.getParameter("courseId");
             String sql="delete from question where cid='"+courseId+"'";
             state.execute(sql);	
+            sql="delete from result where cid='"+courseId+"'";
+            state.execute(sql);
+            sql="delete from error where cid='"+courseId+"'";
+            state.execute(sql);
 			this.getServletContext().getRequestDispatcher("/shijuan.jsp").forward(request, response);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

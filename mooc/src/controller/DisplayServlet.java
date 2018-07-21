@@ -18,8 +18,8 @@ import javax.servlet.http.HttpSession;
 import modle.SqlOperator;
 import modle.itClass;
 
-/**
- * Servlet implementation class DisplayServlet
+/*
+ * 杨海洋-------------老师创建课程的显示
  */
 @WebServlet("/DisplayServlet")
 public class DisplayServlet extends HttpServlet {

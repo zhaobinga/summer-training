@@ -23,8 +23,8 @@ import modle.Student;
 import modle.itClass;
 import modle.Score;
 import modle.Error;
-/**
- * Servlet implementation class AllServlet
+/*
+ * 颜聪----------------老师预览试卷
  */
 @WebServlet("/view")
 public class View extends HttpServlet {

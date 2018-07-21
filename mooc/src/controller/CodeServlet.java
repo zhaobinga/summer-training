@@ -15,8 +15,8 @@ import javax.servlet.http.HttpSession;
 
 import modle.checkPicture;
 
-/**
- * Servlet implementation class CodeServlet
+/*
+ * 周航-------------------验证码验证
  */
 @WebServlet("/getCode")
 public class CodeServlet extends HttpServlet {

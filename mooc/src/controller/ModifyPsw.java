@@ -20,8 +20,8 @@ import javax.servlet.http.HttpSession;
 
 import modle.SqlOperator;
 import modle.Student;
-/**
- * Servlet implementation class AllServlet
+/*
+ * 颜聪-----------------修改密码
  */
 @WebServlet("/Mpsw")
 public class ModifyPsw extends HttpServlet {

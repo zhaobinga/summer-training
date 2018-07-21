@@ -217,7 +217,7 @@
 	</div>
 	<div class="f-header" id="top">
 		<div class="f-header-box clearfix">
-			<a href=".." class="logo" title="IT在线学习平台"></a>
+			<a  class="logo" title="IT在线学习平台"></a>
 			<nav class="header-nav">
 				<a href="teacher.jsp" class="header-nav-item">首 页</a> 
 		<a href="DisplayServlet?methodName=<%=0 %>" class="header-nav-item">我的课堂</a> <a
@@ -664,7 +664,7 @@
 		<!--名校讲师-start -->
 		<div class="types-block clearfix">
 			<h3 class="types-title">名校讲师</h3>
-			<a href="teacher.jsp">
+			<a >
 				<div class="lecturer-card-container">
 					<div class="lecturer-item">
 						<img class="lecturer-uimg" src="res/i/header.jpg">
@@ -675,7 +675,7 @@
 				</div>
 			</a>
 
-			<a href="teacher.jsp">
+			<a >
 				<div class="lecturer-card-container">
 					<div class="lecturer-item">
 						<img class="lecturer-uimg" src="res/i/header.jpg">
@@ -685,7 +685,7 @@
 					</div>
 				</div>
 			</a>
-			<a href="teacher.jsp">
+			<a >
 				<div class="lecturer-card-container">
 					<div class="lecturer-item">
 						<img class="lecturer-uimg" src="res/i/header.jpg">
@@ -696,7 +696,7 @@
 				</div>
 			</a>
 
-			<a href="teacher.jsp">
+			<a >
 				<div class="lecturer-card-container"  >
 					<div class="lecturer-item">
 						<img class="lecturer-uimg" src="res/i/header.jpg">
@@ -707,7 +707,7 @@
 				</div>
 			</a>
 
-			<a href="teacher.jsp">
+			<a >
 				<div class="lecturer-card-container" style="margin-right: 0px;">
 					<div class="lecturer-item">
 						<img class="lecturer-uimg" src="res/i/header.jpg">

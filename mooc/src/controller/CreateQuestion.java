@@ -21,16 +21,16 @@ import javax.servlet.http.HttpSession;
 import modle.SqlOperator;
 import modle.Student;
 import modle.itClass;
-/**
- * Servlet implementation class AllServlet
- */
+/*
+ * 
+     * 颜聪------------------创建试题
+     */
+
 @WebServlet("/question")
 public class CreateQuestion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+   
     public CreateQuestion() {
         super();
         // TODO Auto-generated constructor stub

@@ -204,7 +204,7 @@
 	</div>
 	<div class="f-header" id="top">
 		<div class="f-header-box clearfix">
-			<a href=".." class="logo" title="IT在线学习平台"></a>
+			<a  class="logo" title="IT在线学习平台"></a>
 			<nav class="header-nav">
 				<a href="success.jsp" class="header-nav-item">首 页</a>
 			</nav>

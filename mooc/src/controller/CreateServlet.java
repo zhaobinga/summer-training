@@ -18,8 +18,8 @@ import javax.servlet.http.HttpSession;
 import modle.SqlOperator;
 import modle.courseInfo;
 
-/**
- * Servlet implementation class CreateServlet
+/*
+ * 杨海洋-------------创建课堂
  */
 @WebServlet("/CreateServlet")
 public class CreateServlet extends HttpServlet {

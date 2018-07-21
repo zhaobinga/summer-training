@@ -19,8 +19,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import modle.SqlOperator;
 import modle.Student;
-/**
- * Servlet implementation class AllServlet
+/*
+ * 杨海洋-------------------注册
  */
 @WebServlet("/AllServlet")
 public class AllServlet extends HttpServlet {

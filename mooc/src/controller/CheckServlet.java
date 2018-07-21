@@ -23,8 +23,8 @@ import javax.servlet.http.HttpSession;
 import modle.SqlOperator;
 import modle.Student;
 import modle.Question;
-/**
- * Servlet implementation class AllServlet
+/*
+ * 颜聪--------实现对学生答卷的评判
  */
 @WebServlet("/check")
 public class CheckServlet extends HttpServlet {

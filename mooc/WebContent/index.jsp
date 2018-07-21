@@ -80,7 +80,7 @@ if(c!=null)
 		<!-- 头部-start -->
 		<div class="f-header">
 			<div class="f-header-box clearfix">
-				<a href=".."  class="logo" title="IT在线学习平台"></a>
+				<a   class="logo" title="IT在线学习平台"></a>
 				<nav class="header-nav">
 					<a href="index.jsp" class="header-nav-item">首 页</a>
 
@@ -563,7 +563,7 @@ if(c!=null)
 			<!--名校讲师-start -->
 			<div class="types-block clearfix">
 				<h3 class="types-title">名校讲师</h3>
-				<a href="teacher.jsp">
+				<a >
 					<div class="lecturer-card-container">
 						<div class="lecturer-item">
 							<img class="lecturer-uimg" src="res/i/header.jpg">
@@ -574,7 +574,7 @@ if(c!=null)
 					</div>
 				</a>
 					
-				<a href="teacher.jsp">
+				<a >
 					<div class="lecturer-card-container">
 						<div class="lecturer-item">
 							<img class="lecturer-uimg" src="res/i/header.jpg">
@@ -584,7 +584,7 @@ if(c!=null)
 						</div>
 					</div>
 				</a>
-            <a href="teacher.jsp">
+            <a>
 				<div class="lecturer-card-container">
 					<div class="lecturer-item">
 						<img class="lecturer-uimg" src="res/i/header.jpg">
@@ -595,7 +595,7 @@ if(c!=null)
 				</div>
 				</a>
 
-            <a href="teacher.jsp">
+            <a >
 				<div class="lecturer-card-container"  >
 					<div class="lecturer-item">
 						<img class="lecturer-uimg" src="res/i/header.jpg">
@@ -606,7 +606,7 @@ if(c!=null)
 				</div>
 				</a>
 				
-				<a href="teacher.jsp">
+				<a >
 				<div class="lecturer-card-container" style="margin-right: 0px;">
 					<div class="lecturer-item">
 						<img class="lecturer-uimg" src="res/i/header.jpg">

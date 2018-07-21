@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import modle.FtpTool;
 
-/**
- * Servlet implementation class downloadFile
+/*
+ *张钰焯、杨海洋------------------下载老师上传的课件
  */
 @WebServlet("/downloadFile")
 public class downloadFile extends HttpServlet {

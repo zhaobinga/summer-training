@@ -24,8 +24,8 @@ import modle.SqlOperator;
 import modle.Student;
 import modle.itClass;
 import modle.Comment;
-/**
- * Servlet implementation class AllServlet
+/*
+ * 颜聪----------------将评论存入数据库并显示到相关界面
  */
 @WebServlet("/Comment")
 public class CreateComment extends HttpServlet {
